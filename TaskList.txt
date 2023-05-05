@@ -1,0 +1,6 @@
+-> Atualizar linha
+-> Eliminar linha
+-> Conexão entre linhas e paragens
+-> Implementar percurso
+-> Ler nomes de paragens a partir do ficheiro com acentos e espaços
+-> Implementar menu

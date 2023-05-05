@@ -1,0 +1,15 @@
+# ninja log v5
+8	135	7045859356667340	CMakeFiles/Codigo.dir/main.c.obj	79fefc5afac0d0c
+17	166	7045859356976487	CMakeFiles/Codigo.dir/Linha.c.obj	98f658651282b4d7
+12	200	7047265248738350	CMakeFiles/Codigo.dir/Paragem.c.obj	57fe3eeaec7778dc
+166	284	7045859358163286	Codigo.exe	fb4287f12b46a091
+19	288	7049504155253065	CMakeFiles/Codigo.dir/utils.c.obj	6640c0db97c0363d
+4	300	7049830049884033	build.ninja	e598b2b72d45f908
+31	275	7049504155067729	CMakeFiles/Codigo.dir/Menu.c.obj	12e479acba655891
+2	283	7049831963439559	CMakeFiles/Codigo.dir/main.c.obj	2b7169ae9117a5ac
+7	302	7049831963718817	CMakeFiles/Codigo.dir/Linha.c.obj	26b8a9dc302c9bad
+13	320	7049831964008037	CMakeFiles/Codigo.dir/Paragem.c.obj	58ea1ac8ba8484e2
+320	679	7049831967565475	Codigo.exe	344b05050d607847
+3	100	7049833079259893	CMakeFiles/Codigo.dir/main.c.obj	2b7169ae9117a5ac
+12	116	7049833079431391	CMakeFiles/Codigo.dir/Linha.c.obj	26b8a9dc302c9bad
+116	214	7049833080368449	Codigo.exe	344b05050d607847
