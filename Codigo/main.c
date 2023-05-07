@@ -8,34 +8,44 @@ int main() {
     int parTotal = 0;
     ptrLin linLista = NULL;// <- lista ligada com todas as linhas registadas no sistema
 
-/*
+    //  +----------+
+    //  | Paragens |
+    //  +----------+
     init_rand();
     parLista = preencheLista_Paragens(parLista, &parTotal);
     putchar('\n');
 
-    vizualizarPar(parLista, parTotal);
+    visualizarPar(parLista, parTotal);
     putchar('\n');
 
-    //parLista = registarPar(parLista, &parTotal);
-    //putchar('\n');
+    parLista = registarPar(parLista, &parTotal);
+    putchar('\n');
 
-    //vizualizarPar(parLista, parTotal);
-    //putchar('\n');
+    visualizarPar(parLista, parTotal);
+    putchar('\n');
 
     eliminaPar(parLista, &parTotal);
     putchar('\n');
 
-    vizualizarPar(parLista, parTotal);
+    visualizarPar(parLista, parTotal);
     putchar('\n');
-*/
 
-
+    //  +--------+
+    //  | Linhas |
+    //  +--------+
     linLista = preencheLista_Linhas(linLista);
-    vizualizarLinhas(linLista);
     putchar('\n');
-    linLista = adicionarLinha(linLista);
+
+    visualizarLinhas(linLista);
     putchar('\n');
-    vizualizarLinhas(linLista);
+
+    linLista = adicionarLinha(linLista, parLista, parTotal);
+    putchar('\n');
+
+    visualizarLinhas(linLista);
+
     free(parLista);
+    free(linLista);
+
     return 0;
 }

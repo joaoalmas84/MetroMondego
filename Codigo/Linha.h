@@ -2,7 +2,7 @@
 #define CODIGO_LINHA_H
 
 #include "utils.h"
-#include "Structs.h"
+#include "Paragem.h"
 
 // Extras
 int verificaNome_Linhas(ptrLin p, char* nome);
@@ -10,8 +10,7 @@ ptrLin insereLin(ptrLin p, ptrLin novo);
 ptrLin preencheLista_Linhas(ptrLin p);
 
 // Funções do Enunciado
-ptrLin adicionarLinha(ptrLin p);
+ptrLin adicionarLinha(ptrLin pL, ptrPar pP, int parTotal);
 ptrLin atualizarLinha(ptrLin p, char nome[50]);
-void vizualizarLinhas(ptrLin p);
-
+void visualizarLinhas(ptrLin p);
 #endif //CODIGO_LINHA_H
