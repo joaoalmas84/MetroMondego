@@ -5,9 +5,9 @@ void menu(ptrLin linList, ptrPar parList, int parTotal) {
 
 }
 
-// +----------+
-// | Paragens |
-// +----------+
+// +----------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Paragens |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +----------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ptrPar adicionaParagem(ptrPar lista, int *total) {
     int i = 0, j = 0, res = 0, ans = 0;
@@ -45,8 +45,44 @@ ptrLin atualizaParagem(ptrLin listaL, ptrPar listaP, int parTotal) {
 
 }
 
-ptrPar eliminaParagem(ptrPar lista) {
+ptrPar eliminaParagem(ptrPar lista, int *total) {
+    int pos = 0, flag = 0, i = 0;
+    char cod[5];
 
+    printf("\n+------------------+\n| Eliminar Paragem |\n+------------------+----------------------------------+");
+    wprintf(L"\n| Introduza o código da paragem que pretende eliminar |");
+    printf("\n|                       (Ex:L4J7).                    |");
+    printf("\n+-----------------------------------------------------+");
+    printf("\n->");
+    do {
+        if(i > 0) {
+            if (flag == 1){
+                printf("\n+------------------------------------------------+");
+                wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
+                wprintf(L"\n| paragem registada no sistema, tente novamente. |");
+                printf("\n+------------------------------------------------+");
+                printf("\n->");
+            } else {
+                printf("\n+----------------------------------------------------+");
+                wprintf(L"\n|                   Codigo inválido                  |");
+                wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
+                wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
+                printf("\n+----------------------------------------------------+");
+                printf("\n->");
+            }
+        }
+        flag = 0;
+        fflush(stdin);
+        scanf(" %s", cod);
+        if (verificaCod_Paragens(lista, cod, *total) == 1 && strlen(cod) == 4) {// <- Condição necessária para escolher
+            flag = 1;                                                             //escolher a mensagem de erro
+        }
+        i++;
+    } while (strlen(cod) != 4 || verificaCod_Paragens(lista, cod, *total) == 1);
+
+    lista = dellPar(lista, cod, total);
+
+    return lista;
 }
 
 void listPar(ptrPar lista, int total) {
@@ -65,9 +101,13 @@ void listPar(ptrPar lista, int total) {
     }
 }
 
-// +--------+
-// | Linhas |
-// +--------+
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+// +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Linhas ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
 
@@ -84,3 +124,6 @@ ptrLin eliminaLinha(ptrLin lista, char* nome) {
 void listaLin(ptrLin p) {
 
 }
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

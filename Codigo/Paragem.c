@@ -80,6 +80,35 @@ ptrPar erroMemoria_Par(ptrPar p) {
     }
 }
 
+// Preenche o array com 3 paragens antes de começar o programa de modo a que tenhamos alguns dados com que trablhar
+ptrPar preencheLista_Paragens(ptrPar p, int *total) {
+    int i = 0, res = 0, ans = 0;
+    ptrPar aux = malloc(sizeof(par)*(*total+3));
+    if(aux == NULL) {
+        return p = erroMemoria_Par(p);
+    } else {
+        p = aux;
+        (*total) += 3;
+
+        strcpy(p[0].nome, "Mira");
+        strcpy(p[0].cod, geraCod());
+        p[0].linAssoiadas = NULL;
+        p[0].totLinAssociadas = 0;
+
+        strcpy(p[1].nome, "Cantanhede");
+        strcpy(p[1].cod, geraCod());
+        p[1].linAssoiadas = NULL;
+        p[1].totLinAssociadas = 0;
+
+        strcpy(p[2].nome, "Mealhada");
+        strcpy(p[2].cod, geraCod());
+        p[2].linAssoiadas = NULL;
+        p[2].totLinAssociadas = 0;
+
+        return p;
+    }
+}
+
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -101,10 +130,26 @@ ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
         strcpy(lista[*total-1].cod, cod);
         lista[*total-1].linAssoiadas = NULL;
         lista[*total-1].totLinAssociadas = 0;
-
-        //printf("\nTotal -> %d\nCod -> %s\nNome -> %s",*total, lista[*total-1].cod, lista[*total-1].nome);
-
+        printf("\nA adicionar paragem...");
         return lista;
+    }
+}
+
+ptrPar dellPar(ptrPar lista, char cod[4], int *total) {
+    ptrPar aux = NULL;
+    for (int i = 0; i < *total; ++i) {
+        if (strcmp(tolowerString(lista[i].cod),tolowerString(cod)) == 0) {
+            for (int j = i; j < *total; ++j) {
+                lista[i] = lista[i+1];
+            }
+        }
+    }
+    aux = realloc(lista, sizeof(par)*(*total-1));
+    if (aux == NULL) {
+       return lista = erroMemoria_Par(lista);
+    } else {
+        printf("\nA eliminar paragem...");
+        return lista = aux;
     }
 }
 
