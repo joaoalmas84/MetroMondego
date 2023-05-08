@@ -1,0 +1,3 @@
+C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/cmake-build-debug/CMakeFiles/Codigo.dir
+C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
