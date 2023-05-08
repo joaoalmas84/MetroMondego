@@ -3,4 +3,4 @@ project(Codigo C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Codigo main.c Paragem.c Paragem.h Linha.c Linha.h utils.h utils.c)
+add_executable(Codigo main.c Menu.c Menu.h Utils.c Utils.h Paragem.c Paragem.h Linha.c Linha.h)

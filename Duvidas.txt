@@ -1,0 +1,1 @@
+posso passar um ponteiro, que não vou utilizar, por parâmetro, como NULL??

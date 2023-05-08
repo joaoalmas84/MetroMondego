@@ -55,6 +55,18 @@ build CMakeFiles/Codigo.dir/main.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joaoa
   OBJECT_DIR = CMakeFiles\Codigo.dir
   OBJECT_FILE_DIR = CMakeFiles\Codigo.dir
 
+build CMakeFiles/Codigo.dir/Menu.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/Menu.c || cmake_object_order_depends_target_Codigo
+  DEP_FILE = CMakeFiles\Codigo.dir\Menu.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\Codigo.dir
+  OBJECT_FILE_DIR = CMakeFiles\Codigo.dir
+
+build CMakeFiles/Codigo.dir/Utils.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/Utils.c || cmake_object_order_depends_target_Codigo
+  DEP_FILE = CMakeFiles\Codigo.dir\Utils.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\Codigo.dir
+  OBJECT_FILE_DIR = CMakeFiles\Codigo.dir
+
 build CMakeFiles/Codigo.dir/Paragem.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/Paragem.c || cmake_object_order_depends_target_Codigo
   DEP_FILE = CMakeFiles\Codigo.dir\Paragem.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
@@ -67,12 +79,6 @@ build CMakeFiles/Codigo.dir/Linha.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joao
   OBJECT_DIR = CMakeFiles\Codigo.dir
   OBJECT_FILE_DIR = CMakeFiles\Codigo.dir
 
-build CMakeFiles/Codigo.dir/utils.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/utils.c || cmake_object_order_depends_target_Codigo
-  DEP_FILE = CMakeFiles\Codigo.dir\utils.c.obj.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu99
-  OBJECT_DIR = CMakeFiles\Codigo.dir
-  OBJECT_FILE_DIR = CMakeFiles\Codigo.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Codigo
@@ -81,7 +87,7 @@ build CMakeFiles/Codigo.dir/utils.c.obj: C_COMPILER__Codigo_Debug C$:/Users/joao
 #############################################
 # Link the executable Codigo.exe
 
-build Codigo.exe: C_EXECUTABLE_LINKER__Codigo_Debug CMakeFiles/Codigo.dir/main.c.obj CMakeFiles/Codigo.dir/Paragem.c.obj CMakeFiles/Codigo.dir/Linha.c.obj CMakeFiles/Codigo.dir/utils.c.obj
+build Codigo.exe: C_EXECUTABLE_LINKER__Codigo_Debug CMakeFiles/Codigo.dir/main.c.obj CMakeFiles/Codigo.dir/Menu.c.obj CMakeFiles/Codigo.dir/Utils.c.obj CMakeFiles/Codigo.dir/Paragem.c.obj CMakeFiles/Codigo.dir/Linha.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Codigo.dir
