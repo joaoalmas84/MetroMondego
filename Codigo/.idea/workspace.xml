@@ -26,12 +26,39 @@
       <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paragem.c" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paragem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/Linha.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/Paragem.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/Paragem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.cmake/api/v1/reply/cache-v2-1a30145ae5ff3ea76de0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-ccd69aaa02f5b8e48ba4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-ff83be926b7b1d3e4669.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.cmake/api/v1/reply/index-2023-05-07T00-07-19-0454.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/utils.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/Codigo.dir/utils.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/Codigo.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Versão Anterior/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Versão Anterior/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +105,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -99,6 +127,8 @@
       <workItem from="1683497717540" duration="6210000" />
       <workItem from="1683538791875" duration="32000" />
       <workItem from="1683554954497" duration="1521000" />
+      <workItem from="1683562789407" duration="5770000" />
+      <workItem from="1683572034045" duration="403000" />
     </task>
     <servers />
   </component>
@@ -110,5 +140,15 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Paragem.h</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

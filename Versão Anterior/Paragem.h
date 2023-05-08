@@ -13,8 +13,8 @@ ptrPar erroMemoria_Par(ptrPar p);// Mensagem de erro quando a alocação de mem�
 void listaVazia_Par(); // Mensagem de erro quando a lista se encontra vazia
 
 // Funções do Enunciado
-ptrPar addPar(ptrPar p, int *total);
-ptrPar dellPar(ptrPar p, int *total);
-void listPar(ptrPar p, int total);
+ptrPar registarPar(ptrPar p, int *total);
+ptrPar eliminaPar(ptrPar p, int *total);
+void visualizarPar(ptrPar p, int total);
 
 #endif //CODIGO_PARAGEM_H

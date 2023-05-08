@@ -216,7 +216,7 @@ ptrLin adicionarLinha(ptrLin pL, ptrPar Pp, int parTotal) {
             } while (!res || verificaCod_Paragens(Pp, cod, parTotal, NULL) != 0);
         } else if (ans == 2) {
             res = i = flag = 0;
-            visualizarPar(Pp, parTotal);
+            //visualizarPar(Pp, parTotal);
             printf("\n+-------------------------------------------------------+");
             wprintf(L"\n| Introduza o código da paragem que pretende adicionar. |");
             printf("\n+-------------------------------------------------------+");

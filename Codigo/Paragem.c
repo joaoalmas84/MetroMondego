@@ -5,7 +5,7 @@
 // +--------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 // <- devolve 1 se nome existir em lista
-int verificaNome_Paragens(ptrPar lista, char* nome, int total) {
+int verificaNome_Paragens(ptrPar lista, char *nome, int total) {
     if (total == 0) {
         return 0;
     } else {
@@ -19,12 +19,12 @@ int verificaNome_Paragens(ptrPar lista, char* nome, int total) {
 }
 
 // <- devolve 1 se cod existir em lista
-int verificaCod_Paragens(ptrPar lista, char cod[4], int total) {
+int verificaCod_Paragens(ptrPar lista, char *cod, int total) {
     if (total == 0) {
         return 0;
     } else {
         for (int i = 0; i < total; ++i) {
-            if (strcmp(tolowerString(lista[i].cod), tolowerString(cod)) == 0) {
+            if (strcmp(tolowerString(cod), tolowerString(lista[i].cod)) == 0) {
                 return 1;
             }
         }
@@ -119,10 +119,11 @@ ptrPar preencheLista_Paragens(ptrPar p, int *total) {
 
 // Adiciona Paragem
 ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
-    ptrPar aux = realloc(lista, sizeof(int)*(*total+1));
+    ptrPar aux = realloc(lista, sizeof(par)*(*total+1));
     if (aux == NULL) {
         return lista = erroMemoria_Par(lista);
     } else {
+
         lista = aux;
         (*total)++;
 
@@ -130,18 +131,22 @@ ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
         strcpy(lista[*total-1].cod, cod);
         lista[*total-1].linAssoiadas = NULL;
         lista[*total-1].totLinAssociadas = 0;
+
         printf("\nA adicionar paragem...");
+
         return lista;
     }
 }
 
-ptrPar dellPar(ptrPar lista, char cod[4], int *total) {
+// Elimina Paragem
+ptrPar dellPar(ptrPar lista, char *cod, int *total) {
     ptrPar aux = NULL;
     for (int i = 0; i < *total; ++i) {
         if (strcmp(tolowerString(lista[i].cod),tolowerString(cod)) == 0) {
-            for (int j = i; j < *total; ++j) {
+            for (int j = i; j < *total-1; ++j) {
                 lista[i] = lista[i+1];
             }
+            break;
         }
     }
     aux = realloc(lista, sizeof(par)*(*total-1));
@@ -149,7 +154,9 @@ ptrPar dellPar(ptrPar lista, char cod[4], int *total) {
        return lista = erroMemoria_Par(lista);
     } else {
         printf("\nA eliminar paragem...");
-        return lista = aux;
+        (*total)--;
+        lista = aux;
+        return lista;
     }
 }
 

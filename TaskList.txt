@@ -1,4 +1,4 @@
--> Adicionar linha está incompleto
+-> Adicionar linha está incompleto (insereLin, associaPar, addLin)
 -> Atualizar linha
 -> Eliminar linha
 -> Conexão entre linhas e paragens

@@ -17,7 +17,7 @@ int main() {
 
     visualizarPar(parLista, parTotal);
     putchar('\n');
-    /*
+
     parLista = registarPar(parLista, &parTotal);
     putchar('\n');
 
@@ -29,7 +29,7 @@ int main() {
 
     visualizarPar(parLista, parTotal);
     putchar('\n');
-*/
+/*
     //  +--------+
     //  | Linhas |
     //  +--------+
@@ -44,7 +44,7 @@ int main() {
 
     visualizarLinhas(linLista);
     putchar('\n');
-
+*/
     free(parLista);
     free(linLista);
 

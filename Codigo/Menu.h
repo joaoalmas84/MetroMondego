@@ -17,8 +17,8 @@
 void menu(ptrLin linList, ptrPar parList, int parTotal);    // <- Função principal (só para não lhe chamar main)
 
 // Colunas
-ptrPar adicionaParagem(ptrPar lista, int *parTotal);
-ptrLin atualizaParagem(ptrLin listaL, ptrPar listaP, int parTotal);
+ptrPar adicionaParagem(ptrPar lista, int *total);
+ptrPar atualizaParagem(ptrPar lista, int total);
 ptrPar eliminaParagem(ptrPar lista, int *total);
 void listPar(ptrPar lista, int total);
 

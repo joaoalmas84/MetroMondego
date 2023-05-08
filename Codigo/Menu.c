@@ -12,7 +12,7 @@ void menu(ptrLin linList, ptrPar parList, int parTotal) {
 ptrPar adicionaParagem(ptrPar lista, int *total) {
     int i = 0, j = 0, res = 0, ans = 0;
     char nome[50];
-    char *cod;
+    char cod[5];
 
     printf("\n+--------------+\n| Nova Paragem |\n+--------------+-------------------------------------------+");
     wprintf(L"\n| Não é possível existirem duas paragens com o mesmo nome. |");
@@ -33,7 +33,7 @@ ptrPar adicionaParagem(ptrPar lista, int *total) {
     } while(verificaNome_Paragens(lista, nome, *total) == 1);
 
     do {
-        cod = geraCod();
+        strcpy(cod, geraCod());
     } while (verificaCod_Paragens(lista, cod, *total) == 1);
 
     lista = addPar(lista, nome, cod, total);
@@ -41,12 +41,12 @@ ptrPar adicionaParagem(ptrPar lista, int *total) {
     return lista;
 }
 
-ptrLin atualizaParagem(ptrLin listaL, ptrPar listaP, int parTotal) {
+ptrPar atualizaParagem(ptrPar lista, int total) {
 
 }
 
 ptrPar eliminaParagem(ptrPar lista, int *total) {
-    int pos = 0, flag = 0, i = 0;
+    int flag = 0, i = 0;
     char cod[5];
 
     printf("\n+------------------+\n| Eliminar Paragem |\n+------------------+----------------------------------+");
@@ -57,10 +57,10 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
     do {
         if(i > 0) {
             if (flag == 1){
-                printf("\n+------------------------------------------------+");
-                wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
-                wprintf(L"\n| paragem registada no sistema, tente novamente. |");
-                printf("\n+------------------------------------------------+");
+                printf("\n  +----------------------------------------------------+");
+                wprintf(L"\n|   O código introduzido não corresponde a nenhuma   |");
+                wprintf(L"\n|   paragem registada no sistema, tente novamente.   |");
+                printf("\n  +----------------------------------------------------+");
                 printf("\n->");
             } else {
                 printf("\n+----------------------------------------------------+");
@@ -74,11 +74,11 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
         flag = 0;
         fflush(stdin);
         scanf(" %s", cod);
-        if (verificaCod_Paragens(lista, cod, *total) == 1 && strlen(cod) == 4) {// <- Condição necessária para escolher
-            flag = 1;                                                             //escolher a mensagem de erro
+        if (strlen(cod) == 4 && verificaCod_Paragens(lista, cod, *total) == 0) {// <- Condição necessária para escolher
+            flag = 1;                                                           //escolher a mensagem de erro
         }
         i++;
-    } while (strlen(cod) != 4 || verificaCod_Paragens(lista, cod, *total) == 1);
+    } while (strlen(cod) != 4 || verificaCod_Paragens(lista, cod, *total) == 0);
 
     lista = dellPar(lista, cod, total);
 
@@ -122,7 +122,19 @@ ptrLin eliminaLinha(ptrLin lista, char* nome) {
 }
 
 void listaLin(ptrLin p) {
-
+    if (p->nParExistentes == 0) {
+        listaVazia();
+        return;
+    }
+    printf("\n+--------------------------------------------------+");
+    printf("\n| Todas as paragens existentes na linha %s ", p->nome);
+    printf("\n+---+--------+-------------------------------------+");
+    wprintf(L"\n|   | Código | Nome ");
+    printf("\n+---+--------+-------------------------------------+");
+    for (int j = 0; j < p->nParExistentes; ++j) {
+        wprintf(L"\n| %d |  %s  | %s", j, p->parExistentes[j].cod, p->parExistentes[j].nome);
+        printf("\n+---+--------+---------------------------------+");
+    }
 }
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
