@@ -103,7 +103,7 @@ ptrLin erroMemoria_Lin(ptrLin p) {
         exit(1); // substituir esta passo por uma função que guarde toda a informação nos ficheiros e termine o programa
     }
 }
-
+/*
 ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
     printf("\npL.nome -> %s\npP.nome -> %s\npos -> %d", pL->nome, pP->nome, pos);
     exit(1);
@@ -120,7 +120,7 @@ ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
     exit(1);
     return pL;
 }
-
+*/
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -128,7 +128,7 @@ ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-ptrLin addLin(ptrLin listaL, ptrPar listaP, int parTotal, int *parAssociadas ) {
+ptrLin addLin(ptrLin listaL, ptrPar listaP, int parTotal, char *nome, char *codParAssociada) {
 
 }
 

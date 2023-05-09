@@ -6,11 +6,12 @@ int main() {
     int parTotal = 0;
     ptrLin listL = NULL;
 
+
     init_rand();
     listP = preencheLista_Paragens(listP, &parTotal);
     listPar(listP, parTotal);
     putchar('\n');
-
+/*
     listP = adicionaParagem(listP, &parTotal);
     listPar(listP, parTotal);
     putchar('\n');
@@ -18,6 +19,10 @@ int main() {
     listP = eliminaParagem(listP, &parTotal);
     listPar(listP, parTotal);
     putchar('\n');
+*/
+
+    listL = adicionaLinha(listL, listP, parTotal);
+    listaLin(listL);
 
     return 0;
 }
