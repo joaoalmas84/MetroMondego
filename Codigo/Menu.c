@@ -110,15 +110,26 @@ void listPar(ptrPar lista, int total) {
 // +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
-    int i = 0, ans1 = 0, ans2 = 0,  res = 0, flag = 0, nPar = 1;
+    int i = 0, ans = 0, res = 0, flag = 0, nPar = 0;
     char nome[50];
-    char **cod = malloc(sizeof(char*)*nPar); // <- Alocar memória para guardar o cod da primeira paragem adicionada
-    if (cod ==NULL) {
-        return listaL = erroMemoria_Lin(listaL);
+
+    char **codList = malloc(sizeof(char*)*nPar);      // <- lsita para guardar os codigos de todas as paragens associar
+    if (codList == NULL) {
+        if (erroMemoria() == 1) {
+            return listaL;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
     } else {
-        for (int j = 0; j < 4; ++j) {           // <- Alocar memória para cada caractere
-            cod[j] = malloc(sizeof(char)*5);    //  do código (4 caracteres + '\n')
-            return listaL = erroMemoria_Lin(listaL);
+        for (int j = 0; j < 4; ++j) {                   // <- Alocar memória para cada caractere
+            codList[j] = malloc(sizeof(char)*5);      //  do código (4 caracteres + '\n')
+            if (codList[j] == NULL) {
+                if (erroMemoria() == 1) {
+                    return listaL;
+                } else if (erroMemoria() == 2) {
+                    exit(1);
+                }
+            }
         }
     }
 
@@ -139,98 +150,40 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         scanf(" %s", nome);
         i++;
     } while (verificaNome_Linhas(listaL, nome) == 1);
-    do {// prender tudo num ciclo de maneira a que permita adicionar mais que uma paragem
-        mdsmcsmcmsmvdsdvsdv
-    } while (!res || ans2 == 1 || );
-    res = i = ans1 = 0;
-    printf("\n+--------------------+\n| Adicionar Paragens |\n+--------------------+-------------------------------------------------------------+");
-    wprintf(L"\n| Para ser registada no sistema uma linha necessita de ter pelo menos uma paragem. |");
-    printf("\n|               1.Adicionar Paragem     2.Vizualizar Paragens                      |");
-    printf("\n+----------------------------------------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------+");
-            wprintf(L"\n|      Resposta inválida, tente novamente.     |");
-            printf("\n| 1.Adicionar Paragem    2.Vizualizar Paragens |");
-            printf("\n+----------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        res = scanf("%d", &ans1);
-        i++;
-    } while (!res || ans1 != 1 && ans1 != 2);
 
-    res = i = 0;
-    if (ans1 == 1) {
-        res = i = 0;
-        printf("\n+-------------------------------------------------------+");
-        wprintf(L"\n| Introduza o código da paragem que pretende adicionar. |");
-        printf("\n+-------------------------------------------------------+");
-        printf("\n->");
-        do {
-            if (i > 0) {
-                if (flag == 1) {
-                    printf("\n+------------------------------------------------+");
-                    wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
-                    wprintf(L"\n| paragem registada no sistema, tente novamente. |");
-                    printf("\n+------------------------------------------------+");
-                    printf("\n->");
-                } else {
-                    printf("\n+----------------------------------------------------+");
-                    wprintf(L"\n|                   Codigo inválido                  |");
-                    wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
-                    wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
-                    printf("\n+----------------------------------------------------+");
-                    printf("\n->");
-                }
-            }
-            fflush(stdin);
-            res = scanf(" %s", cod);
-            if (verificaCod_Paragens(listaP, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
-                flag = 1;                                                                     //    escolher a mensagem de erro
-            }
-            i++;
-        } while (!res || verificaCod_Paragens(listaP, cod, parTotal) == 0);
-    } else if (ans1 == 2) {
-        res = i = flag = 0;
-        listPar(listaP, parTotal);
-        printf("\n+-------------------------------------------------------+");
-        wprintf(L"\n| Introduza o código da paragem que pretende adicionar. |");
-        printf("\n+-------------------------------------------------------+");
-        printf("\n->");
-        do {
-            if (i > 0) {
-                if (flag == 1) {
-                    printf("\n+------------------------------------------------+");
-                    wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
-                    wprintf(L"\n| paragem registada no sistema, tente novamente. |");
-                    printf("\n+------------------------------------------------+");
-                    printf("\n->");
-                } else {
-                    printf("\n+----------------------------------------------------+");
-                    wprintf(L"\n|                   Codigo inválido                  |");
-                    wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
-                    wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
-                    printf("\n+----------------------------------------------------+");
-                    printf("\n->");
-                }
-            }
-            flag = 0;
-            fflush(stdin);
-            scanf(" %s", cod);
-            if (verificaCod_Paragens(listaP, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
-                flag = 1;                                                                     //    escolher a mensagem de erro
-            }
-            i++;
-        } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
-    }
-
-
+    res = i = ans = 0;
+    associaParagem(codList, &nPar, listaP, parTotal);
     printf("\nNome -> %s\nParagens adicionadas:", nome);
     for (int j = 0; j < nPar; ++j) {
-        printf("-> %s", cod[j]);
+        printf("\n-> %s", codList[j]);
     }
+    exit(1);
+    printf("\n+-------------------------------------+");
+    wprintf(L"\n|        Adicionar mais paragens?     |");
+    wprintf(L"\n|            1.Sim    2.Não           |");
+    printf("\n+-------------------------------------+");
+    printf("\n->");
+    do {
+        ans = res = i = 0;
+        do {
+            if (i > 0) {
+                printf("\n+-------------------------------------+");
+                wprintf(L"\n| Resposta inválida, tente novamente. |");
+                printf("\n+-------------------------------------+");
+                wprintf(L"\n|        Adicionar mais paragens?     |");
+                wprintf(L"\n|            1.Sim    2.Não           |");
+                printf("\n+-------------------------------------+");
+                printf("\n->");
+            }
+            fflush(stdin);
+            res = scanf("%d", &ans);
+            i++;
+        } while (!res || ans != 1 && ans != 2);
+        if (ans == 1) {
+            associaParagem(codList, &nPar, listaP, parTotal);
+        }
+    } while (ans != 2);
+
     exit(1);
 
     return listaL;
@@ -259,6 +212,92 @@ void listaLin(ptrLin p) {
         printf("\n+---+--------+---------------------------------+");
     }
 }
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+// +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Linhas -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+void associaParagem(char** codList, int* nPar, ptrPar listaP, int parTotal){
+    int res = 0, ans = 0, i = 0, flag = 0;
+    res = i = ans = 0;
+    char cod[5];
+    char **aux;
+
+    printf("\n+-------------------+\n| Associar Paragens |\n+-------------------+--------------------------------------------------------------+");
+    wprintf(L"\n| Para ser registada no sistema uma linha necessita de ter pelo menos uma paragem. |");
+    printf("\n|               1.Adicionar Paragem     2.Vizualizar Paragens                      |");
+    printf("\n+----------------------------------------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n+----------------------------------------------+");
+            wprintf(L"\n|      Resposta inválida, tente novamente.     |");
+            printf("\n| 1.Adicionar Paragem    2.Vizualizar Paragens |");
+            printf("\n+----------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        res = scanf("%d", &ans);
+        i++;
+    } while (!res || ans != 1 && ans != 2);
+
+    if (ans == 2) {
+        listPar(listaP, parTotal);
+    }
+    res = i = 0;
+    printf("\n+------------------------------------------------------+");
+    wprintf(L"\n| Introduza o código da paragem que pretende associar. |");
+    printf("\n+------------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            if (flag == 1) {
+                printf("\n+------------------------------------------------+");
+                wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
+                wprintf(L"\n| paragem registada no sistema, tente novamente. |");
+                printf("\n+------------------------------------------------+");
+                printf("\n->");
+            } else {
+                printf("\n+----------------------------------------------------+");
+                wprintf(L"\n|                   Codigo inválido                  |");
+                wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
+                wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
+                printf("\n+----------------------------------------------------+");
+                printf("\n->");
+            }
+        }
+        fflush(stdin);
+        res = scanf(" %s", cod);
+        if (verificaCod_Paragens(listaP, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+            flag = 1;                                                                     //    escolher a mensagem de erro
+        }
+        i++;
+    } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
+
+    codList = realloc(codList, sizeof(char*)*(*nPar+1));
+    if (codList == NULL) {
+        if (erroMemoria() == 1) {
+            return;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    } else {
+        (*nPar)++;
+        codList[*nPar-1] = malloc(sizeof(char)*5);
+        if (codList[*nPar-1] == NULL) {
+            if (erroMemoria() == 1) {
+                return;
+            } else if (erroMemoria() == 2) {
+                exit(1);
+            }
+        } else {
+            strcpy(codList[*nPar-1], cod);
+        }
+    }
+}
+
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

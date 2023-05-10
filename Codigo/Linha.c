@@ -11,7 +11,11 @@ ptrLin preencheLista_Linhas(ptrLin p) {
     ptrLin l3 = malloc(sizeof(lin));
 
     if (l1 == NULL || l2 == NULL || l3 == NULL) {
-        return p = erroMemoria_Lin(p);
+        if (erroMemoria() == 1) {
+            return p;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
     } else {
         printf("\nA preecher lista...");
         p = l1;
@@ -77,32 +81,7 @@ ptrLin insereLin(ptrLin p, ptrLin novo) {
     }
 }
 
-ptrLin erroMemoria_Lin(ptrLin p) {
-    int i = 0, res = 0, ans = 0;
-    printf("\n+---------------------------------------------------+");
-    printf("\n|            Erro na alocação de memória.           |");
-    printf("\n|           Voltar para  o menu principal?          |");
-    printf("\n|              1.Voltar     2.Terminar              |");
-    printf("\n+---------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|         Resposta inválida, tente novamente.        |");
-            printf("\n|              1.Voltar     2.Terminar               |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        res = scanf("%d", &ans);
-        i++;
-    } while (!res || ans != 1 && ans != 0);
-    if (ans == 1) {
-        return p;
-    } else {
-        exit(1); // substituir esta passo por uma função que guarde toda a informação nos ficheiros e termine o programa
-    }
-}
+
 /*
 ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
     printf("\npL.nome -> %s\npP.nome -> %s\npos -> %d", pL->nome, pP->nome, pos);
@@ -128,9 +107,9 @@ ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-ptrLin addLin(ptrLin listaL, ptrPar listaP, int parTotal, char *nome, char *codParAssociada) {
+//ptrLin addLin(ptrLin listaL, ptrPar listaP, int parTotal, char *nome, char *codParAssociada) {
 
-}
+//}
 
 
 

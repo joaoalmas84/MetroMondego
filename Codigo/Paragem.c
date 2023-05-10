@@ -52,41 +52,16 @@ char* geraCod() {
     return cod;
 }
 
-// Mensagem de erro quando a alocação de memória falha
-ptrPar erroMemoria_Par(ptrPar p) {
-    int i = 0, res = 0, ans = 0;
-    printf("\n+---------------------------------------------------+");
-    printf("\n|            Erro na alocação de memória.           |");
-    printf("\n|           Voltar para  o menu principal?          |");
-    printf("\n|              1.Voltar     2.Terminar              |");
-    printf("\n+---------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|         Resposta inválida, tente novamente.        |");
-            printf("\n|              1.Voltar     2.Terminar               |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        res = scanf("%d", &ans);
-        i++;
-    } while (!res || ans != 1 && ans != 0);
-    if (ans == 1) {
-        return p;
-    } else {
-        exit(1); // substituir esta passo por uma função que guarde toda a informação nos ficheiros e termine o programa
-    }
-}
-
 // Preenche o array com 3 paragens antes de começar o programa de modo a que tenhamos alguns dados com que trablhar
 ptrPar preencheLista_Paragens(ptrPar p, int *total) {
     int i = 0, res = 0, ans = 0;
     ptrPar aux = malloc(sizeof(par)*(*total+3));
     if(aux == NULL) {
-        return p = erroMemoria_Par(p);
-    } else {
+        if (erroMemoria() == 1) {
+            return p;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }    } else {
         p = aux;
         (*total) += 3;
 
@@ -121,8 +96,11 @@ ptrPar preencheLista_Paragens(ptrPar p, int *total) {
 ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
     ptrPar aux = realloc(lista, sizeof(par)*(*total+1));
     if (aux == NULL) {
-        return lista = erroMemoria_Par(lista);
-    } else {
+        if (erroMemoria() == 1) {
+            return lista;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }    } else {
 
         lista = aux;
         (*total)++;
@@ -151,8 +129,11 @@ ptrPar dellPar(ptrPar lista, char *cod, int *total) {
     }
     aux = realloc(lista, sizeof(par)*(*total-1));
     if (aux == NULL) {
-       return lista = erroMemoria_Par(lista);
-    } else {
+        if (erroMemoria() == 1) {
+            return lista;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }    } else {
         printf("\nA eliminar paragem...");
         (*total)--;
         lista = aux;

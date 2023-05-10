@@ -16,7 +16,7 @@
 
 void menu(ptrLin linList, ptrPar parList, int parTotal);    // <- Função principal (só para não lhe chamar main)
 
-// Colunas
+// Paragens
 ptrPar adicionaParagem(ptrPar lista, int *total);
 ptrPar atualizaParagem(ptrPar lista, int total);
 ptrPar eliminaParagem(ptrPar lista, int *total);
@@ -28,4 +28,6 @@ ptrLin atualizaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
 ptrLin eliminaLinha(ptrLin lista, char* nome);
 void listaLin(ptrLin p);
 
+// Linhas -> extras
+void associaParagem(char** codList, int* nPar, ptrPar listaP, int parTotal);
 #endif //CODIGO_MENU_H
