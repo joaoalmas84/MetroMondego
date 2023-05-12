@@ -29,5 +29,6 @@ ptrLin eliminaLinha(ptrLin lista, char* nome);
 void listaLin(ptrLin p);
 
 // Linhas -> extras
-void associaParagem(char** codList, int* nPar, ptrPar listaP, int parTotal);
+void associaParagem(char* cod, ptrPar listaP, int parTotal);
+void getCodUser(char *cod, ptrPar listaP, int parTotal);
 #endif //CODIGO_MENU_H

@@ -80,26 +80,11 @@ ptrLin insereLin(ptrLin p, ptrLin novo) {
         return p;
     }
 }
-
-
 /*
-ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
-    printf("\npL.nome -> %s\npP.nome -> %s\npos -> %d", pL->nome, pP->nome, pos);
-    exit(1);
-    pL->nParExistentes++;
-    ptrPar aux = realloc(pL->parExistentes, sizeof(par)*(pL->nParExistentes));
-    if (aux == NULL) {
-        return pL = erroMemoria_Lin(pL);
-    } else {
-        printf("\nA associar paragem...");
-        pL->parExistentes = aux;
-        pL->parExistentes[pL->nParExistentes-1] = pP[pos];
-    }
-    visualizarParExistentes(pL);
-    exit(1);
-    return pL;
-}
-*/
+ptrLin assocPar() {
+
+}*/
+
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -107,9 +92,9 @@ ptrLin associaPar(ptrPar novo, ptrPar listaP, char *cod) {
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//ptrLin addLin(ptrLin listaL, ptrPar listaP, int parTotal, char *nome, char *codParAssociada) {
+/*ptrLin addLin() {
 
-//}
+}*/
 
 
 

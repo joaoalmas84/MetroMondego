@@ -111,27 +111,7 @@ void listPar(ptrPar lista, int total) {
 
 ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
     int i = 0, ans = 0, res = 0, flag = 0, nPar = 0;
-    char nome[50];
-
-    char **codList = malloc(sizeof(char*)*nPar);      // <- lsita para guardar os codigos de todas as paragens associar
-    if (codList == NULL) {
-        if (erroMemoria() == 1) {
-            return listaL;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    } else {
-        for (int j = 0; j < 4; ++j) {                   // <- Alocar memória para cada caractere
-            codList[j] = malloc(sizeof(char)*5);      //  do código (4 caracteres + '\n')
-            if (codList[j] == NULL) {
-                if (erroMemoria() == 1) {
-                    return listaL;
-                } else if (erroMemoria() == 2) {
-                    exit(1);
-                }
-            }
-        }
-    }
+    char nome[50], cod[5];
 
     printf("\n+------------+\n| Nova Linha |\n+------------+-------------------------------------------+");
     wprintf(L"\n| Não é possível existirem duas linhas com o mesmo nome. |");
@@ -151,13 +131,9 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         i++;
     } while (verificaNome_Linhas(listaL, nome) == 1);
 
+    associaParagem(cod, listaP, parTotal);
+
     res = i = ans = 0;
-    associaParagem(codList, &nPar, listaP, parTotal);
-    printf("\nNome -> %s\nParagens adicionadas:", nome);
-    for (int j = 0; j < nPar; ++j) {
-        printf("\n-> %s", codList[j]);
-    }
-    exit(1);
     printf("\n+-------------------------------------+");
     wprintf(L"\n|        Adicionar mais paragens?     |");
     wprintf(L"\n|            1.Sim    2.Não           |");
@@ -180,11 +156,9 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
             i++;
         } while (!res || ans != 1 && ans != 2);
         if (ans == 1) {
-            associaParagem(codList, &nPar, listaP, parTotal);
+            associaParagem(cod, listaP, parTotal);
         }
     } while (ans != 2);
-
-    exit(1);
 
     return listaL;
 }
@@ -219,11 +193,8 @@ void listaLin(ptrLin p) {
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Linhas -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-void associaParagem(char** codList, int* nPar, ptrPar listaP, int parTotal){
+void associaParagem(char* cod, ptrPar listaP, int parTotal){
     int res = 0, ans = 0, i = 0, flag = 0;
-    res = i = ans = 0;
-    char cod[5];
-    char **aux;
 
     printf("\n+-------------------+\n| Associar Paragens |\n+-------------------+--------------------------------------------------------------+");
     wprintf(L"\n| Para ser registada no sistema uma linha necessita de ter pelo menos uma paragem. |");
@@ -246,7 +217,13 @@ void associaParagem(char** codList, int* nPar, ptrPar listaP, int parTotal){
     if (ans == 2) {
         listPar(listaP, parTotal);
     }
-    res = i = 0;
+    getCodUser(cod, listaP, parTotal);
+    exit(1);// Ficámoes aqui
+}
+
+void getCodUser(char *cod, ptrPar listaP, int parTotal) {
+    int res = 0, i = 0, flag = 0;
+
     printf("\n+------------------------------------------------------+");
     wprintf(L"\n| Introduza o código da paragem que pretende associar. |");
     printf("\n+------------------------------------------------------+");
@@ -275,27 +252,6 @@ void associaParagem(char** codList, int* nPar, ptrPar listaP, int parTotal){
         }
         i++;
     } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
-
-    codList = realloc(codList, sizeof(char*)*(*nPar+1));
-    if (codList == NULL) {
-        if (erroMemoria() == 1) {
-            return;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    } else {
-        (*nPar)++;
-        codList[*nPar-1] = malloc(sizeof(char)*5);
-        if (codList[*nPar-1] == NULL) {
-            if (erroMemoria() == 1) {
-                return;
-            } else if (erroMemoria() == 2) {
-                exit(1);
-            }
-        } else {
-            strcpy(codList[*nPar-1], cod);
-        }
-    }
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
