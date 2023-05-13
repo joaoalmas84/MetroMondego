@@ -18,7 +18,6 @@ void menu(ptrLin linList, ptrPar parList, int parTotal);    // <- Função princ
 
 // Paragens
 ptrPar adicionaParagem(ptrPar lista, int *total);
-ptrPar atualizaParagem(ptrPar lista, int total);
 ptrPar eliminaParagem(ptrPar lista, int *total);
 void listPar(ptrPar lista, int total);
 

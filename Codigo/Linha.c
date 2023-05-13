@@ -11,7 +11,7 @@ int verificaNome_Linhas(ptrLin p, char* nome) {
         return 0;
     } else {
         aux = p;
-        while (aux != NULL) {
+        while (aux->prox != NULL) {
             if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
                 return 1;
             }
@@ -28,7 +28,7 @@ ptrLin insereLin(ptrLin p, ptrLin novo) {
         p = novo;
         return p;
     } else {
-        while(aux != NULL) {
+        while(aux->prox != NULL) {
             aux = aux->prox;
         }
         aux->prox = novo;
@@ -66,13 +66,13 @@ ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
     strcpy(novo->nome, nome);
     novo->parAssoc = aux;
 
-    assocPar(novo, nome, cod, listaP, parTotal, 0);
+    addPar_Lin(novo, nome, cod, listaP, parTotal, 0);
     p = insereLin(p, novo);
 
     return p;
 }
 
-void assocPar(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag) {
+void addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag) {
     int i;
     if (flag == 0) { // flag == 0: estamos a adicionar a primeira paragem desta linha
         for (i = 0; i < parTotal; ++i) {
@@ -84,7 +84,7 @@ void assocPar(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int f
         p->parAssoc[p->nParAssoc-1] = listaP[i];
     } else {
         ptrLin aux = p;
-        while (aux != NULL) {
+        while (aux->prox != NULL) {
             if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
                 break;
             }
@@ -98,9 +98,9 @@ void assocPar(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int f
         }
 
         if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1) {
-            printf("\n  +---------------------------------------------+");
-            wprintf(L"\n| A Paragem da %s já se ecnontra nesta linha. |", listaP[i].nome);
-            printf("\n  +---------------------------------------------+");
+            printf("\n+-------------------------------------------------------+");
+            wprintf(L"\n| A Paragem da %s já se ecnontra nesta linha.", listaP[i].nome);
+            printf("\n+-------------------------------------------------------+");
             return;
         }
 

@@ -29,6 +29,12 @@ int main() {
 */
 
     listL = adicionaLinha(listL, listP, parTotal);
+    listaLin(listL);
+    listL = adicionaLinha(listL, listP, parTotal);
+    listaLin(listL);
+    listL = adicionaLinha(listL, listP, parTotal);
+    listaLin(listL);
+
     listaLinAll(listL);
 
     return 0;
