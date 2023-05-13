@@ -1,5 +1,3 @@
--> Adicionar linha está incompleto
-	=> Estamos a obter o codigo da paragem a associar à linha em questão. Ficámos por aí...
 -> Atualizar linha
 -> Eliminar linha
 -> Conexão entre linhas e paragens

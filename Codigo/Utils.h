@@ -15,14 +15,14 @@ typedef struct Linha lin, *ptrLin;
 struct Paragem {
     char nome[50];
     char cod[5];
-    ptrLin linAssoiadas;    // <- lista ligada de linhas
-    int totLinAssociadas;
+    ptrLin linAssoc;    // <- lista ligada de linhas
+    int totLinAssoc;
 };
 
 struct Linha {
     char nome[50];
-    ptrPar parExistentes;   // <- array dinamico de paragens
-    int nParExistentes;
+    ptrPar parAssoc;   // <- array dinamico de paragens
+    int nParAssoc;
     ptrLin prox;
 };
 

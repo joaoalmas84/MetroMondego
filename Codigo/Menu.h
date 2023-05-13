@@ -26,9 +26,9 @@ void listPar(ptrPar lista, int total);
 ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
 ptrLin atualizaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
 ptrLin eliminaLinha(ptrLin lista, char* nome);
-void listaLin(ptrLin p);
+void listaLin(ptrLin p); // <- Lista uma unica linha
+void listaLinAll(ptrLin p); // <- Lista todas as linhas
 
 // Linhas -> extras
-void associaParagem(char* cod, ptrPar listaP, int parTotal);
 void getCodUser(char *cod, ptrPar listaP, int parTotal);
 #endif //CODIGO_MENU_H

@@ -131,15 +131,15 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         i++;
     } while (verificaNome_Linhas(listaL, nome) == 1);
 
-    associaParagem(cod, listaP, parTotal);
-
+    getCodUser(cod, listaP, parTotal);
+    listaL = addLin(listaL, nome, cod, listaP, parTotal);
     res = i = ans = 0;
-    printf("\n+-------------------------------------+");
-    wprintf(L"\n|        Adicionar mais paragens?     |");
-    wprintf(L"\n|            1.Sim    2.Não           |");
-    printf("\n+-------------------------------------+");
-    printf("\n->");
     do {
+        printf("\n+-------------------------------------+");
+        wprintf(L"\n|        Adicionar mais paragens?     |");
+        wprintf(L"\n|            1.Sim    2.Não           |");
+        printf("\n+-------------------------------------+");
+        printf("\n->");
         ans = res = i = 0;
         do {
             if (i > 0) {
@@ -156,7 +156,8 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
             i++;
         } while (!res || ans != 1 && ans != 2);
         if (ans == 1) {
-            associaParagem(cod, listaP, parTotal);
+            getCodUser(cod, listaP, parTotal);
+            assocPar(listaL, nome, cod, listaP, parTotal, 1);
         }
     } while (ans != 2);
 
@@ -172,20 +173,72 @@ ptrLin eliminaLinha(ptrLin lista, char* nome) {
 }
 
 void listaLin(ptrLin p) {
-    if (p->nParExistentes == 0) {
+    int i = 0;
+    char nome[50];
+
+    printf("\n+-------------+\n| Lista Linha |\n+-------------+----------------------------------+");
+    wprintf(L"\n| Introduza o nome da linha que pretende listar. |");
+    printf("\n+------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n +----------------------------------------------------+");
+            wprintf(L"\n|                   Nome inválido!                   |");
+            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
+            wprintf(L"\n|            no sistema, tente novamente.            |");
+            printf("\n+----------------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        scanf(" %s", nome);
+        i++;
+    } while (verificaNome_Linhas(p, nome) == 0);
+
+    while (p != NULL) {
+        if (strcmp(tolowerString(p->nome), tolowerString(nome)) == 0) {
+            break;
+        }
+        p = p->prox;
+    }
+
+    if (p->nParAssoc == 0) {
         listaVazia();
         return;
-    }
-    printf("\n+--------------------------------------------------+");
-    printf("\n| Todas as paragens existentes na linha %s ", p->nome);
-    printf("\n+---+--------+-------------------------------------+");
-    wprintf(L"\n|   | Código | Nome ");
-    printf("\n+---+--------+-------------------------------------+");
-    for (int j = 0; j < p->nParExistentes; ++j) {
-        wprintf(L"\n| %d |  %s  | %s", j, p->parExistentes[j].cod, p->parExistentes[j].nome);
-        printf("\n+---+--------+---------------------------------+");
+    } else {
+        printf("\n+--------------------------------------------------+");
+        printf("\n| Paragens existentes na linha %s ", p->nome);
+        printf("\n+---+--------+-------------------------------------+");
+        wprintf(L"\n|   | Código | Nome ");
+        printf("\n+---+--------+-------------------------------------+");
+        for (int j = 0; j < p->nParAssoc; ++j) {
+            wprintf(L"\n| %d |  %s  | %s", j, p->parAssoc[j].cod, p->parAssoc[j].nome);
+            printf("\n+---+--------+---------------------------------+");
+        }
     }
 }
+
+void listaLinAll(ptrLin p) {
+    if (p == NULL) {
+        listaVazia();
+        return;
+    } else {
+        printf("\n+--------------------------------------------------+");
+        printf("\n|      Todas as linhas registadas no sistema       |");
+        while (p != NULL) {
+            printf("\n+--------------------------------------------------+");
+            printf("\n| Paragens existentes na linha %s ", p->nome);
+            printf("\n+---+--------+-------------------------------------+");
+            wprintf(L"\n|   | Código | Nome ");
+            printf("\n+---+--------+-------------------------------------+");
+            for (int j = 0; j < p->nParAssoc; ++j) {
+                wprintf(L"\n| %d |  %s  | %s", j, p->parAssoc[j].cod, p->parAssoc[j].nome);
+                printf("\n+---+--------+-------------------------------------+");
+            }
+            p = p->prox;
+        }
+    }
+}
+
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -193,8 +246,8 @@ void listaLin(ptrLin p) {
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Linhas -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-void associaParagem(char* cod, ptrPar listaP, int parTotal){
-    int res = 0, ans = 0, i = 0, flag = 0;
+void getCodUser(char *cod, ptrPar listaP, int parTotal) {
+    int res = 0, i = 0, ans = 0, flag = 0;
 
     printf("\n+-------------------+\n| Associar Paragens |\n+-------------------+--------------------------------------------------------------+");
     wprintf(L"\n| Para ser registada no sistema uma linha necessita de ter pelo menos uma paragem. |");
@@ -217,12 +270,8 @@ void associaParagem(char* cod, ptrPar listaP, int parTotal){
     if (ans == 2) {
         listPar(listaP, parTotal);
     }
-    getCodUser(cod, listaP, parTotal);
-    exit(1);// Ficámoes aqui
-}
 
-void getCodUser(char *cod, ptrPar listaP, int parTotal) {
-    int res = 0, i = 0, flag = 0;
+    res = i = ans = flag = 0;
 
     printf("\n+------------------------------------------------------+");
     wprintf(L"\n| Introduza o código da paragem que pretende associar. |");
