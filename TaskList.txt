@@ -1,7 +1,10 @@
+-> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
 -> Atualizar linha
+	=> Remover paragem
+	=> Adicionar paragem
+	=> Alterar Nome
 -> Eliminar linha
 -> Conexão entre linhas e paragens
 -> Implementar percurso
--> Ler nomes de paragens a partir do ficheiro com acentos e espaços
 -> Funcionalidade de sair e guardar tudo
 -> Implementar menu

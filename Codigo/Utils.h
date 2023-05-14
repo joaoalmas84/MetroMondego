@@ -16,7 +16,7 @@ struct Paragem {
     char nome[50];
     char cod[5];
     ptrLin linAssoc;    // <- lista ligada de linhas
-    int totLinAssoc;
+    int nLinAssoc;
 };
 
 struct Linha {

@@ -82,20 +82,93 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
 }
 
 void listPar(ptrPar lista, int total) {
+    char cod[5];
+    int res = 0, i = 0, ans = 0, flag = 0;
+
     if (total == 0) {
         listaVazia();
         return;
     }
-    printf("\n+-----------------------------------------+");
-    printf("\n| Todas as paragens registadas no sistema |");
-    printf("\n+---+--------+----------------------------+");
-    wprintf(L"\n|   | Código | Nome ");
-    printf("\n+---+--------+----------------------------+");
-    for (int i = 0; i < total; ++i) {
-        wprintf(L"\n| %d |  %s  | %s", i, lista[i].cod, lista[i].nome);
-        printf("\n+---+--------+----------------------------+");
+    printf("\n+----------------------------------------------------+");
+    wprintf(L"\n| Introduza o código da paragem que pretende listar. |");
+    printf("\n+----------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            if (flag == 1) {
+                printf("\n+------------------------------------------------+");
+                wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
+                wprintf(L"\n| paragem registada no sistema, tente novamente. |");
+                printf("\n+------------------------------------------------+");
+                printf("\n->");
+            } else {
+                printf("\n+----------------------------------------------------+");
+                wprintf(L"\n|                   Codigo inválido                  |");
+                wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
+                wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
+                printf("\n+----------------------------------------------------+");
+                printf("\n->");
+            }
+        }
+        fflush(stdin);
+        scanf(" %s", cod);
+        if (verificaCod_Paragens(lista, cod, total) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+            flag = 1;                                                              //    escolher a mensagem de erro
+        } else {
+            flag = 0;
+        }
+        i++;
+    } while (strlen(cod) != 4 || verificaCod_Paragens(lista, cod, total) == 0);
+
+    int j;
+    for (j = 0; j < total; ++j) {
+        if (strcmp(tolowerString(cod), tolowerString(lista[j].cod)) == 0){
+            break;
+        }
+    }
+
+    printf("\n+-------------------------------------------------+");
+    printf("\n|     Todas as linhas que passam na paragem %s", lista[j].nome);
+    printf("\n+---+---------------------------------------------+");
+    printf("\n|   | Nome  da paragem                            |");
+    Ficámos Aqui
+    ptrLin aux = lista[j].linAssoc;
+    while (aux->prox != NULL) {
     }
 }
+
+void listParAll(ptrPar lista, int total) {
+    if (total == 0) {
+        listaVazia();
+        return;
+    }
+    printf("\n+-------------------------------------------------+");
+    printf("\n|     Todas as paragens registadas no sistema     |");
+    printf("\n+---+--------+------------+-----------------------+");
+    wprintf(L"\n|   | Código | N.º linhas | Nome ");
+    printf("\n+---+--------+------------+--------- -------------+");
+    for (int i = 0; i < total; ++i) {
+        if (i < 10) {
+            wprintf(L"\n| %d |  %s  |      %d     | %s", i+1, lista[i].cod, lista[i].nLinAssoc, lista[i].nome);
+            if (i < 8) {
+                printf("\n+---+--------+------------+-----------------------+");
+            } else if (i == 8) {
+                printf("\n+---++-------++-----------++----------------------+");
+            }
+        } else if (i < 100) {
+            if (i == 10) {
+                printf("\n+----+--------+------------+----------------------+");
+            }
+            wprintf(L"\n| %d |  %s  |      %d     | %s", i+1, lista[i].cod, lista[i].nLinAssoc, lista[i].nome);
+            printf("\n+----+--------+------------+----------------------+");
+        }
+    }
+}
+
+void listParAllDetailed(ptrPar lista, int total) {
+
+}
+
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -125,7 +198,7 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         fflush(stdin);
         scanf(" %s", nome);
         i++;
-    } while (verificaNome_Linhas(listaL, nome) == 1);
+    } while (verificaNome_Lin(listaL, nome) == 1);
 
     getCodUser(cod, listaP, parTotal);
     listaL = addLin(listaL, nome, cod, listaP, parTotal);
@@ -160,7 +233,27 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
     return listaL;
 }
 
-ptrLin atualizaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
+ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) { //Por Acabar
+    int i = 0;
+    char nome[50];
+    printf("\n+----------------+\n| Atualiza Linha |\n+----------------+----------------------------------+");
+    wprintf(L"\n| Introduza o nome da linha que pretende atualizar. |");
+    printf("\n+---------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n+----------------------------------------------------+");
+            wprintf(L"\n|                   Nome inválido!                   |");
+            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
+            wprintf(L"\n|            no sistema, tente novamente.            |");
+            printf("\n+----------------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        scanf(" %s", nome);
+        i++;
+    } while (verificaNome_Lin(p, nome) == 0);
+
 
 }
 
@@ -188,7 +281,7 @@ void listaLin(ptrLin p) {
         fflush(stdin);
         scanf(" %s", nome);
         i++;
-    } while (verificaNome_Linhas(p, nome) == 0);
+    } while (verificaNome_Lin(p, nome) == 0);
 
     while (p != NULL) {
         if (strcmp(tolowerString(p->nome), tolowerString(nome)) == 0) {
@@ -207,13 +300,33 @@ void listaLin(ptrLin p) {
         wprintf(L"\n|   | Código | Nome ");
         printf("\n+---+--------+-------------------------------------+");
         for (int j = 0; j < p->nParAssoc; ++j) {
-            wprintf(L"\n| %d |  %s  | %s", j, p->parAssoc[j].cod, p->parAssoc[j].nome);
+            wprintf(L"\n| %d |  %s  | %s", j+1, p->parAssoc[j].cod, p->parAssoc[j].nome);
             printf("\n+---+--------+-------------------------------------+");
         }
     }
 }
 
 void listaLinAll(ptrLin p) {
+    int i = 0;
+    if (p == NULL) {
+        listaVazia();
+        return;
+    } else {
+        printf("\n+-----------------------------------------+");
+        printf("\n|  Todas as linhas registadas no sistema  |");
+        printf("\n+-----------------------------------------+");
+        wprintf(L"\n|   | N.º de paragens | Nome ");
+        printf("\n+---+-----------------+-------------------+");
+        while (p != NULL) {
+            wprintf(L"\n| %d |       %d       | %s", i+1, p->nParAssoc, p->nome);
+            printf("\n+---+-----------------+-------------------+");
+            i++;
+            p = p->prox;
+        }
+    }
+}
+
+void listaLinAllDetailed(ptrLin p) {
     if (p == NULL) {
         listaVazia();
         return;
@@ -226,8 +339,8 @@ void listaLinAll(ptrLin p) {
             printf("\n+---+--------+-----------------------------------------------+");
             wprintf(L"\n|   | Código | Nome ");
             printf("\n+---+--------+-----------------------------------------------+");
-            for (int j = 0; j < p->nParAssoc; ++j) {
-                wprintf(L"\n| %d |  %s  | %s", j, p->parAssoc[j].cod, p->parAssoc[j].nome);
+            for (int i = 0; i < p->nParAssoc; ++i) {
+                wprintf(L"\n| %d |  %s  | %s", i+1, p->parAssoc[i].cod, p->parAssoc[i].nome);
                 printf("\n+---+--------+-------------------------------------------+");
             }
             p = p->prox;

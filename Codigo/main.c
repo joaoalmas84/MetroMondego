@@ -16,8 +16,9 @@ int main() {
 */
     init_rand();
     listP = preencheLista_Paragens(listP, &parTotal);
-    listPar(listP, parTotal);
+    listParAll(listP, parTotal);
     putchar('\n');
+    exit(1);
 /*
     listP = adicionaParagem(listP, &parTotal);
     listPar(listP, parTotal);
@@ -33,8 +34,6 @@ int main() {
     listL = adicionaLinha(listL, listP, parTotal);
     listaLin(listL);
     listL = adicionaLinha(listL, listP, parTotal);
-    listaLin(listL);
-
     listaLinAll(listL);
 
     return 0;

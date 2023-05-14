@@ -5,7 +5,7 @@
 // +--------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 // devolve 1 se nome existir em p
-int verificaNome_Linhas(ptrLin p, char* nome) {
+int verificaNome_Lin(ptrLin p, char* nome) {
     ptrLin aux;
     if (p == NULL) {
         return 0;
@@ -35,41 +35,6 @@ ptrLin insereLin(ptrLin p, ptrLin novo) {
         novo->prox = NULL;
         return p;
     }
-}
-
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
-    ptrLin novo = malloc(sizeof(lin));
-    if (novo == NULL) {
-        if (erroMemoria() == 1) {
-            return p;
-        } else {
-            exit(1);
-        }
-    }
-
-    ptrPar aux = realloc(novo->parAssoc, sizeof(par)*(novo->nParAssoc+1));
-    if (aux == NULL) {
-        if (erroMemoria() == 1) {
-            return p;
-        } else {
-            exit(1);
-        }
-    }
-
-    strcpy(novo->nome, nome);
-    novo->parAssoc = aux;
-
-    addPar_Lin(novo, nome, cod, listaP, parTotal, 0);
-    p = insereLin(p, novo);
-
-    return p;
 }
 
 void addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag) {
@@ -106,8 +71,49 @@ void addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int
 
         aux->nParAssoc++;
         aux->parAssoc[aux->nParAssoc-1] = listaP[i];
-        p = aux;
     }
+}
+
+ptrLin removePar_Lin(ptrLin p, char* nome, char*cod) {
+
+}
+
+ptrLin alterName_Lin(ptrLin p, char* nome, char* newName) {
+
+}
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
+    ptrLin novo = malloc(sizeof(lin));
+    if (novo == NULL) {
+        if (erroMemoria() == 1) {
+            return p;
+        } else {
+            exit(1);
+        }
+    }
+
+    ptrPar aux = realloc(novo->parAssoc, sizeof(par)*(novo->nParAssoc+1));
+    if (aux == NULL) {
+        if (erroMemoria() == 1) {
+            return p;
+        } else {
+            exit(1);
+        }
+    }
+
+    strcpy(novo->nome, nome);
+    novo->parAssoc = aux;
+
+    addPar_Lin(novo, nome, cod, listaP, parTotal, 0);
+    p = insereLin(p, novo);
+
+    return p;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

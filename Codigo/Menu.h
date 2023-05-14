@@ -19,14 +19,18 @@ void menu(ptrLin linList, ptrPar parList, int parTotal);    // <- Função princ
 // Paragens
 ptrPar adicionaParagem(ptrPar lista, int *total);
 ptrPar eliminaParagem(ptrPar lista, int *total);
-void listPar(ptrPar lista, int total);
+void listPar(ptrPar lista, int total);              // <- Lista uma unica paragem
+void listParAll(ptrPar lista, int total);           // <- Lista todas as paragens
+void listParAllDetailed(ptrPar lista, int total);   // <- Lista todas as paragens detalhadamente
 
 // Linhas
 ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
-ptrLin atualizaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
+ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal);
 ptrLin eliminaLinha(ptrLin lista, char* nome);
-void listaLin(ptrLin p); // <- Lista uma unica linha
-void listaLinAll(ptrLin p); // <- Lista todas as linhas
+void listaLin(ptrLin p);            // <- Lista uma unica linha
+void listaLinAll(ptrLin p);         // <- Lista todas as linhas
+void listaLinAllDetailed(ptrLin p); // <- Lista todas as linhas detalhadamente
+
 
 // Linhas -> extras
 void getCodUser(char *cod, ptrPar listaP, int parTotal);
