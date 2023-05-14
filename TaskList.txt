@@ -1,6 +1,6 @@
 -> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
 -> Atualizar linha
-	=> Remover paragem
+	=> Remover paragem (falta a parte de aceder à linha certa)
 	=> Adicionar paragem
 	=> Alterar Nome
 -> Eliminar linha

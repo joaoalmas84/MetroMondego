@@ -34,9 +34,9 @@ int verificaCod_Paragens(ptrPar lista, char *cod, int total) {
 
 
 char* geraCod() {
-    char *cod = NULL, letras[] = "ABCDEFGHIJKLMNOPQRSTUVXYWZ", nums[] = "0123456789";
+    char *cod = NULL;
+    char letras[] = "ABCDEFGHIJKLMNOPQRSTUVXYWZ", nums[] = "0123456789";
     int j;
-    wprintf(L"\nA gerar código alfanumérico...");
     char *aux = malloc(sizeof(char)*5);
     if (aux == NULL) {
         if (erroMemoria() == 1) {
@@ -185,8 +185,6 @@ ptrPar dellPar(ptrPar lista, char *cod, int *total) {
         return lista;
     }
 }
-
-
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

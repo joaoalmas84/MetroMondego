@@ -128,12 +128,15 @@ void listPar(ptrPar lista, int total) {
     }
 
     printf("\n+-------------------------------------------------+");
-    printf("\n|     Todas as linhas que passam na paragem %s", lista[j].nome);
+    printf("\n|     Todas as linhas que passam em %s", lista[j].nome);
     printf("\n+---+---------------------------------------------+");
-    printf("\n|   | Nome  da paragem                            |");
-    Ficámos Aqui
-    ptrLin aux = lista[j].linAssoc;
-    while (aux->prox != NULL) {
+    wprintf(L"\n|   | N.º de paragens | Nome ");
+    printf("\n+---+-----------------+-------------------+");
+    while (lista[j].linAssoc->prox != NULL) {
+        wprintf(L"\n| %d |       %d       | %s", i+1, lista[j].linAssoc->nParAssoc, lista[j].linAssoc->nome);
+        printf("\n+---+-----------------+-------------------+");
+        i++;
+        lista[j].linAssoc = lista[j].linAssoc->prox;
     }
 }
 
@@ -146,7 +149,7 @@ void listParAll(ptrPar lista, int total) {
     printf("\n|     Todas as paragens registadas no sistema     |");
     printf("\n+---+--------+------------+-----------------------+");
     wprintf(L"\n|   | Código | N.º linhas | Nome ");
-    printf("\n+---+--------+------------+--------- -------------+");
+    printf("\n+---+--------+------------+-----------------------+");
     for (int i = 0; i < total; ++i) {
         if (i < 10) {
             wprintf(L"\n| %d |  %s  |      %d     | %s", i+1, lista[i].cod, lista[i].nLinAssoc, lista[i].nome);
@@ -166,7 +169,21 @@ void listParAll(ptrPar lista, int total) {
 }
 
 void listParAllDetailed(ptrPar lista, int total) {
-
+    printf("\n+-------------------------------------------------+");
+    printf("\n|     Todas as paragens registadas no sistema     |");
+    printf("\n+---+--------+------------------------------------+");
+    wprintf(L"\n|   | Código | Nome ");
+    for (int i = 0; i < total; ++i) {
+        wprintf(L"\n| %d |  %s  | %s", i+1, lista[i].cod, lista[i].nome);
+        printf("\n+---+--------+------------------------------------+");
+        wprintf(L"\n| Todas as linhas que passam em %s", lista[i].nome);
+        printf("\n+-------------------------------------------------+");
+        while (lista[i].linAssoc->prox != NULL) {
+            printf("\n| %s", lista[i].linAssoc->nome);
+            printf("\n+-------------------------------------------------+");
+            lista[i].linAssoc = lista[i].linAssoc->prox;
+        }
+    }
 }
 
 
@@ -233,9 +250,9 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
     return listaL;
 }
 
-ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) { //Por Acabar
-    int i = 0;
-    char nome[50];
+ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) {
+    int i = 0, ans = 0, res = 0, flag = 0;
+    char nome[50], newName[50], cod[5];
     printf("\n+----------------+\n| Atualiza Linha |\n+----------------+----------------------------------+");
     wprintf(L"\n| Introduza o nome da linha que pretende atualizar. |");
     printf("\n+---------------------------------------------------+");
@@ -254,11 +271,125 @@ ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) { //Por Acabar
         i++;
     } while (verificaNome_Lin(p, nome) == 0);
 
+    i = 0;
+    printf("\n+-------------------------------------------+");
+    printf("\n|   1.Remover Paragem      2.Alterar Nome   |");
+    printf("\n|             3.Adicionar Paragem           |");
+    printf("\n+-------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n+------------------------------------------+");
+            wprintf(L"\n|    Resposta Inválida, tente novamente    |");
+            printf("\n|   1.Remover Paragem     2.Alterar Nome   |");
+            printf("\n|             3.Adicionar Paragem          |");
+            printf("\n+------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        res = scanf("%d", &ans);
+        i++;
+    } while (!res || ans != 1 && ans != 2 && ans != 3);
 
+    if (ans == 1) {
+        printf("\n+-------------------------------------------------------+");
+        wprintf(L"\n| Introduza o código da paragem que pretende adicionar. |");
+        printf("\n+-------------------------------------------------------+");
+        printf("\n->");
+        do {
+            if (i > 0) {
+                if (flag == 1) {
+                    printf("\n+------------------------------------------------+");
+                    wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
+                    wprintf(L"\n| paragem registada no sistema, tente novamente. |");
+                    printf("\n+------------------------------------------------+");
+                    printf("\n->");
+                } else {
+                    printf("\n+----------------------------------------------------+");
+                    wprintf(L"\n|                   Codigo inválido                  |");
+                    wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
+                    wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
+                    printf("\n+----------------------------------------------------+");
+                    printf("\n->");
+                }
+            }
+            fflush(stdin);
+            scanf(" %s", cod);
+            if (verificaCod_Paragens(listaP, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+                flag = 1;                                                              //    escolher a mensagem de erro
+            } else {
+                flag = 0;
+            }
+            i++;
+        } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
+        removePar_Lin(p, nome, cod); <- Está Mal!!! precisamos de aceder à linha certa através do nome
+    } else if (ans == 2) {
+        printf("\n+----------------------------------+");
+        wprintf(L"\n| Introduza o novo nome da paragem |");
+        printf("\n+----------------------------------+");
+        printf("\n->");
+        do {
+            if (i > 0) {
+                printf("\n+----------------------------------------------------+");
+                wprintf(L"\n|                   Nome inválido                    |");
+                wprintf(L"\n|  Já existe uma linha com esse nome registada no    |");
+                wprintf(L"\n|              sistema, tente novamente.             |");
+                printf("\n+----------------------------------------------------+");
+                printf("\n->");
+            }
+            fflush(stdin);
+            scanf(" %s", newName);
+            i++;
+        } while (verificaNome_Lin(p, newName) == 1);
+        alterName_Lin(p, nome, newName);
+    } else if (ans == 3) {
+        printf("\n+-------------------------------------------------------+");
+        wprintf(L"\n| Introduza o código da paragem que pretende adicionar. |");
+        printf("\n+-------------------------------------------------------+");
+        printf("\n->");
+        do {
+            if (i > 0) {
+                if (flag == 1) {
+                    printf("\n+------------------------------------------------+");
+                    wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
+                    wprintf(L"\n| paragem registada no sistema, tente novamente. |");
+                    printf("\n+------------------------------------------------+");
+                    printf("\n->");
+                } else {
+                    printf("\n+----------------------------------------------------+");
+                    wprintf(L"\n|                   Codigo inválido                  |");
+                    wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
+                    wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
+                    printf("\n+----------------------------------------------------+");
+                    printf("\n->");
+                }
+            }
+            fflush(stdin);
+            scanf(" %s", cod);
+            if (verificaCod_Paragens(listaP, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+                flag = 1;                                                              //    escolher a mensagem de erro
+            } else {
+                flag = 0;
+            }
+            i++;
+        } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
+        addPar_Lin(p, nome, )
+    }
+    return p;
 }
 
-ptrLin eliminaLinha(ptrLin lista, char* nome) {
-
+ptrLin eliminaLinha(ptrLin p, char* nome) {
+    ptrLin aux1 = p, aux2 = aux1->prox;
+    while (aux1->prox != NULL) {
+        if (strcmp(tolowerString(aux1->prox->nome), tolowerString(nome)) == 0) {
+            aux1->prox = aux2->prox;
+            free(aux1->prox);
+            break;
+        }
+        aux1 = aux1->prox;
+        aux2 = aux2->prox;
+    }
+    return p;
 }
 
 void listaLin(ptrLin p) {
@@ -355,6 +486,7 @@ void listaLinAllDetailed(ptrLin p) {
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Linhas -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 void getCodUser(char *cod, ptrPar listaP, int parTotal) {
     int res = 0, i = 0, ans = 0, flag = 0;
 

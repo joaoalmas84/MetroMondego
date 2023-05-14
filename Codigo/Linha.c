@@ -55,32 +55,22 @@ void addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int
             }
             aux = aux->prox;
         }
-
         for (i = 0; i < parTotal; ++i) {
             if (strcmp(tolowerString(listaP[i].cod), tolowerString(cod)) == 0) {
                 break;
             }
         }
-
         if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1) {
             printf("\n+-------------------------------------------------------+");
             wprintf(L"\n| A Paragem da %s já se ecnontra nesta linha.", listaP[i].nome);
             printf("\n+-------------------------------------------------------+");
             return;
         }
-
         aux->nParAssoc++;
         aux->parAssoc[aux->nParAssoc-1] = listaP[i];
     }
 }
 
-ptrLin removePar_Lin(ptrLin p, char* nome, char*cod) {
-
-}
-
-ptrLin alterName_Lin(ptrLin p, char* nome, char* newName) {
-
-}
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -93,7 +83,7 @@ ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
     if (novo == NULL) {
         if (erroMemoria() == 1) {
             return p;
-        } else {
+        } else if (erroMemoria() == 2) {
             exit(1);
         }
     }
@@ -113,6 +103,47 @@ ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
     addPar_Lin(novo, nome, cod, listaP, parTotal, 0);
     p = insereLin(p, novo);
 
+    return p;
+}
+
+ptrLin removePar_Lin(ptrLin p, char* nome, char* cod) {
+    ptrLin aux = p;
+    while (aux->prox != NULL) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+            break;
+        }
+        aux = aux->prox;
+    }
+    for (int i = 0; i < aux->nParAssoc; ++i) {
+        if (strcmp(tolowerString(aux->parAssoc[i].cod), tolowerString(cod)) == 0) {
+            for (int j = i; j < aux->nParAssoc ; ++j) {
+                aux->parAssoc[j] = aux->parAssoc[j+1];
+            }
+            break;
+        }
+    }
+    ptrPar auxP = realloc(aux->parAssoc, sizeof(par)*(aux->nParAssoc-1));
+    if (auxP == NULL) {
+        if (erroMemoria() == 1) {
+            return p;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    }
+    aux->parAssoc = auxP;
+    return p;
+}
+
+ptrLin alterName_Lin(ptrLin p, char* nome, char* newName) {
+    ptrLin aux = p;
+
+    while (aux->prox != NULL) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+            break;
+        }
+        aux = aux->prox;
+    }
+    strcpy(aux->nome, newName);
     return p;
 }
 
