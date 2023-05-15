@@ -1,10 +1,10 @@
 -> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
 -> Atualizar linha
-	=> Remover paragem (falta a parte de aceder à linha certa)
-	=> Adicionar paragem
-	=> Alterar Nome
--> Eliminar linha
--> Conexão entre linhas e paragens
+	=> Remover paragem <- DONE (Falta testar)
+	=> Adicionar paragem <- DONE (Falta testar)
+	=> Alterar Nome <- DONE (Falta testar)
+-> Eliminar linha <- DONE (Falta testar)
+-> Conexão entre linhas e paragens <- DONE (Falta testar)
 -> Implementar percurso
 -> Funcionalidade de sair e guardar tudo
 -> Implementar menu

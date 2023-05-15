@@ -182,8 +182,8 @@ ptrPar dellPar(ptrPar lista, char *cod, int *total) {
         printf("\nA eliminar paragem...");
         (*total)--;
         lista = aux;
-        return lista;
     }
+    return lista;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
