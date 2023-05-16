@@ -6,6 +6,7 @@
 // Funções auxiliares
 int verificaNome_Lin(ptrLin p, char* nome);  // <- devolve 1 se nome existir em p
 ptrLin insereLin(ptrLin p, ptrLin novo);
+ptrLin batota(ptrLin p, ptrPar listaP);
 
 // Funcionalidades
 ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal);   // <- adiciona Linha

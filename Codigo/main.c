@@ -24,19 +24,8 @@ int main() {
     listParAll(listP, parTotal);
     putchar('\n');
 */
-    listL = adicionaLinha(listL, listP, parTotal);
+    listL = batota(listL, listP);
     listaLinAllDetailed(listL);
-    putchar('\n');
-
-    listL = adicionaLinha(listL, listP, parTotal);
-    listaLinAllDetailed(listL);
-    putchar('\n');
-
-    listL = adicionaLinha(listL, listP, parTotal);
-    listaLinAllDetailed(listL);
-    putchar('\n');
-
-    exit(1); FUCK!!!!
 
     listL = atualizaLinha(listL, listP, parTotal);
     listaLinAllDetailed(listL);

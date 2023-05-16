@@ -25,11 +25,15 @@ void listParAllDetailed(ptrPar lista, int total);   // <- Lista todas as paragen
 
 // Linhas
 ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
-ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal);
 ptrLin eliminaLinha(ptrLin p);
 void listaLin(ptrLin p);            // <- Lista uma unica linha
 void listaLinAll(ptrLin p);         // <- Lista todas as linhas
 void listaLinAllDetailed(ptrLin p); // <- Lista todas as linhas detalhadamente
+ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal);
+ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char *nome);
+ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome);
+ptrLin alteraNome_Lin(ptrLin p, char *nome);
+
 
 // Linhas -> extras
 void getCodUser(char *cod, ptrPar listaP, int parTotal);
