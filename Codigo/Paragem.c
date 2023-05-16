@@ -92,6 +92,63 @@ ptrPar preencheLista_Paragens(ptrPar p, int *total) {
     return p;
 }
 
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+// Adiciona Paragem
+ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
+    ptrPar aux = realloc(lista, sizeof(par)*(*total+1));
+    if (aux == NULL) {
+        if (erroMemoria() == 1) {
+            return lista;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    }
+
+    lista = aux;
+    (*total)++;
+
+    strcpy(lista[*total-1].nome, nome);
+    strcpy(lista[*total-1].cod, cod);
+    lista[*total-1].linAssoc = NULL;
+    lista[*total-1].nLinAssoc = 0;
+
+    return lista;
+
+}
+
+// Elimina Paragem
+ptrPar dellPar(ptrPar lista, char *cod, int *total) {
+    ptrPar aux = NULL;
+    for (int i = 0; i < *total; ++i) {
+        if (strcmp(tolowerString(lista[i].cod),tolowerString(cod)) == 0) {
+            for (int j = i; j < *total-1; ++j) {
+                lista[i] = lista[i+1];
+            }
+            break;
+        }
+    }
+    aux = realloc(lista, sizeof(par)*(*total-1));
+    if (aux == NULL) {
+        if (erroMemoria() == 1) {
+            return lista;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    } else {
+        (*total)--;
+        lista = aux;
+    }
+    return lista;
+}
+
+// Adiciona linha a paragem
 void addLin_Par(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
     int i;
     for (i = 0; i < parTotal; ++i) {
@@ -126,66 +183,6 @@ void addLin_Par(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
     aux2->prox = novo;
     novo->prox = NULL;
 }
-
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// | Funcionalidades |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-// Adiciona Paragem
-ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
-    ptrPar aux = realloc(lista, sizeof(par)*(*total+1));
-    if (aux == NULL) {
-        if (erroMemoria() == 1) {
-            return lista;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-
-    lista = aux;
-    (*total)++;
-
-    strcpy(lista[*total-1].nome, nome);
-    strcpy(lista[*total-1].cod, cod);
-    lista[*total-1].linAssoc = NULL;
-    lista[*total-1].nLinAssoc = 0;
-
-    printf("\nA adicionar paragem...");
-
-    return lista;
-
-}
-
-// Elimina Paragem
-ptrPar dellPar(ptrPar lista, char *cod, int *total) {
-    ptrPar aux = NULL;
-    for (int i = 0; i < *total; ++i) {
-        if (strcmp(tolowerString(lista[i].cod),tolowerString(cod)) == 0) {
-            for (int j = i; j < *total-1; ++j) {
-                lista[i] = lista[i+1];
-            }
-            break;
-        }
-    }
-    aux = realloc(lista, sizeof(par)*(*total-1));
-    if (aux == NULL) {
-        if (erroMemoria() == 1) {
-            return lista;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    } else {
-        printf("\nA eliminar paragem...");
-        (*total)--;
-        lista = aux;
-    }
-    return lista;
-}
-
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

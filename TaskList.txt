@@ -1,3 +1,4 @@
+-> Erro ao inserir a terceira linha
 -> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
 -> Atualizar linha
 	=> Remover paragem <- DONE (Falta testar)

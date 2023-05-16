@@ -6,12 +6,11 @@
 
 // devolve 1 se nome existir em p
 int verificaNome_Lin(ptrLin p, char* nome) {
-    ptrLin aux;
     if (p == NULL) {
         return 0;
     } else {
-        aux = p;
-        while (aux->prox != NULL) {
+        ptrLin aux = p;
+        while (aux != NULL) {
             if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
                 return 1;
             }
@@ -22,12 +21,12 @@ int verificaNome_Lin(ptrLin p, char* nome) {
 }
 
 ptrLin insereLin(ptrLin p, ptrLin novo) {
-    ptrLin aux = p;
-    printf("\nA inserir linha...");
+    printf("\nnovo->nome : %s", novo->nome);
     if (p == NULL) {
         p = novo;
         return p;
     } else {
+        ptrLin aux = p;
         while(aux->prox != NULL) {
             aux = aux->prox;
         }
@@ -35,50 +34,6 @@ ptrLin insereLin(ptrLin p, ptrLin novo) {
         novo->prox = NULL;
         return p;
     }
-}
-
-ptrLin addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag) {
-    int i;
-    if (flag == 0) { // flag == 0: estamos a adicionar a primeira paragem desta linha
-        for (i = 0; i < parTotal; ++i) {
-            if (strcmp(tolowerString(listaP[i].cod), tolowerString(cod)) == 0) {
-                break;
-            }
-        }
-        p->nParAssoc++;
-        p->parAssoc[p->nParAssoc-1] = listaP[i];
-    } else {
-        ptrLin aux = p;
-        while (aux->prox != NULL) {
-            if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
-                break;
-            }
-            aux = aux->prox;
-        }
-        for (i = 0; i < parTotal; ++i) {
-            if (strcmp(tolowerString(listaP[i].cod), tolowerString(cod)) == 0) {
-                break;
-            }
-        }
-        if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1) {
-            printf("\n+-------------------------------------------------------+");
-            wprintf(L"\n| A Paragem da %s já se ecnontra nesta linha.", listaP[i].nome);
-            printf("\n+-------------------------------------------------------+");
-            return p;
-        }
-        ptrPar auxMem = realloc(aux->parAssoc, sizeof(par)*(aux->nParAssoc+1));
-        if (auxMem == NULL) {
-            if (erroMemoria() == 1) {
-                return p;
-            } else if (erroMemoria() == 2) {
-                exit(1);
-            }
-        }
-        aux->parAssoc = auxMem;
-        aux->nParAssoc++;
-        aux->parAssoc[aux->nParAssoc-1] = listaP[i];
-    }
-    return p;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -98,18 +53,18 @@ ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
         }
     }
 
-    ptrPar aux = realloc(novo->parAssoc, sizeof(par)*(novo->nParAssoc+1));
+    ptrPar aux = malloc(sizeof(par));
     if (aux == NULL) {
         if (erroMemoria() == 1) {
             return p;
-        } else {
+        } else if (erroMemoria() == 2) {
             exit(1);
         }
     }
 
+    novo->parAssoc = aux;
     strcpy(novo->nome, nome);
     novo->parAssoc = aux;
-
     addPar_Lin(novo, nome, cod, listaP, parTotal, 0);
     p = insereLin(p, novo);
 
@@ -118,7 +73,7 @@ ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal) {
 
 ptrLin dellLin(ptrLin p, char* nome) {
     ptrLin aux1 = p, aux2 = aux1->prox;
-    while (aux1->prox != NULL) {
+    while (aux1 != NULL) {
         if (strcmp(tolowerString(aux1->nome), tolowerString(nome)) == 0) {
             p = aux1->prox;
             free(aux1);
@@ -158,6 +113,50 @@ ptrLin removePar_Lin(ptrLin p, char* cod) {
 
 ptrLin alterName_Lin(ptrLin p, char* newName) {
     strcpy(p->nome, newName);
+    return p;
+}
+
+ptrLin addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag) {
+    int i;
+    if (flag == 0) { // flag == 0: estamos a adicionar a primeira paragem desta linha
+        for (i = 0; i < parTotal; ++i) {
+            if (strcmp(tolowerString(listaP[i].cod), tolowerString(cod)) == 0) {
+                break;
+            }
+        }
+        p->nParAssoc++;
+        p->parAssoc[p->nParAssoc-1] = listaP[i];
+    } else {
+        ptrLin aux = p;
+        while (aux != NULL) {
+            if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+                break;
+            }
+            aux = aux->prox;
+        }
+        for (i = 0; i < parTotal; ++i) {
+            if (strcmp(tolowerString(listaP[i].cod), tolowerString(cod)) == 0) {
+                break;
+            }
+        }
+        if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1) {
+            printf("\n+-------------------------------------------------------+");
+            wprintf(L"\n| A Paragem da %s já se ecnontra nesta linha.", listaP[i].nome);
+            printf("\n+-------------------------------------------------------+");
+            return p;
+        }
+        ptrPar auxMem = realloc(aux->parAssoc, sizeof(par)*(aux->nParAssoc+1));
+        if (auxMem == NULL) {
+            if (erroMemoria() == 1) {
+                return p;
+            } else if (erroMemoria() == 2) {
+                exit(1);
+            }
+        }
+        aux->parAssoc = auxMem;
+        aux->nParAssoc++;
+        aux->parAssoc[aux->nParAssoc-1] = listaP[i];
+    }
     return p;
 }
 

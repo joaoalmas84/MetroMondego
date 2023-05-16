@@ -31,7 +31,6 @@ void listaLin(ptrLin p);            // <- Lista uma unica linha
 void listaLinAll(ptrLin p);         // <- Lista todas as linhas
 void listaLinAllDetailed(ptrLin p); // <- Lista todas as linhas detalhadamente
 
-
 // Linhas -> extras
 void getCodUser(char *cod, ptrPar listaP, int parTotal);
 #endif //CODIGO_MENU_H

@@ -16,25 +16,30 @@ int main() {
 */
     init_rand();
     listP = preencheLista_Paragens(listP, &parTotal);
-    listParAll(listP, parTotal);
-    putchar('\n');
-    exit(1);
 /*
-    listP = adicionaParagem(listP, &parTotal);
-    listPar(listP, parTotal);
+    listParAll(listP, parTotal);
     putchar('\n');
 
     listP = eliminaParagem(listP, &parTotal);
-    listPar(listP, parTotal);
+    listParAll(listP, parTotal);
     putchar('\n');
 */
+    listL = adicionaLinha(listL, listP, parTotal);
+    listaLinAllDetailed(listL);
+    putchar('\n');
 
     listL = adicionaLinha(listL, listP, parTotal);
-    listaLin(listL);
+    listaLinAllDetailed(listL);
+    putchar('\n');
+
     listL = adicionaLinha(listL, listP, parTotal);
-    listaLin(listL);
-    listL = adicionaLinha(listL, listP, parTotal);
-    listaLinAll(listL);
+    listaLinAllDetailed(listL);
+    putchar('\n');
+
+    exit(1); FUCK!!!!
+
+    listL = atualizaLinha(listL, listP, parTotal);
+    listaLinAllDetailed(listL);
 
     return 0;
 }
