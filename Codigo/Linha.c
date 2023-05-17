@@ -168,6 +168,7 @@ ptrLin removePar_Lin(ptrLin p, char* cod) {
             exit(1);
         }
     }
+    p->nParAssoc--;
     p->parAssoc = aux;
     return p;
 }

@@ -24,11 +24,14 @@ int main() {
     listParAll(listP, parTotal);
     putchar('\n');
 */
+
     listL = batota(listL, listP);
     listaLinAllDetailed(listL);
 
-    listL = atualizaLinha(listL, listP, parTotal);
-    listaLinAllDetailed(listL);
+    for (int i = 0; i < 4; ++i) {
+        listL = atualizaLinha(listL, listP, parTotal);
+        listaLinAllDetailed(listL);
+    }
 
     return 0;
 }

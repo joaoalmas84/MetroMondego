@@ -23,7 +23,6 @@
     <list default="true" id="647903b0-85d0-4100-8ce5-caabd057908e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
@@ -110,6 +109,7 @@
       <workItem from="1684160632076" duration="3144000" />
       <workItem from="1684192868640" duration="7103000" />
       <workItem from="1684245734355" duration="5081000" />
+      <workItem from="1684280148819" duration="1347000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,28 @@
 
 // <- Função principal (só para não lhe chamar main)
 void menu(ptrLin linList, ptrPar parList, int parTotal) {
-
+    /*
+     * if (ans == listaLin) {
+     *
+     *   printf("\n+-------------+\n| Lista Linha |\n+-------------+----------------------------------+");
+    wprintf(L"\n| Introduza o nome da linha que pretende listar. |");
+    printf("\n+------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n+----------------------------------------------------+");
+            wprintf(L"\n|                   Nome inválido!                   |");
+            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
+            wprintf(L"\n|            no sistema, tente novamente.            |");
+            printf("\n+----------------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        scanf(" %s", nome);
+        i++;
+    } while (verificaNome_Lin(p, nome) == 0);
+     * }
+     */
 }
 
 // +----------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -291,6 +312,10 @@ ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) {
     } while (!res || ans != 1 && ans != 2 && ans != 3);
 
     if (ans == 1) {
+        printf("\n+-------------------+\n| Adicionar Paragem |\n+-------------------+---------------------------+");
+        printf("\n| 1.Adicionar Paragem     2.Vizualizar Paragens |");
+        printf("\n+-----------------------------------------------+");
+        printf("\n->");
         p = addParagem_Lin(p, listaP, parTotal, nome);
     } else if (ans == 2) {
         p = removeParagem_Lin(p, listaP, nome);
@@ -313,11 +338,6 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
         aux = aux->prox;
     }
 
-    printf("\n+-------------------+\n| Adicionar Paragem |\n+-------------------+--------------------------------------------------------------+");
-    wprintf(L"\n| Para ser registada no sistema uma linha necessita de ter pelo menos uma paragem. |");
-    printf("\n|               1.Adicionar Paragem     2.Vizualizar Paragens                      |");
-    printf("\n+----------------------------------------------------------------------------------+");
-    printf("\n->");
     do {
         if (i > 0) {
             printf("\n+----------------------------------------------+");
@@ -334,6 +354,7 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
     if (ans == 2) {
         listParAll(listaP, parTotal);
     }
+    i = 0;
     printf("\n+-------------------------------------------------------+");
     wprintf(L"\n| Introduza o código da paragem que pretende adicionar. |");
     printf("\n+-------------------------------------------------------+");
@@ -407,14 +428,15 @@ ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome) {
     } while (!res || ans != 1 && ans != 2);
 
     if (ans == 2) {
-        listaLin(aux);
+        listaLin(aux, nome);
     }
-
+    i = 0;
     printf("\n+-----------------------------------------------------+");
     wprintf(L"\n| Introduza o código da paragem que pretende remover. |");
     printf("\n+-----------------------------------------------------+");
     printf("\n->");
     do {
+
         if (i > 0) {
             if (flag == 1) {
                 printf("\n+------------------------------------------------+");
@@ -455,9 +477,9 @@ ptrLin alteraNome_Lin(ptrLin p, char *nome) {
         aux = aux->prox;
     }
 
-    printf("\n+----------------------------------+");
+    printf("\n  +--------------------------------+");
     wprintf(L"\n| Introduza o novo nome da linha |");
-    printf("\n+----------------------------------+");
+    printf("\n  +--------------------------------+");
     printf("\n->");
     do {
         if (i > 0) {
@@ -503,28 +525,8 @@ ptrLin eliminaLinha(ptrLin p) {
     return p;
 }
 
-void listaLin(ptrLin p) {
+void listaLin(ptrLin p, char* nome) {
     int i = 0;
-    char nome[50];
-
-    printf("\n+-------------+\n| Lista Linha |\n+-------------+----------------------------------+");
-    wprintf(L"\n| Introduza o nome da linha que pretende listar. |");
-    printf("\n+------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|                   Nome inválido!                   |");
-            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
-            wprintf(L"\n|            no sistema, tente novamente.            |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        scanf(" %s", nome);
-        i++;
-    } while (verificaNome_Lin(p, nome) == 0);
-
     ptrLin aux = p;
 
     while (aux != NULL) {

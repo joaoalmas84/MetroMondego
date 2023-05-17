@@ -1,6 +1,6 @@
 -> Atualizar linha
-	=> Remover paragem <- DONE (Falta testar)
-	=> Adicionar paragem <- DONE (Falta testar)
+	=> Remover paragem <- DONE 
+	=> Adicionar paragem <- DONE
 	=> Alterar Nome <- DONE (Falta testar)
 -> Eliminar linha <- DONE (Falta testar)
 -> Conexão entre linhas e paragens <- DONE (Falta testar)
