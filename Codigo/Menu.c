@@ -101,62 +101,30 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
     return lista;
 }
 
-void listPar(ptrPar lista, int total) {
-    int res = 0, i = 0, ans = 0, flag = 0;
-    char cod[5];
+void listPar(ptrPar lista, int total, char* cod) {
+    int res = 0, i = 0, j = 0, ans = 0, flag = 0;
 
     if (total == 0) {
         listaVazia();
         return;
     }
-    printf("\n+----------------------------------------------------+");
-    wprintf(L"\n| Introduza o código da paragem que pretende listar. |");
-    printf("\n+----------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            if (flag == 1) {
-                printf("\n+------------------------------------------------+");
-                wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
-                wprintf(L"\n| paragem registada no sistema, tente novamente. |");
-                printf("\n+------------------------------------------------+");
-                printf("\n->");
-            } else {
-                printf("\n+----------------------------------------------------+");
-                wprintf(L"\n|                   Codigo inválido                  |");
-                wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
-                wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
-                printf("\n+----------------------------------------------------+");
-                printf("\n->");
-            }
-        }
-        fflush(stdin);
-        scanf(" %s", cod);
-        if (verificaCod_Paragens(lista, cod, total) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
-            flag = 1;                                                              //    escolher a mensagem de erro
-        } else {
-            flag = 0;
-        }
-        i++;
-    } while (strlen(cod) != 4 || verificaCod_Paragens(lista, cod, total) == 0);
-
-    int j;
-    for (j = 0; j < total; ++j) {
-        if (strcmp(tolowerString(cod), tolowerString(lista[j].cod)) == 0){
+    for (i = 0; i < total; ++i) {
+        if (strcmp(tolowerString(cod), tolowerString(lista[i].cod)) == 0){
             break;
         }
     }
-
-    printf("\n+-------------------------------------------------+");
-    printf("\n|     Todas as linhas que passam em %s", lista[j].nome);
-    printf("\n+---+---------------------------------------------+");
+    printf("\nNome -> %s\nCod -> %s\nnLin -> %d", lista[i].nome, lista[i].cod, lista[i].nLinAssoc);
+    putchar('\n');
+    printf("\n+---------------------------------------------------------+");
+    printf("\n|     Todas as linhas que passam em %s", lista[i].nome);
+    printf("\n+---+-----------------------------------------------------+");
     wprintf(L"\n|   | N.º de paragens | Nome ");
-    printf("\n+---+-----------------+-------------------+");
-    while (lista[j].linAssoc->prox != NULL) {
-        wprintf(L"\n| %d |       %d       | %s", i+1, lista[j].linAssoc->nParAssoc, lista[j].linAssoc->nome);
-        printf("\n+---+-----------------+-------------------+");
-        i++;
-        lista[j].linAssoc = lista[j].linAssoc->prox;
+    printf("\n+---+-----------------+-----------------------------------+");
+    while (lista[i].linAssoc != NULL) {
+        wprintf(L"\n| %d |        %d        | %s", j+1, lista[i].linAssoc->nParAssoc, lista[i].linAssoc->nome);
+        printf("\n+---+-----------------+-----------------------------------+");
+        j++;
+        lista[i].linAssoc = lista[i].linAssoc->prox;
     }
 }
 
@@ -264,6 +232,9 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         if (ans == 1) {
             getCodUser(cod, listaP, parTotal);
             listaL = addPar_Lin(listaL, nome, cod, listaP, parTotal, 1);
+            listLin(listaL, nome);
+            listPar(listaP, parTotal, cod);
+            exit(1);
         }
     } while (ans != 2);
 
@@ -394,6 +365,9 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
         i++;
     } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
     p = addPar_Lin(p, nome, cod, listaP, parTotal, 1);
+    listLin(p, nome);
+    listPar(listaP, parTotal, cod);
+    exit(1);
     return p;
 }
 
@@ -428,7 +402,7 @@ ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome) {
     } while (!res || ans != 1 && ans != 2);
 
     if (ans == 2) {
-        listaLin(aux, nome);
+        listLin(aux, nome);
     }
     i = 0;
     printf("\n+-----------------------------------------------------+");
@@ -525,7 +499,7 @@ ptrLin eliminaLinha(ptrLin p) {
     return p;
 }
 
-void listaLin(ptrLin p, char* nome) {
+void listLin(ptrLin p, char* nome) {
     int i = 0;
     ptrLin aux = p;
 
@@ -552,7 +526,7 @@ void listaLin(ptrLin p, char* nome) {
     }
 }
 
-void listaLinAll(ptrLin p) {
+void listLinAll(ptrLin p) {
     int i = 0;
     if (p == NULL) {
         listaVazia();
@@ -573,7 +547,7 @@ void listaLinAll(ptrLin p) {
     }
 }
 
-void listaLinAllDetailed(ptrLin p) {
+void listLinAllDetailed(ptrLin p) {
     if (p == NULL) {
         listaVazia();
         return;
