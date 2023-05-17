@@ -26,12 +26,14 @@ int main() {
 */
 
     listL = batota(listL, listP);
-    listaLinAllDetailed(listL);
+    putchar('\n');
+    listaLinAll(listL);
+    putchar('\n');
 
-    for (int i = 0; i < 4; ++i) {
-        listL = atualizaLinha(listL, listP, parTotal);
-        listaLinAllDetailed(listL);
-    }
+    listL = eliminaLinha(listL);
+    putchar('\n');
+    listaLinAll(listL);
+    putchar('\n');
 
     return 0;
 }

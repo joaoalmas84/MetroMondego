@@ -477,9 +477,9 @@ ptrLin alteraNome_Lin(ptrLin p, char *nome) {
         aux = aux->prox;
     }
 
-    printf("\n  +--------------------------------+");
+    printf("\n+--------------------------------+");
     wprintf(L"\n| Introduza o novo nome da linha |");
-    printf("\n  +--------------------------------+");
+    printf("\n+--------------------------------+");
     printf("\n->");
     do {
         if (i > 0) {
@@ -503,7 +503,7 @@ ptrLin eliminaLinha(ptrLin p) {
     int i = 0;
     char nome[50];
 
-    printf("\n+-------------+\n| Lista Linha |\n+-------------+----------------------------------+");
+    printf("\n+---------------+\n| Elimina Linha |\n+---------------+--------------------------------+");
     wprintf(L"\n| Introduza o nome da linha que pretende listar. |");
     printf("\n+------------------------------------------------+");
     printf("\n->");

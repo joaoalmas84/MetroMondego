@@ -141,7 +141,7 @@ ptrLin dellLin(ptrLin p, char* nome) {
             return p;
         } else if (strcmp(tolowerString(aux2->nome), tolowerString(nome)) == 0) {
             aux1->prox = aux2->prox;
-            free(aux1->prox);
+            free(aux2);
             return p;
         }
         aux1 = aux1->prox;

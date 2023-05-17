@@ -12,6 +12,6 @@ ptrPar preencheLista_Paragens(ptrPar p, int *total); // <- Preenche o array com 
 // Funcionalidades
 ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total);                 // <- adiciona paragem
 ptrPar dellPar(ptrPar lista, char *cod, int *total);                            // <- elimina paragem
-void addLin_Par(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal);   // <- adiciona linha a paragem
+ptrPar addLin_Par(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal);   // <- adiciona linha a paragem
 
 #endif //CODIGO_PARAGEM_H
