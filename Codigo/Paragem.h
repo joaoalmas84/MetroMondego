@@ -2,6 +2,7 @@
 #define CODIGO_PARAGEM_H
 
 #include "Utils.h"
+#include "Menu.h"
 
 // Funções auxiliares
 int verificaNome_Paragens(ptrPar lista, char *nome, int total); // <- devolve 1 de nome existir em lista

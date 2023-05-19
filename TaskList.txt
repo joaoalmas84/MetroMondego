@@ -1,5 +1,5 @@
 -> Conexão entre linhas e paragens <- DONE (Falta testar)
-	=> Add lin a paragem
+	=> Add lin a paragem (addLin_Par está a foder a listaligada que guarda todas as linhas dunno why)
 	=> Remove lin from paragem
 -> Implementar percurso
 -> Passagem de informação para ficheiros

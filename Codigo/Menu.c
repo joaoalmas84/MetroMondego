@@ -102,7 +102,7 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
 }
 
 void listPar(ptrPar lista, int total, char* cod) {
-    int res = 0, i = 0, j = 0, ans = 0, flag = 0;
+    int i = 0, j = 0;
 
     if (total == 0) {
         listaVazia();
@@ -113,7 +113,6 @@ void listPar(ptrPar lista, int total, char* cod) {
             break;
         }
     }
-    printf("\nNome -> %s\nCod -> %s\nnLin -> %d", lista[i].nome, lista[i].cod, lista[i].nLinAssoc);
     putchar('\n');
     printf("\n+---------------------------------------------------------+");
     printf("\n|     Todas as linhas que passam em %s", lista[i].nome);
@@ -232,9 +231,6 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         if (ans == 1) {
             getCodUser(cod, listaP, parTotal);
             listaL = addPar_Lin(listaL, nome, cod, listaP, parTotal, 1);
-            listLin(listaL, nome);
-            listPar(listaP, parTotal, cod);
-            exit(1);
         }
     } while (ans != 2);
 
@@ -242,7 +238,7 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
 }
 
 ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) {
-    int i = 0, ans = 0, res = 0, flag = 0;
+    int i = 0, ans = 0, res = 0;
     char nome[50], newName[50], cod[5];
     printf("\n+----------------+\n| Atualiza Linha |\n+----------------+----------------------------------+");
     wprintf(L"\n| Introduza o nome da linha que pretende atualizar. |");
@@ -308,7 +304,6 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
         }
         aux = aux->prox;
     }
-
     do {
         if (i > 0) {
             printf("\n+----------------------------------------------+");
@@ -367,7 +362,6 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
     p = addPar_Lin(p, nome, cod, listaP, parTotal, 1);
     listLin(p, nome);
     listPar(listaP, parTotal, cod);
-    exit(1);
     return p;
 }
 
@@ -502,8 +496,8 @@ ptrLin eliminaLinha(ptrLin p) {
 void listLin(ptrLin p, char* nome) {
     int i = 0;
     ptrLin aux = p;
-
-    while (aux != NULL) {
+    printf("\nSkirt");
+    while (aux->prox != NULL) {
         if (strcmp(tolowerString(p->nome), tolowerString(nome)) == 0) {
             break;
         }

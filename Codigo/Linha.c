@@ -181,7 +181,7 @@ ptrLin alterName_Lin(ptrLin p, char* newName) {
 ptrLin addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag) {
     int i;
     ptrLin aux = p;
-    if (flag == 0) { // flag == 0: estamos a adicionar a primeira paragem desta linha
+    if (flag == 0) { // flag == 0: estamos a adicionar paragem na criação da linha
         for (i = 0; i < parTotal; ++i) {
             if (strcmp(tolowerString(listaP[i].cod), tolowerString(cod)) == 0) {
                 break;
@@ -219,8 +219,11 @@ ptrLin addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, i
         aux->nParAssoc++;
         aux->parAssoc[aux->nParAssoc-1] = listaP[i];
     }
+    listLinAll(p);
     listaP[i].linAssoc = addLin_Par(listaP[i].linAssoc, aux);
     listaP[i].nLinAssoc++;
+    listLinAll(p);
+    exit(1);
     return p;
 }
 

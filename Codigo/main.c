@@ -31,7 +31,7 @@ int main() {
     putchar('\n');
 
     listL = atualizaLinha(listL, listP, parTotal);
-
+    listLinAll(listL);
 
     return 0;
 }

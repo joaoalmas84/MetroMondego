@@ -151,7 +151,6 @@ ptrPar dellPar(ptrPar lista, char *cod, int *total) {
 // Adiciona linha a paragem
 ptrLin addLin_Par(ptrLin list, ptrLin linha) {
     int i;
-
     ptrLin novo = malloc(sizeof(lin));
     if (novo == NULL) {
         if (erroMemoria() == 1) {
@@ -160,10 +159,10 @@ ptrLin addLin_Par(ptrLin list, ptrLin linha) {
             exit(1);
         }
     }
-    novo = linha;
 
+    novo = linha;
     if (list == NULL) {
-        list = novo;
+        list = linha;
         novo->prox = NULL;
     } else {
         ptrLin aux = list;
@@ -173,7 +172,6 @@ ptrLin addLin_Par(ptrLin list, ptrLin linha) {
         aux = novo;
         novo->prox = NULL;
     }
-
     return list;
 }
 

@@ -3,6 +3,7 @@
 
 #include "Utils.h"
 #include "Paragem.h"
+#include "Menu.h"
 // Funções auxiliares
 int verificaNome_Lin(ptrLin p, char* nome);  // <- devolve 1 se nome existir em p
 ptrLin insereLin(ptrLin p, ptrLin novo);
