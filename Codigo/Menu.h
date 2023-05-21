@@ -14,27 +14,26 @@
  * contidas nos ficheiros Paragem.c/.h e Lista.c/.h
 */
 
-void menu(ptrLin linList, ptrPar parList, int parTotal);    // <- Função principal (só para não lhe chamar main)
+void menu(ptrLin listLin, ptrPar listPar, int parTotal);    // <- Função principal (só para não lhe chamar main)
 
 // Paragens
 ptrPar adicionaParagem(ptrPar lista, int *total);
 ptrPar eliminaParagem(ptrPar lista, int *total);
-void listPar(ptrPar lista, int total, char* cod);  // <- Lista uma unica paragem
-void listParAll(ptrPar lista, int total);           // <- Lista todas as paragens
-void listParAllDetailed(ptrPar lista, int total);   // <- Lista todas as paragens detalhadamente
+void visualizaPar(ptrPar lista, int total, char* cod);  // <- Lista uma unica paragem
+void visualizaParAll(ptrPar lista, int total);           // <- Lista todas as paragens
+void visualizaParAllDetailed(ptrPar lista, int total);   // <- Lista todas as paragens detalhadamente
 
 // Linhas
-ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal);
-ptrLin eliminaLinha(ptrLin p);
-void listLin(ptrLin p, char* nome);    // <- Lista uma unica linha
-void listLinAll(ptrLin p);             // <- Lista todas as linhas
-void listLinAllDetailed(ptrLin p);     // <- Lista todas as linhas detalhadamente
-ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal);
-ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char *nome);
-ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome);
-ptrLin alteraNome_Lin(ptrLin p, char *nome);
-
+ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
+ptrLin eliminaLinha(ptrLin listLin);
+ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
+ptrLin addParagem_Lin(ptrLin listLin, ptrPar listPar, int totalPar, char *nomeLinha);
+ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaP, char *nomePar);
+ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin);
+void visualizaLin(ptrLin listLin, char* nome);    // <- Lista uma unica linha
+void visualizaLinAll(ptrLin listLin);             // <- Lista todas as linhas
+void visualizaLinAllDetailed(ptrLin listLin);     // <- Lista todas as linhas detalhadamente
 
 // Linhas -> extras
-void getCodUser(char *cod, ptrPar listaP, int parTotal);
+void getCodUser(char* cod, ptrPar listPar, int totalPar);
 #endif //CODIGO_MENU_H

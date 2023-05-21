@@ -3,18 +3,18 @@
 
 #include "Utils.h"
 #include "Paragem.h"
-#include "Menu.h"
+
 // Funções auxiliares
-int verificaNome_Lin(ptrLin p, char* nome);  // <- devolve 1 se nome existir em p
-ptrLin insereLin(ptrLin p, ptrLin novo);
-ptrLin batota(ptrLin p, ptrPar listaP);
+int verificaNome_Lin(ptrLin listLin, char* nome);  // <- devolve 1 se nome existir em listLin
+ptrLin insereLin(ptrLin listLin, ptrLin newLin);
+ptrLin createNewLin(char *nome);
+ptrLin batota(ptrLin listLin, ptrPar listPar);
 
 // Funcionalidades
-ptrLin addLin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal);   // <- adiciona Linha
-ptrLin dellLin(ptrLin p, char* nome);
-ptrLin removePar_Lin(ptrLin p, char* cod);
-ptrLin alterName_Lin(ptrLin p, char* newName);
-ptrLin addPar_Lin(ptrLin p, char* nome, char*cod, ptrPar listaP, int parTotal, int flag); // <- se flag == 0: estamos a adicionar a primeira paragem,
-                                                                                          //    o que significa que temos acesso ao ponteiro da nova linha
-                                                                                          //    se flag == 1: temos de pegar no nome e ir procurar a linha na lista
+ptrLin dellLin(ptrLin lin, char* nome);
+ptrLin removePar_Lin(ptrLin lin, char* cod);
+ptrLin alterName_Lin(ptrLin lin, char* newName);
+ptrLin addPar_Lin(ptrLin lin, ptrPar listPar, char*cod, int totalPar);
+
 #endif //CODIGO_LINHA_H
+

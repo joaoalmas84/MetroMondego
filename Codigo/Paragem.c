@@ -5,12 +5,12 @@
 // +--------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 // <- devolve 1 se nome existir em lista
-int verificaNome_Paragens(ptrPar lista, char *nome, int total) {
+int verificaNome_Paragens(ptrPar listPar, char *nome, int total) {
     if (total == 0) {
         return 0;
     } else {
         for (int i = 0; i < total; ++i) {
-            if (strcmp(tolowerString(lista[i].nome), tolowerString(nome)) == 0) {
+            if (strcmp(tolowerString(listPar[i].nome), tolowerString(nome)) == 0) {
                 return 1;
             }
         }
@@ -19,12 +19,12 @@ int verificaNome_Paragens(ptrPar lista, char *nome, int total) {
 }
 
 // <- devolve 1 se cod existir em lista
-int verificaCod_Paragens(ptrPar lista, char *cod, int total) {
+int verificaCod_Paragens(ptrPar list, char *cod, int total) {
     if (total == 0) {
         return 0;
     } else {
         for (int i = 0; i < total; ++i) {
-            if (strcmp(tolowerString(cod), tolowerString(lista[i].cod)) == 0) {
+            if (strcmp(tolowerString(cod), tolowerString(list[i].cod)) == 0) {
                 return 1;
             }
         }
@@ -59,37 +59,35 @@ char* geraCod() {
 }
 
 // Preenche o array com 3 paragens antes de começar o programa de modo a que tenhamos alguns dados com que trablhar
-ptrPar preencheLista_Paragens(ptrPar p, int *total) {
+ptrPar preencheLista_Paragens(ptrPar listPar, int *total) {
     ptrPar aux = NULL;
     FILE *f;
     f = fopen("Paragens.txt", "r");
     if (f == NULL) {
         printf("\nErro ao abrir o ficheiro Paragens.txt\n");
-        return p;
+        return listPar;
     }
 
     char line[100];
 
     while (fgets(line, 100, f) != NULL) {
-        aux = realloc(p, sizeof(par)*(*total+1));
+        aux = realloc(listPar, sizeof(par)*(*total+1));
         if (aux == NULL) {
             if (erroMemoria() == 1) {
-                return p;
+                return listPar;
             } else if (erroMemoria() == 2) {
                 exit(1);
             }
         }
         (*total)++;
-        p = aux;
-        sscanf(line, "%s", p[*total-1].nome);
+        listPar = aux;
+        sscanf(line, "%s", listPar[*total-1].nome);
         do {
-            strcpy(p[*total-1].cod, geraCod());
-        } while (verificaCod_Paragens(p, p[*total-1].cod, *total-1) == 1);
+            strcpy(listPar[*total-1].cod, geraCod());
+        } while (verificaCod_Paragens(listPar, listPar[*total-1].cod, *total-1) == 1);
     }
-
     fclose(f);
-
-    return p;
+    return listPar;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -101,78 +99,78 @@ ptrPar preencheLista_Paragens(ptrPar p, int *total) {
 // +-----------------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 // Adiciona Paragem
-ptrPar addPar(ptrPar lista, char *nome, char *cod, int *total) {
-    ptrPar aux = realloc(lista, sizeof(par)*(*total+1));
+ptrPar addPar(ptrPar listPar, char *nome, char *cod, int *total) {
+    ptrPar aux = realloc(listPar, sizeof(par)*(*total+1));
     if (aux == NULL) {
         if (erroMemoria() == 1) {
-            return lista;
+            return listPar;
         } else if (erroMemoria() == 2) {
             exit(1);
         }
     }
 
-    lista = aux;
+    listPar = aux;
     (*total)++;
 
-    strcpy(lista[*total-1].nome, nome);
-    strcpy(lista[*total-1].cod, cod);
-    lista[*total-1].linAssoc = NULL;
-    lista[*total-1].nLinAssoc = 0;
+    strcpy(listPar[*total-1].nome, nome);
+    strcpy(listPar[*total-1].cod, cod);
+    listPar[*total-1].linAssoc = NULL;
+    listPar[*total-1].nLinAssoc = 0;
 
-    return lista;
+    return listPar;
 
 }
 
 // Elimina Paragem
-ptrPar dellPar(ptrPar lista, char *cod, int *total) {
+ptrPar dellPar(ptrPar listPar, char *cod, int *total) {
     ptrPar aux = NULL;
     for (int i = 0; i < *total; ++i) {
-        if (strcmp(tolowerString(lista[i].cod),tolowerString(cod)) == 0) {
+        if (strcmp(tolowerString(listPar[i].cod),tolowerString(cod)) == 0) {
             for (int j = i; j < *total-1; ++j) {
-                lista[i] = lista[i+1];
+                listPar[i] = listPar[i+1];
             }
             break;
         }
     }
-    aux = realloc(lista, sizeof(par)*(*total-1));
+    aux = realloc(listPar, sizeof(par)*(*total-1));
     if (aux == NULL) {
         if (erroMemoria() == 1) {
-            return lista;
+            return listPar;
         } else if (erroMemoria() == 2) {
             exit(1);
         }
     } else {
         (*total)--;
-        lista = aux;
+        listPar = aux;
     }
-    return lista;
+    return listPar;
 }
 
 // Adiciona linha a paragem
-ptrLin addLin_Par(ptrLin list, ptrLin linha) {
+ptrPar addLin_Par(ptrPar listPar, char* cod, int totalPar, ptrLin lin) {
     int i;
-    ptrLin novo = malloc(sizeof(lin));
-    if (novo == NULL) {
-        if (erroMemoria() == 1) {
-            return list;
-        } else if (erroMemoria() == 2) {
-            exit(1);
+    ptrLin novo = createNewLin(lin->nome);
+    novo->nParAssoc = lin->nParAssoc;
+    novo->parAssoc = lin->parAssoc;
+
+    for (i = 0; i < totalPar; ++i) {
+        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
+            break;
         }
     }
 
-    novo = linha;
-    if (list == NULL) {
-        list = linha;
+    if (listPar[i].linAssoc == NULL) {
+        listPar[i].linAssoc = novo;
         novo->prox = NULL;
     } else {
-        ptrLin aux = list;
-        while (aux != NULL) {
-            aux = aux->prox;
+        ptrLin aux2 = listPar[i].linAssoc;
+        while (aux2 != NULL) {
+            aux2 = aux2->prox;
         }
-        aux = novo;
+        aux2 = novo;
         novo->prox = NULL;
     }
-    return list;
+    return listPar;
 }
 
 

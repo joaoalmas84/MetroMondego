@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 // <- Função principal (só para não lhe chamar main)
-void menu(ptrLin linList, ptrPar parList, int parTotal) {
+void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
     /*
      * if (ans == listaLin) {
      *
@@ -101,7 +101,7 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
     return lista;
 }
 
-void listPar(ptrPar lista, int total, char* cod) {
+void visualizaPar(ptrPar lista, int total, char* cod) {
     int i = 0, j = 0;
 
     if (total == 0) {
@@ -127,7 +127,7 @@ void listPar(ptrPar lista, int total, char* cod) {
     }
 }
 
-void listParAll(ptrPar lista, int total) {
+void visualizaParAll(ptrPar lista, int total) {
     if (total == 0) {
         listaVazia();
         return;
@@ -155,7 +155,7 @@ void listParAll(ptrPar lista, int total) {
     }
 }
 
-void listParAllDetailed(ptrPar lista, int total) {
+void visualizaParAllDetailed(ptrPar lista, int total) {
     printf("\n+-------------------------------------------------+");
     printf("\n|     Todas as paragens registadas no sistema     |");
     printf("\n+---+--------+------------------------------------+");
@@ -182,9 +182,10 @@ void listParAllDetailed(ptrPar lista, int total) {
 // | Linhas ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
+ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
     int i = 0, ans = 0, res = 0, flag = 0, nPar = 0;
     char nome[50], cod[5];
+    ptrLin novaLin = NULL;
 
     printf("\n+------------+\n| Nova Linha |\n+------------+-------------------------------------------+");
     wprintf(L"\n| Não é possível existirem duas linhas com o mesmo nome. |");
@@ -202,10 +203,12 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
         fflush(stdin);
         scanf(" %s", nome);
         i++;
-    } while (verificaNome_Lin(listaL, nome) == 1);
+    } while (verificaNome_Lin(listLin, nome) == 1);
 
-    getCodUser(cod, listaP, parTotal);
-    listaL = addLin(listaL, nome, cod, listaP, parTotal);
+    novaLin = createNewLin(nome);
+    getCodUser(cod, listPar, totalPar);
+    listLin = insereLin(listLin, novaLin);
+    listLin = addPar_Lin(novaLin, listPar, cod, totalPar);
     res = i = ans = 0;
     do {
         printf("\n+-------------------------------------+");
@@ -229,17 +232,42 @@ ptrLin adicionaLinha(ptrLin listaL, ptrPar listaP, int parTotal) {
             i++;
         } while (!res || ans != 1 && ans != 2);
         if (ans == 1) {
-            getCodUser(cod, listaP, parTotal);
-            listaL = addPar_Lin(listaL, nome, cod, listaP, parTotal, 1);
+            getCodUser(cod, listPar, totalPar);
+            listLin = addPar_Lin(novaLin, listPar, cod, totalPar);
         }
     } while (ans != 2);
-
-    return listaL;
+    return listLin;
 }
 
-ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) {
+ptrLin eliminaLinha(ptrLin listLin) {
+    int i = 0;
+    char nome[50];
+
+    printf("\n+---------------+\n| Elimina Linha |\n+---------------+--------------------------------+");
+    wprintf(L"\n| Introduza o nome da linha que pretende listar. |");
+    printf("\n+------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n+----------------------------------------------------+");
+            wprintf(L"\n|                   Nome inválido!                   |");
+            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
+            wprintf(L"\n|            no sistema, tente novamente.            |");
+            printf("\n+----------------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        scanf(" %s", nome);
+        i++;
+    } while (verificaNome_Lin(listLin, nome) == 0);
+
+    listLin = dellLin(listLin, nome);
+    return listLin;
+}
+
+ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
     int i = 0, ans = 0, res = 0;
-    char nome[50], newName[50], cod[5];
+    char nome[50];
     printf("\n+----------------+\n| Atualiza Linha |\n+----------------+----------------------------------+");
     wprintf(L"\n| Introduza o nome da linha que pretende atualizar. |");
     printf("\n+---------------------------------------------------+");
@@ -256,7 +284,7 @@ ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) {
         fflush(stdin);
         scanf(" %s", nome);
         i++;
-    } while (verificaNome_Lin(p, nome) == 0);
+    } while (verificaNome_Lin(listLin, nome) == 0);
 
     i = 0;
     printf("\n+--------------------------------------------+");
@@ -283,23 +311,22 @@ ptrLin atualizaLinha(ptrLin p, ptrPar listaP, int parTotal) {
         printf("\n| 1.Adicionar Paragem     2.Vizualizar Paragens |");
         printf("\n+-----------------------------------------------+");
         printf("\n->");
-        p = addParagem_Lin(p, listaP, parTotal, nome);
+        listLin = addParagem_Lin(listLin, listPar, totalPar, nome);
     } else if (ans == 2) {
-        p = removeParagem_Lin(p, listaP, nome);
+        listLin = removeParagem_Lin(listLin, listPar, nome);
     } else if (ans == 3) {
-        p = alteraNome_Lin(p, nome);
+        listLin = alteraNome_Lin(listLin, nome);
     }
-    return p;
+    return listLin;
 }
 
-
-ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
+ptrLin addParagem_Lin(ptrLin listLin, ptrPar listPar, int totalPar, char *nomeLinha) {
     int ans = 0, i = 0, res = 0, flag = 0;
     char cod[5];
 
-    ptrLin aux = p;
+    ptrLin aux = listLin;
     while (aux->prox != NULL) {
-        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nomeLinha)) == 0) {
             break;
         }
         aux = aux->prox;
@@ -318,7 +345,7 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
     } while (!res || ans != 1 && ans != 2);
 
     if (ans == 2) {
-        listParAll(listaP, parTotal);
+        visualizaParAll(listPar, totalPar);
     }
     i = 0;
     printf("\n+-------------------------------------------------------+");
@@ -350,27 +377,27 @@ ptrLin addParagem_Lin(ptrLin p, ptrPar listaP, int parTotal, char*nome) {
         }
         fflush(stdin);
         scanf(" %s", cod);
-        if (verificaCod_Paragens(listaP, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
-            flag = 1;                                                              //    escolher a mensagem de erro
-        } else if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1 && strlen(cod) == 4) {
+        if (verificaCod_Paragens(listPar, cod, totalPar) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+            flag = 1;                                                               //    escolher a mensagem de erro
+        } else if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1) {
             flag = 2;
         } else {
             flag = 0;
         }
         i++;
-    } while (strlen(cod) != 4 || verificaCod_Paragens(listaP, cod, parTotal) == 0);
-    p = addPar_Lin(p, nome, cod, listaP, parTotal, 1);
-    listLin(p, nome);
-    listPar(listaP, parTotal, cod);
-    return p;
+    } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, totalPar) == 0 || verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1);
+    exit(1);
+    aux = addPar_Lin(aux, listPar, cod, totalPar);
+
+    return listLin;
 }
 
-ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome) {
+ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaPar, char *nomeLin) {
     int ans = 0, i = 0, flag = 0, res = 0;
     char cod[5];
-    ptrLin aux = p;
+    ptrLin aux = listLin;
     while (aux->prox != NULL) {
-        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nomeLin)) == 0) {
             break;
         }
         aux = aux->prox;
@@ -396,7 +423,7 @@ ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome) {
     } while (!res || ans != 1 && ans != 2);
 
     if (ans == 2) {
-        listLin(aux, nome);
+        visualizaLin(aux, nomeLin);
     }
     i = 0;
     printf("\n+-----------------------------------------------------+");
@@ -404,7 +431,6 @@ ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome) {
     printf("\n+-----------------------------------------------------+");
     printf("\n->");
     do {
-
         if (i > 0) {
             if (flag == 1) {
                 printf("\n+------------------------------------------------+");
@@ -424,22 +450,22 @@ ptrLin removeParagem_Lin(ptrLin p, ptrPar listaP, char *nome) {
         fflush(stdin);
         scanf(" %s", cod);
         if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
-            flag = 1;                                                              //    escolher a mensagem de erro
+            flag = 1;                                                                           //    escolher a mensagem de erro
         } else {
             flag = 0;
         }
         i++;
     } while (strlen(cod) != 4 || verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 0);
-    p = removePar_Lin(aux, cod);
-    return p;
+    aux = removePar_Lin(aux, cod);
+    return listLin;
 }
 
-ptrLin alteraNome_Lin(ptrLin p, char *nome) {
+ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin) {
     int ans = 0, i = 0;
     char newName[50];
-    ptrLin aux = p;
+    ptrLin aux = listLin;
     while (aux->prox != NULL) {
-        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nomeLin)) == 0) {
             break;
         }
         aux = aux->prox;
@@ -461,39 +487,12 @@ ptrLin alteraNome_Lin(ptrLin p, char *nome) {
         fflush(stdin);
         scanf(" %s", newName);
         i++;
-    } while (verificaNome_Lin(p, newName) == 1);
-    p = alterName_Lin(p, newName);
-    return p;
+    } while (verificaNome_Lin(listLin, newName) == 1);
+    aux = alterName_Lin(aux, newName);
+    return listLin;
 }
 
-
-ptrLin eliminaLinha(ptrLin p) {
-    int i = 0;
-    char nome[50];
-
-    printf("\n+---------------+\n| Elimina Linha |\n+---------------+--------------------------------+");
-    wprintf(L"\n| Introduza o nome da linha que pretende listar. |");
-    printf("\n+------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|                   Nome inválido!                   |");
-            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
-            wprintf(L"\n|            no sistema, tente novamente.            |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        scanf(" %s", nome);
-        i++;
-    } while (verificaNome_Lin(p, nome) == 0);
-
-    p = dellLin(p, nome);
-    return p;
-}
-
-void listLin(ptrLin p, char* nome) {
+void visualizaLin(ptrLin p, char* nome) {
     int i = 0;
     ptrLin aux = p;
     printf("\nSkirt");
@@ -520,7 +519,7 @@ void listLin(ptrLin p, char* nome) {
     }
 }
 
-void listLinAll(ptrLin p) {
+void visualizaLinAll(ptrLin p) {
     int i = 0;
     if (p == NULL) {
         listaVazia();
@@ -541,7 +540,7 @@ void listLinAll(ptrLin p) {
     }
 }
 
-void listLinAllDetailed(ptrLin p) {
+void visualizaLinAllDetailed(ptrLin p) {
     if (p == NULL) {
         listaVazia();
         return;
@@ -572,7 +571,7 @@ void listLinAllDetailed(ptrLin p) {
 // | Linhas -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-void getCodUser(char *cod, ptrPar listaP, int parTotal) {
+void getCodUser(char* cod, ptrPar listaP, int parTotal) {
     int res = 0, i = 0, ans = 0, flag = 0;
 
     printf("\n+-------------------+\n| Adicionar Paragem |\n+-------------------+--------------------------------------------------------------+");
@@ -594,7 +593,7 @@ void getCodUser(char *cod, ptrPar listaP, int parTotal) {
     } while (!res || ans != 1 && ans != 2);
 
     if (ans == 2) {
-        listParAll(listaP, parTotal);
+        visualizaParAll(listaP, parTotal);
     }
 
     res = i = ans = flag = 0;
