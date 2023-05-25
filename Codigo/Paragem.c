@@ -152,13 +152,11 @@ ptrPar addLin_Par(ptrPar listPar, char* cod, int totalPar, ptrLin lin) {
     ptrLin novo = createNewLin(lin->nome);
     novo->nParAssoc = lin->nParAssoc;
     novo->parAssoc = lin->parAssoc;
-
     for (i = 0; i < totalPar; ++i) {
         if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
             break;
         }
     }
-
     if (listPar[i].linAssoc == NULL) {
         listPar[i].linAssoc = novo;
         novo->prox = NULL;
@@ -173,6 +171,34 @@ ptrPar addLin_Par(ptrPar listPar, char* cod, int totalPar, ptrLin lin) {
     return listPar;
 }
 
+ptrPar removeLin_Par(ptrPar listPar, char* cod, int totalPar, char* nomeLin) {
+    int i;
+    for (i = 0; i < totalPar; ++i) {
+        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
+            break;
+        }
+    }
+    ptrLin aux1 = listPar[i].linAssoc;
+    if (listPar[i].linAssoc == NULL) {// Não devia estar a NULL
+        printf("\nBruh");
+        exit(1);
+    }
+    ptrLin aux2 = aux1->prox;
+    while (aux1 != NULL) {
+        if (strcmp(tolowerString(aux1->nome), tolowerString(nomeLin)) == 0) {
+            listPar[i].linAssoc = aux2;
+            free(aux1);
+            return listPar;
+        } else if (strcmp(tolowerString(aux2->nome), tolowerString(nomeLin)) == 0) {
+            aux1 = aux2->prox;
+            free(aux2);
+            return listPar;
+        }
+        aux1 = aux1->prox;
+        aux2 = aux2->prox;
+    }
+    return listPar;
+}
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

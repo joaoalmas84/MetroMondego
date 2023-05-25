@@ -17,7 +17,7 @@ int main() {
     visualizaParAll(listP, parTotal);
     putchar('\n');
 */
-   // listL = batota(listL, listP);
+    // listL = batota(listL, listP);
     //putchar('\n');
 
     listL = adicionaLinha(listL, listP, totalPar);
@@ -36,11 +36,9 @@ int main() {
         }
     }
 
-    for (int i = 0; i < 5; ++i) {
-        listL = atualizaLinha(listL, listP, totalPar);
-        visualizaLinAll(listL);
-        visualizaPar(listP, totalPar, cod);
-    }
+    listL = atualizaLinha(listL, listP, totalPar);
+    visualizaLinAll(listL);
+    visualizaPar(listP, totalPar, cod);
 
     return 0;
 }

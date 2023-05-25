@@ -149,9 +149,8 @@ ptrLin removePar_Lin(ptrLin lin, char* cod) {
             break;
         }
     }
-
     ptrPar aux = realloc(lin->parAssoc, sizeof(par)*(lin->nParAssoc-1));
-    if (aux == NULL) {
+    if (aux == NULL && lin->nParAssoc-1 > 0) {
         if (erroMemoria() == 1) {
             return lin;
         } else if (erroMemoria() == 2) {

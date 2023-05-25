@@ -313,7 +313,7 @@ ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
         printf("\n->");
         listLin = addParagem_Lin(listLin, listPar, totalPar, nome);
     } else if (ans == 2) {
-        listLin = removeParagem_Lin(listLin, listPar, nome);
+        listLin = removeParagem_Lin(listLin, listPar, totalPar, nome);
     } else if (ans == 3) {
         listLin = alteraNome_Lin(listLin, nome);
     }
@@ -386,13 +386,12 @@ ptrLin addParagem_Lin(ptrLin listLin, ptrPar listPar, int totalPar, char *nomeLi
         }
         i++;
     } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, totalPar) == 0 || verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1);
-    exit(1);
     aux = addPar_Lin(aux, listPar, cod, totalPar);
 
     return listLin;
 }
 
-ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaPar, char *nomeLin) {
+ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listPar, int parTotal, char *nomeLin) {
     int ans = 0, i = 0, flag = 0, res = 0;
     char cod[5];
     ptrLin aux = listLin;
@@ -435,7 +434,7 @@ ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaPar, char *nomeLin) {
             if (flag == 1) {
                 printf("\n+------------------------------------------------+");
                 wprintf(L"\n| O código introduzido não corresponde a nenhuma |");
-                wprintf(L"\n|      paragem desta linha, tente novamente.     |");
+                printf("\n|      paragem desta linha, tente novamente.     |");
                 printf("\n+------------------------------------------------+");
                 printf("\n->");
             } else {
@@ -457,6 +456,9 @@ ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaPar, char *nomeLin) {
         i++;
     } while (strlen(cod) != 4 || verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 0);
     aux = removePar_Lin(aux, cod);
+    visualizaPar(listPar, parTotal, cod);
+    listPar = removeLin_Par(listPar, cod, parTotal, nomeLin);
+    visualizaPar(listPar, parTotal, cod);
     return listLin;
 }
 
@@ -470,7 +472,6 @@ ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin) {
         }
         aux = aux->prox;
     }
-
     printf("\n+--------------------------------+");
     wprintf(L"\n| Introduza o novo nome da linha |");
     printf("\n+--------------------------------+");
@@ -495,7 +496,6 @@ ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin) {
 void visualizaLin(ptrLin p, char* nome) {
     int i = 0;
     ptrLin aux = p;
-    printf("\nSkirt");
     while (aux->prox != NULL) {
         if (strcmp(tolowerString(p->nome), tolowerString(nome)) == 0) {
             break;

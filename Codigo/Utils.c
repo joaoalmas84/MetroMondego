@@ -51,7 +51,7 @@ void listaVazia() {
 int erroMemoria() {
     int i = 0, res = 0, ans = 0;
     printf("\n+---------------------------------------------------+");
-    printf("\n|            Erro na alocação de memória.           |");
+    wprintf(L"\n|            Erro na alocação de memória.           |");
     printf("\n|           Voltar para  o menu principal?          |");
     printf("\n|              1.Voltar     2.Terminar              |");
     printf("\n+---------------------------------------------------+");
@@ -67,7 +67,6 @@ int erroMemoria() {
         fflush(stdin);
         res = scanf("%d", &ans);
         i++;
-    } while (!res || ans != 1 && ans != 0);
-
+    } while (!res || ans != 1 && ans != 2);
     return ans;
 }
