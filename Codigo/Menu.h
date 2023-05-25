@@ -27,7 +27,6 @@ void visualizaParAllDetailed(ptrPar lista, int total);   // <- Lista todas as pa
 ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
 ptrLin eliminaLinha(ptrLin listLin);
 ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
-ptrLin addParagem_Lin(ptrLin listLin, ptrPar listPar, int totalPar, char *nomeLinha);
 ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaP, int parTotal, char *nomePar);
 ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin);
 void visualizaLin(ptrLin listLin, char* nome);    // <- Lista uma unica linha
@@ -35,5 +34,5 @@ void visualizaLinAll(ptrLin listLin);             // <- Lista todas as linhas
 void visualizaLinAllDetailed(ptrLin listLin);     // <- Lista todas as linhas detalhadamente
 
 // Linhas -> extras
-void getCodUser(char* cod, ptrPar listPar, int totalPar);
+void getCodUser(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);
 #endif //CODIGO_MENU_H

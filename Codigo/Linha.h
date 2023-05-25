@@ -14,7 +14,7 @@ ptrLin batota(ptrLin listLin, ptrPar listPar);
 ptrLin dellLin(ptrLin lin, char* nome);
 ptrLin removePar_Lin(ptrLin lin, char* cod);
 ptrLin alterName_Lin(ptrLin lin, char* newName);
-ptrLin addPar_Lin(ptrLin lin, ptrPar listPar, char*cod, int totalPar);
+ptrLin addPar_Lin(ptrLin listLin, char* nome,  ptrPar listPar, char*cod, int totalPar);
 
 #endif //CODIGO_LINHA_H
 

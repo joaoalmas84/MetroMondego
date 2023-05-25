@@ -1,7 +1,7 @@
+-> Implementar menu
 -> Conexão entre linhas e paragens <- DONE (Falta testar)
 	=> Remove lin from paragem (Remover em todo o lado)
 -> Implementar percurso
 -> Passagem de informação para ficheiros
 -> Funcionalidade de sair e guardar informação
 -> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
--> Implementar menu

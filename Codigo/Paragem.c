@@ -178,20 +178,17 @@ ptrPar removeLin_Par(ptrPar listPar, char* cod, int totalPar, char* nomeLin) {
             break;
         }
     }
-    ptrLin aux1 = listPar[i].linAssoc;
-    if (listPar[i].linAssoc == NULL) {// Não devia estar a NULL
-        printf("\nBruh");
-        exit(1);
-    }
-    ptrLin aux2 = aux1->prox;
+    ptrLin aux1 = listPar[i].linAssoc, aux2 = aux1->prox;
     while (aux1 != NULL) {
         if (strcmp(tolowerString(aux1->nome), tolowerString(nomeLin)) == 0) {
             listPar[i].linAssoc = aux2;
             free(aux1);
+            listPar[i].nLinAssoc--;
             return listPar;
         } else if (strcmp(tolowerString(aux2->nome), tolowerString(nomeLin)) == 0) {
             aux1 = aux2->prox;
             free(aux2);
+            listPar[i].nLinAssoc--;
             return listPar;
         }
         aux1 = aux1->prox;

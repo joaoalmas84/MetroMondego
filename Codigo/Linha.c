@@ -167,8 +167,15 @@ ptrLin alterName_Lin(ptrLin lin, char* newName) {
     return lin;
 }
 
-ptrLin addPar_Lin(ptrLin lin, ptrPar listPar, char*cod, int totalPar) {
+ptrLin addPar_Lin(ptrLin listLin, char* nome, ptrPar listPar, char*cod, int totalPar) {
     int i;
+    ptrLin aux = listLin;
+    while (aux->prox != NULL) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+            break;
+        }
+        aux = aux->prox;
+    }
 
     for (i = 0; i < totalPar; ++i) {
         if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
@@ -176,21 +183,21 @@ ptrLin addPar_Lin(ptrLin lin, ptrPar listPar, char*cod, int totalPar) {
         }
     }
 
-    lin->parAssoc = realloc(lin->parAssoc, sizeof(par)*(lin->nParAssoc+1));
-    if (lin->parAssoc == NULL) {
+    aux->parAssoc = realloc(aux->parAssoc, sizeof(par)*(aux->nParAssoc+1));
+    if (aux->parAssoc == NULL) {
         if (erroMemoria() == 1) {
-            return lin;
+            return aux;
         } else if (erroMemoria() == 2) {
             exit(1);
         }
     }
-    lin->nParAssoc++;
-    lin->parAssoc[lin->nParAssoc-1] = listPar[i];
+    aux->nParAssoc++;
+    aux->parAssoc[aux->nParAssoc-1] = listPar[i];
 
-    listPar = addLin_Par(listPar, cod, totalPar, lin);
+    listPar = addLin_Par(listPar, cod, totalPar, aux);
     listPar[i].nLinAssoc++;
 
-    return lin;
+    return listLin;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
