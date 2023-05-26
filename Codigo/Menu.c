@@ -2,13 +2,46 @@
 
 // <- Função principal (só para não lhe chamar main)
 void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
+    int i = 0, res = 0, ans = 0;
     printf("  __  __        _                 __  __                    _                     \n"
            " |  \\/  |  ___ | |_  _ __  ___   |  \\/  |  ___   _ __    __| |  ___   ____   ___  \n"
            " | |\\/| | / _ \\| __||  __|/ _ \\  | |\\/| | / _ \\ |  _ \\  / _  | / _ \\ / _  | / _ \\ \n"
            " | |  | ||  __/| |_ | |  | (_) | | |  | || (_) || | | || (_| ||  __/| (_| || (_) | \n"
            " |_|  |_| \\___| \\__||_|   \\___/  |_|  |_| \\___/ |_| |_| \\____| \\___| \\__  | \\___/ \n"
            "                                                                     |___/   ");
-    wprintf(L"\n\t\t         João Afonso Fonseca Costa Almas");
+    wprintf(L"\n\t\t\t\t  By João Almas");
+    putchar('\n');
+    printf("\n\t+--------------------------------------------------------------+");
+    printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
+    printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
+    printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linahs      |");
+    printf("\n\t|                              0.Sair                          |");
+    printf("\n\t+--------------------------------------------------------------+");
+    printf("\n\t->");
+    do {
+        if (i > 0) {
+            printf("\n\t              +---------------------------------+");
+            wprintf(L"\n\t              | Opção inválida, tente novamente |");
+            printf("\n\t+-------------+---------------------------------+--------------+");
+            printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
+            printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
+            printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
+            printf("\n\t|                              0.Sair                          |");
+            printf("\n\t+--------------------------------------------------------------+");
+            printf("\n\t->");
+        }
+        fflush(stdin);
+        res = scanf("%d", &ans);
+        i++;
+    } while (!res || ans < 0 || ans > 6);
+
+
+    switch (ans) {
+        case 1:
+            listPar = registaParagem(listPar, &parTotal);
+            break;
+    }
+
     /*
      * if (ans == listaLin) {
      *
@@ -37,22 +70,24 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
 // | Paragens |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +----------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-ptrPar adicionaParagem(ptrPar lista, int *total) {
+ptrPar registaParagem(ptrPar lista, int *total) {
     int i = 0, j = 0, res = 0, ans = 0;
     char nome[50], cod[5];
 
-    printf("\n+--------------+\n| Nova Paragem |\n+--------------+-------------------------------------------+");
-    wprintf(L"\n| Não é possível existirem duas paragens com o mesmo nome. |");
-    printf("\n+----------------------------------------------------------+");
-    printf("\n->");
+    printf("\n\t                       +--------------+");
+    printf("\n\t                       | Nova Paragem |");
+    printf("\n\t+----------------------+--------------+--------------------+");
+    wprintf(L"\n\t| Não é possível existirem duas paragens com o mesmo nome. |");
+    printf("\n\t+----------------------------------------------------------+");
+    printf("\n\t->");
     do {
         if (j > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|                   Nome inválido!                   |");
-            wprintf(L"\n| Já existe uma paragem com esse nome registada no   |");
-            wprintf(L"\n|              sistema, tente novamente.             |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
+            printf("\n\t+----------------------------------------------------+");
+            wprintf(L"\n\t|                   Nome inválido!                   |");
+            wprintf(L"\n\t| Já existe uma paragem com esse nome registada no   |");
+            wprintf(L"\n\t|              sistema, tente novamente.             |");
+            printf("\n\t+----------------------------------------------------+");
+            printf("\n\t->");
         }
         fflush(stdin);
         scanf(" %s", nome);
@@ -65,11 +100,19 @@ ptrPar adicionaParagem(ptrPar lista, int *total) {
 
     lista = addPar(lista, nome, cod, total);
 
+    i = res = ans = 0;
+    printf("\n\t+-----------------------------------+");
+    printf("\n\t| Paragem adicionada com sucesso    |");
+    printf("\n\t| prima qualquer tecla para voltar. |");
+    printf("\n\t+-----------------------------------+");
+    getchar();
+    getchar();
+
     return lista;
 }
 
-ptrPar eliminaParagem(ptrPar lista, int *total) {
-    int flag = 0, i = 0;
+ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
+    int flag = 0, i = 0, res = 0, ans = 0;
     char cod[5];
 
     printf("\n+------------------+\n| Eliminar Paragem |\n+------------------+----------------------------------+");
@@ -97,15 +140,44 @@ ptrPar eliminaParagem(ptrPar lista, int *total) {
         flag = 0;
         fflush(stdin);
         scanf(" %s", cod);
-        if (strlen(cod) == 4 && verificaCod_Paragens(lista, cod, *total) == 0) {// <- Condição necessária para escolher
+        if (strlen(cod) == 4 && verificaCod_Paragens(listPar, cod, *totalPar) == 0) {// <- Condição necessária para escolher
             flag = 1;                                                           //escolher a mensagem de erro
         }
         i++;
-    } while (strlen(cod) != 4 || verificaCod_Paragens(lista, cod, *total) == 0);
+    } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, *totalPar) == 0);
 
-    lista = dellPar(lista, cod, total);
-
-    return lista;
+    if (checkPar_Dell(listPar, *totalPar, cod) == 1) {
+        listPar = dellPar(listPar, cod, totalPar);
+    } else {
+        i = 0;
+        printf("\n+----------------------------------------------------------------+");
+        wprintf(L"\n| Para eliminar uma paragem do sistema esta não pode fazer parte |");
+        wprintf(L"\n| de nenhuma linha, por favor remova a paragem em questão de     |");
+        printf("\n|                        todas as linhas.                        |");
+        printf("\n|                    1.Voltar     2.Remover de todas             |");
+        printf("\n|                                     as linhas                  |");
+        printf("\n+----------------------------------------------------------------+");
+        printf("\n->");
+        do {
+            if (i > 0) {
+                printf("\n+----------------------------------------------------+");
+                wprintf(L"\n|         Resposta inválida, tente novamente.        |");
+                printf("\n|           1.Voltar     2.Remover de todas          |");
+                printf("\n|                            as linhas               |");
+                printf("\n+----------------------------------------------------+");
+                printf("\n->");
+            }
+            fflush(stdin);
+            res = scanf("%d", &ans);
+            i++;
+        } while (!res || ans != 1 && ans != 2);
+    }
+    if (ans == 1) {
+        return listPar;
+    } else {
+        listLin = removePar_All(listLin, listPar, *totalPar, cod);
+        return listPar;
+    }
 }
 
 void visualizaPar(ptrPar lista, int total, char* cod) {
@@ -187,6 +259,48 @@ void visualizaParAllDetailed(ptrPar lista, int total) {
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+// +--------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Paragens -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +--------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+int checkPar_Dell(ptrPar lista, int total, char* cod) {
+    int i;
+    for (i = 0; i < total; ++i) {
+        if (strcmp(tolowerString(lista[i].cod), tolowerString(cod)) == 0) {
+            break;
+        }
+    }
+    if (lista[i].linAssoc == NULL) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod) {
+    ptrLin aux = listLin;
+    while (aux != NULL) {
+        for (int i = 0; i < aux->nParAssoc; ++i) {
+            if (strcmp(tolowerString(aux->parAssoc[i].cod), tolowerString(cod)) == 0) {
+                removePar_Lin(aux, cod);
+            }
+        }
+        aux = aux->prox;
+    }
+    for (int i = 0; i < parTotal; ++i) {
+        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
+            listPar[i].nLinAssoc = 0;
+            listPar[i].linAssoc = NULL;
+            break;
+        }
+    }
+    return listLin;
+}
+
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 // +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // | Linhas ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -218,6 +332,7 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
     listLin = insereLin(listLin, novaLin);
     getCodUser(cod, listPar, totalPar, nome, listLin);
     listLin = addPar_Lin(listLin, nome, listPar, cod, totalPar);
+
     res = i = ans = 0;
     do {
         printf("\n+-------------------------------------+");

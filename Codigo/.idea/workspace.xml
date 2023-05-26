@@ -22,11 +22,8 @@
   <component name="ChangeListManager">
     <list default="true" id="647903b0-85d0-4100-8ce5-caabd057908e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paragem.c" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
@@ -117,7 +114,8 @@
       <workItem from="1684644883016" duration="14102000" />
       <workItem from="1684707992330" duration="1086000" />
       <workItem from="1684956039147" duration="14758000" />
-      <workItem from="1685025000771" duration="7619000" />
+      <workItem from="1685025000771" duration="8163000" />
+      <workItem from="1685061838624" duration="8776000" />
     </task>
     <servers />
   </component>

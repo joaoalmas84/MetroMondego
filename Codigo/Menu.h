@@ -17,11 +17,15 @@
 void menu(ptrLin listLin, ptrPar listPar, int parTotal);    // <- Função principal (só para não lhe chamar main)
 
 // Paragens
-ptrPar adicionaParagem(ptrPar lista, int *total);
-ptrPar eliminaParagem(ptrPar lista, int *total);
+ptrPar registaParagem(ptrPar lista, int *total);
+ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar);
 void visualizaPar(ptrPar lista, int total, char* cod);  // <- Lista uma unica paragem
 void visualizaParAll(ptrPar lista, int total);           // <- Lista todas as paragens
 void visualizaParAllDetailed(ptrPar lista, int total);   // <- Lista todas as paragens detalhadamente
+
+// Paragens -> extras
+int checkPar_Dell(ptrPar listPar, int totalPar, char* cod);
+ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod);
 
 // Linhas
 ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
