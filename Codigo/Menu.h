@@ -4,6 +4,7 @@
 #include "Utils.h"
 #include "Paragem.h"
 #include "Linha.h"
+#include "Precurso.h"
 
 // +-----------------------+
 // | Interface do programa |
@@ -15,6 +16,7 @@
 */
 
 void menu(ptrLin listLin, ptrPar listPar, int parTotal);    // <- Função principal (só para não lhe chamar main)
+void getCodUser(char* cod, ptrPar listPar, int parTotal);
 
 // Paragens
 ptrPar registaParagem(ptrPar listPar, int *parTotal);
@@ -38,5 +40,5 @@ void visualizaLinAll(ptrLin listLin);               // <- Lista todas as linhas
 void visualizaLinAllDetailed(ptrLin listLin);       // <- Lista todas as linhas detalhadamente
 
 // Linhas -> extras
-void getCodUser(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);
+void getCodAddPar(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);
 #endif //CODIGO_MENU_H

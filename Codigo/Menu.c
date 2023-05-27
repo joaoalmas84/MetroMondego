@@ -35,7 +35,7 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
         fflush(stdin);
         res = scanf("%d", &ans);
         i++;
-    } while (!res || ans < 0 || ans > 6);
+    } while (!res || ans < 0 || ans > 7);
 
     switch (ans) {
         case 0:
@@ -204,7 +204,40 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                     break;
             }
             break;
+        case 7:
+            precursoMainFunction(listLin, listPar, parTotal);
+            break;
     }
+}
+
+void getCodUser(char* cod, ptrPar listPar, int parTotal) {
+    int i = 0, flag = 0;
+    do {
+        if (i > 0) {
+            if (flag == 1) {
+                printf("\n\t\t+------------------------------------------------+");
+                wprintf(L"\n\t\t| O código introduzido não corresponde a nenhuma |");
+                wprintf(L"\n\t\t| paragem registada no sistema, tente novamente. |");
+                printf("\n\t\t+------------------------------------------------+");
+                printf("\n->");
+            } else {
+                printf("\n\t\t +----------------------------------------------------+");
+                wprintf(L"\n\t\t |                   Codigo inválido                  |");
+                wprintf(L"\n\t\t | O código alfanumérico é composto por 4 caracteres, |");
+                wprintf(L"\n\t\t | letras e números apenas(Ex:L4J7), tente novamente. |");
+                printf("\n\t\t +----------------------------------------------------+");
+                printf("\n\t\t ->");
+            }
+        }
+        fflush(stdin);
+        scanf(" %s", cod);
+        if (verificaCod_Paragens(listPar, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+            flag = 1;                                                               //    escolher a mensagem de erro
+        } else {
+            flag = 0;
+        }
+        i++;
+    } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, parTotal) == 0);
 }
 
 // +----------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -251,7 +284,7 @@ ptrPar registaParagem(ptrPar listPar, int *parTotal) {
     return listPar;
 }
 
-ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
+ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *parTotal) {
     int flag = 0, i = 0, res = 0, ans = 0;
     char cod[5];
 
@@ -263,34 +296,17 @@ ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
     printf("\n| eliminada.                                          |");
     printf("\n+-----------------------------------------------------+");
     printf("\n->");
-    do {
-        if(i > 0) {
-            if (flag == 1){
-                printf("\n+----------------------------------------------------+");
-                wprintf(L"\n|   O código introduzido não corresponde a nenhuma   |");
-                printf("\n|   paragem registada no sistema, tente novamente.   |");
-                printf("\n+----------------------------------------------------+");
-                printf("\n->");
-            } else {
-                printf("\n+----------------------------------------------------+");
-                wprintf(L"\n|                   Codigo inválido                  |");
-                wprintf(L"\n| O código alfanumérico é composto por 4 caracteres, |");
-                wprintf(L"\n| letras e números apenas(Ex:L4J7), tente novamente. |");
-                printf("\n+----------------------------------------------------+");
-                printf("\n->");
-            }
-        }
-        flag = 0;
-        fflush(stdin);
-        scanf(" %s", cod);
-        if (strlen(cod) == 4 && verificaCod_Paragens(listPar, cod, *totalPar) == 0) {   // <- Condição necessária para escolher
-            flag = 1;                                                                   //escolher a mensagem de erro
-        }
-        i++;
-    } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, *totalPar) == 0);
+    getCodUser(cod, listPar, *parTotal);
 
-    if (checkPar_Dell(listPar, *totalPar, cod) == 1) {
-        listPar = dellPar(listPar, cod, totalPar);
+    if (checkPar_Dell(listPar, *parTotal, cod) == 1) {
+        listPar = dellPar(listPar, cod, parTotal);
+        printf("\n\t\t     +-------------------------------+");
+        printf("\n\t\t     | Paragem eliminada com sucesso |");
+        printf("\n\t\t     |    prima ENTER para voltar.   |");
+        printf("\n\t\t     +-------------------------------+");
+        getchar();
+        getchar();
+        system("cls");
     } else {
         i = 0;
         printf("\n+----------------------------------------------------------------+");
@@ -318,8 +334,8 @@ ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
             system("cls");
             return listPar;
         } else {
-            listLin = removePar_All(listLin, listPar, *totalPar, cod);
-            listPar = dellPar(listPar, cod, totalPar);
+            listLin = removePar_All(listLin, listPar, *parTotal, cod);
+            listPar = dellPar(listPar, cod, parTotal);
             printf("\n\t\t     +-------------------------------+");
             printf("\n\t\t     | Paragem eliminada com sucesso |");
             printf("\n\t\t     |    prima ENTER para voltar.   |");
@@ -516,7 +532,7 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
 
     novaLin = createNewLin(nome);
     listLin = insereLin(listLin, novaLin);
-    getCodUser(cod, listPar, parTotal, nome, listLin);
+    getCodAddPar(cod, listPar, parTotal, nome, listLin);
     listLin = addPar_Lin(listLin, nome, listPar, cod, parTotal);
 
     res = i = ans = 0;
@@ -542,7 +558,7 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
             i++;
         } while (!res || ans != 1 && ans != 2);
         if (ans == 1) {
-            getCodUser(cod, listPar, parTotal, nome, listLin);
+            getCodAddPar(cod, listPar, parTotal, nome, listLin);
             listLin = addPar_Lin(listLin, nome, listPar, cod, parTotal);
         }
     } while (ans != 2);
@@ -624,7 +640,7 @@ ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
     } while (!res || ans != 1 && ans != 2 && ans != 3);
 
     if (ans == 1) {
-        getCodUser(cod, listPar, totalPar, nome, listLin);
+        getCodAddPar(cod, listPar, totalPar, nome, listLin);
         listLin = addPar_Lin(listLin, nome, listPar, cod, totalPar);
     } else if (ans == 2) {
         listLin = removeParagem_Lin(listLin, listPar, totalPar, nome);
@@ -831,7 +847,7 @@ void visualizaLinAllDetailed(ptrLin listLin) {
 // | Linhas -> extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-void getCodUser(char* cod, ptrPar listPar, int parTotal, char* nomeLin, ptrLin listLin) {
+void getCodAddPar(char* cod, ptrPar listPar, int parTotal, char* nomeLin, ptrLin listLin) {
     int res = 0, i = 0, ans = 0, flag = 0;
     ptrLin aux = listLin;
     while (aux->prox != NULL) {
