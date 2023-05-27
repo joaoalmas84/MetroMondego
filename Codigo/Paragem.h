@@ -13,7 +13,7 @@ ptrPar preencheLista_Paragens(ptrPar listPar, int *total);                // <- 
 // Funcionalidades
 ptrPar addPar(ptrPar listPar, char *nome, char *cod, int *total);     // <- adiciona paragem
 ptrPar dellPar(ptrPar listPar, char *cod, int *total);                // <- elimina paragem
-ptrPar addLin_Par(ptrPar listPar, char* cod, int totalPar, ptrLin lin);
+ptrLin addLin_Par(ptrLin list, ptrLin lin);
 ptrPar removeLin_Par(ptrPar listPar, char* cod, int totalPar, char* nomeLin);
 
 #endif //CODIGO_PARAGEM_H

@@ -147,28 +147,21 @@ ptrPar dellPar(ptrPar listPar, char *cod, int *total) {
 }
 
 // Adiciona linha a paragem
-ptrPar addLin_Par(ptrPar listPar, char* cod, int totalPar, ptrLin lin) {
-    int i;
+ptrLin addLin_Par(ptrLin list, ptrLin lin) {
     ptrLin novo = createNewLin(lin->nome);
     novo->nParAssoc = lin->nParAssoc;
     novo->parAssoc = lin->parAssoc;
-    for (i = 0; i < totalPar; ++i) {
-        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
-            break;
-        }
-    }
-    if (listPar[i].linAssoc == NULL) {
-        listPar[i].linAssoc = novo;
-        novo->prox = NULL;
+
+    if (list == NULL) {
+        list = novo;
     } else {
-        ptrLin aux2 = listPar[i].linAssoc;
-        while (aux2 != NULL) {
-            aux2 = aux2->prox;
+        ptrLin aux = list;
+        while (aux->prox != NULL) {
+            aux = aux->prox;
         }
-        aux2 = novo;
-        novo->prox = NULL;
+        aux->prox = novo;
     }
-    return listPar;
+    return list;
 }
 
 ptrPar removeLin_Par(ptrPar listPar, char* cod, int totalPar, char* nomeLin) {

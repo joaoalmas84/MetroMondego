@@ -16,6 +16,7 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
     printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
     printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
     printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
+    printf("\n\t|                       7.Calcular Precurso                    |");
     printf("\n\t|                             0.Sair                           |");
     printf("\n\t+--------------------------------------------------------------+");
     printf("\n\t->");
@@ -99,6 +100,7 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                     menu(listLin, listPar, parTotal);
                     break;
                 case 3:
+                    i = 0;
                     printf("\n\t                  +---------------+");
                     printf("\n\t                  | Lista Paragem |");
                     printf("\n\t+-----------------+---------------+------------------+");
@@ -239,7 +241,6 @@ ptrPar registaParagem(ptrPar listPar, int *parTotal) {
 
     listPar = addPar(listPar, nome, cod, parTotal);
 
-    i = res = ans = 0;
     printf("\n\t\t     +--------------------------------+");
     printf("\n\t\t     | Paragem adicionada com sucesso |");
     printf("\n\t\t     |    prima ENTER para voltar.    |");
@@ -257,6 +258,9 @@ ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
     printf("\n+------------------+\n| Eliminar Paragem |\n+------------------+----------------------------------+");
     wprintf(L"\n| Introduza o código da paragem que pretende eliminar |");
     printf("\n|                       (Ex:L4J7).                    |");
+    printf("\n| Aviso -> Se o eliminar de  uma paragem resultar em  |");
+    wprintf(L"\n| uma linha ficar sem paragens, essa linha será também|");
+    printf("\n| eliminada.                                          |");
     printf("\n+-----------------------------------------------------+");
     printf("\n->");
     do {
@@ -264,7 +268,7 @@ ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
             if (flag == 1){
                 printf("\n+----------------------------------------------------+");
                 wprintf(L"\n|   O código introduzido não corresponde a nenhuma   |");
-                wprintf(L"\n|   paragem registada no sistema, tente novamente.   |");
+                printf("\n|   paragem registada no sistema, tente novamente.   |");
                 printf("\n+----------------------------------------------------+");
                 printf("\n->");
             } else {
@@ -310,13 +314,22 @@ ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *totalPar) {
             res = scanf("%d", &ans);
             i++;
         } while (!res || ans != 1 && ans != 2);
+        if (ans == 1) {
+            system("cls");
+            return listPar;
+        } else {
+            listLin = removePar_All(listLin, listPar, *totalPar, cod);
+            listPar = dellPar(listPar, cod, totalPar);
+            printf("\n\t\t     +-------------------------------+");
+            printf("\n\t\t     | Paragem eliminada com sucesso |");
+            printf("\n\t\t     |    prima ENTER para voltar.   |");
+            printf("\n\t\t     +-------------------------------+");
+            getchar();
+            getchar();
+            system("cls");
+        }
     }
-    if (ans == 1) {
-        return listPar;
-    } else {
-        listLin = removePar_All(listLin, listPar, *totalPar, cod);
-        return listPar;
-    }
+    return listPar;
 }
 
 void visualizaPar(ptrPar listPar, int parTotal, char* cod) {
@@ -336,11 +349,9 @@ void visualizaPar(ptrPar listPar, int parTotal, char* cod) {
     printf("\n\t\t+---------------------------------------------------------+");
     printf("\n\t\t|     Todas as linhas que passam em %s", listPar[i].nome);
     printf("\n\t\t+---+-----------------------------------------------------+");
-    wprintf(L"\n\t\t|   | N.º de paragens | Nome ");
-    printf("\n\t\t+---+-----------------+-----------------------------------+");
     while (aux != NULL) {
-        wprintf(L"\n\t\t| %d |        %d        | %s", j+1, aux->nParAssoc, aux->nome);
-        printf("\n\t\t+---+-----------------+-----------------------------------+");
+        wprintf(L"\n\t\t| %d |  %s", j, aux->nome);
+        printf("\n\t\t+---+-----------------------------------------------------+");
         j++;
         aux = aux->prox;
     }
@@ -452,8 +463,11 @@ ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod) {
     while (aux != NULL) {
         for (int i = 0; i < aux->nParAssoc; ++i) {
             if (strcmp(tolowerString(aux->parAssoc[i].cod), tolowerString(cod)) == 0) {
-                removePar_Lin(aux, cod);
+                aux = removePar_Lin(aux, cod);
             }
+        }
+        if (aux->nParAssoc == 0) {
+            listLin = dellLin(listLin, aux->nome);
         }
         aux = aux->prox;
     }

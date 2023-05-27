@@ -11,7 +11,7 @@ ptrLin createNewLin(char *nome);
 ptrLin batota(ptrLin listLin, ptrPar listPar);
 
 // Funcionalidades
-ptrLin dellLin(ptrLin lin, char* nome);
+ptrLin dellLin(ptrLin listLin, char* nome);
 ptrLin removePar_Lin(ptrLin lin, char* cod);
 ptrLin alterName_Lin(ptrLin lin, char* newName);
 ptrLin addPar_Lin(ptrLin listLin, char* nome,  ptrPar listPar, char*cod, int totalPar);

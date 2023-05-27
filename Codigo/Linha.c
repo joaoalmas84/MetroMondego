@@ -53,67 +53,6 @@ ptrLin createNewLin(char *nome) {
     return novo;
 }
 
-ptrLin batota(ptrLin listLin, ptrPar listPar) {
-    ptrLin l1 = malloc(sizeof(lin));
-    ptrLin l2 = malloc(sizeof(lin));
-    ptrLin l3 = malloc(sizeof(lin));
-    if (l1 == NULL || l2 == NULL || l3 ==NULL) {
-        if (erroMemoria() == 1) {
-            return listLin;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-
-    strcpy(l1->nome, "Skirt");
-    l1->nParAssoc = 3;
-    l1->parAssoc = malloc(sizeof(par)*3);
-    if (l1->parAssoc == NULL) {
-        if (erroMemoria() == 1) {
-            return listLin;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-    l1->parAssoc[0] = listPar[0];
-    l1->parAssoc[1] = listPar[1];
-    l1->parAssoc[2] = listPar[2];
-    listLin = l1;
-    l1->prox = l2;
-
-    strcpy(l2->nome, "Bruh");
-    l2->nParAssoc = 3;
-    l2->parAssoc = malloc(sizeof(par)*3);
-    if (l2->parAssoc == NULL) {
-        if (erroMemoria() == 1) {
-            return listLin;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-    l2->parAssoc[0] = listPar[0];
-    l2->parAssoc[1] = listPar[1];
-    l2->parAssoc[2] = listPar[2];
-    l2->prox = l3;
-
-    strcpy(l3->nome, "Sonhar");
-    l3->nParAssoc = 3;
-    l3->parAssoc = malloc(sizeof(par)*3);
-    if (l3->parAssoc == NULL) {
-        if (erroMemoria() == 1) {
-            return listLin;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-    l3->parAssoc[0] = listPar[0];
-    l3->parAssoc[1] = listPar[1];
-    l3->parAssoc[2] = listPar[2];
-    l3->prox = NULL;
-
-    return listLin;
-}
-
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -194,7 +133,7 @@ ptrLin addPar_Lin(ptrLin listLin, char* nome, ptrPar listPar, char*cod, int tota
     aux->nParAssoc++;
     aux->parAssoc[aux->nParAssoc-1] = listPar[i];
 
-    listPar = addLin_Par(listPar, cod, totalPar, aux);
+    listPar[i].linAssoc = addLin_Par(listPar[i].linAssoc, aux);
     listPar[i].nLinAssoc++;
 
     return listLin;
