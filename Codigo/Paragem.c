@@ -126,8 +126,8 @@ ptrPar dellPar(ptrPar listPar, char *cod, int *total) {
     ptrPar aux = NULL;
     for (int i = 0; i < *total; ++i) {
         if (strcmp(tolowerString(listPar[i].cod),tolowerString(cod)) == 0) {
-            for (int j = i; j < *total-1; ++j) {
-                listPar[i] = listPar[i+1];
+            for (int j = i; j < *total; ++j) {
+                listPar[j] = listPar[j+1];
             }
             break;
         }

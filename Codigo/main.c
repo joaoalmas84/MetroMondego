@@ -8,6 +8,5 @@ int main() {
 
     listP = preencheLista_Paragens(listP, &totalPar);
     menu(listL, listP, totalPar);
-
     return 0;
 }
