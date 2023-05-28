@@ -1,5 +1,9 @@
--> Implementar percurso
--> Passagem de informação para ficheiros
+-> Ler linha a partir de ficheiro de texto <- Problemas graves aqui
+-> Alterar o nome de uma linha em todas as colunas
+-> Passagem de informação para ficheiro binario
 -> Funcionalidade de sair e guardar informação
+-> Implementar percurso
+-> Mostrar informacao relativa à paragem que acabou de registar 
+-> Dar ao utilizador opção de cancelar a eliminação de uma paragem se isso implicar eliminar uma linha também
 -> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
 -> Aprimorar menu

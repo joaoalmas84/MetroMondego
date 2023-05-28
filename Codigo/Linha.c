@@ -53,6 +53,29 @@ ptrLin createNewLin(char *nome) {
     return novo;
 }
 
+ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod) {
+    ptrLin aux = listLin;
+    while (aux != NULL) {
+        for (int i = 0; i < aux->nParAssoc; ++i) {
+            if (strcmp(tolowerString(aux->parAssoc[i].cod), tolowerString(cod)) == 0) {
+                aux = removePar_Lin(aux, cod);
+            }
+        }
+        if (aux->nParAssoc == 0) {
+            listLin = dellLin(listLin, aux->nome);
+        }
+        aux = aux->prox;
+    }
+    for (int i = 0; i < parTotal; ++i) {
+        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
+            listPar[i].nLinAssoc = 0;
+            listPar[i].linAssoc = NULL;
+            break;
+        }
+    }
+    return listLin;
+}
+
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -101,7 +124,23 @@ ptrLin removePar_Lin(ptrLin lin, char* cod) {
     return lin;
 }
 
-ptrLin alterName_Lin(ptrLin lin, char* newName) {
+ptrLin alterName_Lin(ptrLin lin, char* newName, ptrPar listPar, int parTotal) {
+    ptrLin aux = NULL;
+    for (int i = 0; i < lin->nParAssoc; ++i) {
+        for (int j = 0; j < parTotal; ++j) {
+            if (strcmp(tolowerString(lin->parAssoc[i].cod), tolowerString(listPar[j].nome)) == 0) {
+                aux = listPar[j].linAssoc;
+                while (aux != NULL) {
+                    if (strcmp(tolowerString(aux->nome), tolowerString(lin->nome)) == 0) {
+                        strcpy(aux->nome, newName);
+                        break;
+                    }
+                    aux = aux->prox;
+                }
+                break;
+            }
+        }
+    }
     strcpy(lin->nome, newName);
     return lin;
 }
@@ -136,6 +175,51 @@ ptrLin addPar_Lin(ptrLin listLin, char* nome, ptrPar listPar, char*cod, int tota
     listPar[i].linAssoc = addLin_Par(listPar[i].linAssoc, aux);
     listPar[i].nLinAssoc++;
 
+    return listLin;
+}
+
+ptrLin getLinFromFile(ptrPar listPar, int *parTotal, ptrLin listLin, char *fileName) {
+    FILE* f;
+    char nomeFile[50], nomeLin[50], line[50], nomePar[50], cod[50];
+    ptrLin novo = NULL, aux = NULL;
+    int i = 0;
+
+    strcpy(nomeFile, fileName);
+    strcat(nomeFile, ".txt");
+
+    f = fopen(nomeFile, "r");
+    if (f == NULL) {
+        printf("\nErro ao abrir o ficheiro %s", fileName);
+        return listLin;
+    }
+
+    fgets(nomeLin, sizeof(nomeLin), f);
+    if (nomeLin[strlen(nomeLin - 1)] == '\n') {
+        nomeLin[strlen(nomeLin - 1)] = '\0';
+    }
+
+    novo = createNewLin(nomeLin);
+    listLin = insereLin(listLin, novo);
+    while (fgets(line, sizeof(line), f) != NULL) {
+        i = 0;
+        while (line[i+1] != '#') {
+            nomePar[i] = line[i];
+            i++;
+        }
+        nomePar[i] = '\0';
+        if (verificaNome_Paragens(listPar, nomePar, *parTotal) == 1) {
+            printf("\nJa existe -> %s # %s", nomePar, cod);
+            listLin = addPar_Lin(listLin, nomeLin, listPar, cod, *parTotal);
+            continue;
+        }
+        for (int j = i+3, k = 0; line[j] != '\n'; ++j, ++k) {
+            cod[k] = line[j];
+        }
+        printf("\nA adicionar -> %s # %s", nomePar, cod);
+        listPar = addPar(listPar, nomePar, cod, parTotal);
+        listLin = addPar_Lin(listLin, nomeLin, listPar, cod, *parTotal);
+    }
+    visualizaParAll(listPar, *parTotal);
     return listLin;
 }
 

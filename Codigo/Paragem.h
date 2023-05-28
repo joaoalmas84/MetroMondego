@@ -9,6 +9,7 @@ int verificaNome_Paragens(ptrPar listPar, char *nome, int total);  // <- devolve
 int verificaCod_Paragens(ptrPar listPar, char *cod, int total);       // <- devolve 1 de cod existir em lista
 char* geraCod();                                                    // <- devolve string com 4 caracteres (letras e números) apenas, todos em uppercase
 ptrPar preencheLista_Paragens(ptrPar listPar, int *total);                // <- Preenche o array com 3 paragens
+int checkPar_Dell(ptrPar lista, int total, char* cod);          // <- devolve 1 se a oaragem a eliminar não tiver linhas associadas (pode ser eliminada)
 
 // Funcionalidades
 ptrPar addPar(ptrPar listPar, char *nome, char *cod, int *total);     // <- adiciona paragem

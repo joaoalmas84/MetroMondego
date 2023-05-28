@@ -16,7 +16,6 @@
 */
 
 void menu(ptrLin listLin, ptrPar listPar, int parTotal);    // <- Função principal (só para não lhe chamar main)
-void getCodUser(char* cod, ptrPar listPar, int parTotal);
 
 // Paragens
 ptrPar registaParagem(ptrPar listPar, int *parTotal);
@@ -25,20 +24,17 @@ void visualizaPar(ptrPar listPar, int parTotal, char* cod); // <- Lista uma unic
 void visualizaParAll(ptrPar listPar, int parTotal);         // <- Lista todas as paragens
 void visualizaParAllDetailed(ptrPar listPar, int parTotal); // <- Lista todas as paragens detalhadamente
 
-// Paragens -> extras
-int checkPar_Dell(ptrPar listPar, int totalPar, char* cod);
-ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod);
-
 // Linhas
 ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
 ptrLin eliminaLinha(ptrLin listLin);
 ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
 ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaP, int parTotal, char *nomePar);
-ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin);
+ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin, ptrPar listPar, int parTotal);
 void visualizaLin(ptrLin listLin, char* nome);      // <- Lista uma unica linha
 void visualizaLinAll(ptrLin listLin);               // <- Lista todas as linhas
 void visualizaLinAllDetailed(ptrLin listLin);       // <- Lista todas as linhas detalhadamente
 
-// Linhas -> extras
+// Extras
+void getCodUser(char* cod, ptrPar listPar, int parTotal);
 void getCodAddPar(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);
 #endif //CODIGO_MENU_H

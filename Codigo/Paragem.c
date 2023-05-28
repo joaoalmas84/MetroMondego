@@ -35,7 +35,7 @@ int verificaCod_Paragens(ptrPar list, char *cod, int total) {
 
 char* geraCod() {
     char *cod = NULL;
-    char letras[] = "ABCDEFGHIJKLMNOPQRSTUVXYWZ", nums[] = "0123456789";
+    char charSet[] = "ABCDEFGHIJKLMNOPQRSTUVXYWZ0123456789";
     int j;
     char *aux = malloc(sizeof(char)*5);
     if (aux == NULL) {
@@ -47,18 +47,13 @@ char* geraCod() {
     } else {
         cod = aux;
         for (j = 0; j < 4; ++j) {
-            if (j == 0 || j == 2) {
-                cod[j] = letras[rand() % (strlen(letras) - 1)];
-            } else {
-                cod[j] = nums[rand() % (strlen(nums) - 1)];
-            }
+            cod[j] = charSet[rand() % (strlen(charSet) - 1)];
         }
         cod[j] = '\0';
     }
     return cod;
 }
 
-// Preenche o array com 3 paragens antes de começar o programa de modo a que tenhamos alguns dados com que trablhar
 ptrPar preencheLista_Paragens(ptrPar listPar, int *total) {
     ptrPar aux = NULL;
     FILE *f;
@@ -70,7 +65,10 @@ ptrPar preencheLista_Paragens(ptrPar listPar, int *total) {
 
     char line[100];
 
-    while (fgets(line, 100, f) != NULL) {
+    while (fgets(line, sizeof(line), f) != NULL) {
+        if (line[strlen(line) - 1] == '\n') {
+            line[strlen(line) - 1] = '\0';
+        }
         aux = realloc(listPar, sizeof(par)*(*total+1));
         if (aux == NULL) {
             if (erroMemoria() == 1) {
@@ -81,13 +79,27 @@ ptrPar preencheLista_Paragens(ptrPar listPar, int *total) {
         }
         (*total)++;
         listPar = aux;
-        sscanf(line, "%s", listPar[*total-1].nome);
+        strcpy(listPar[*total-1].nome, line);
         do {
             strcpy(listPar[*total-1].cod, geraCod());
         } while (verificaCod_Paragens(listPar, listPar[*total-1].cod, *total-1) == 1);
     }
     fclose(f);
     return listPar;
+}
+
+int checkPar_Dell(ptrPar lista, int total, char* cod) {
+    int i;
+    for (i = 0; i < total; ++i) {
+        if (strcmp(tolowerString(lista[i].cod), tolowerString(cod)) == 0) {
+            break;
+        }
+    }
+    if (lista[i].linAssoc == NULL && lista[i].nLinAssoc == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -111,14 +123,12 @@ ptrPar addPar(ptrPar listPar, char *nome, char *cod, int *total) {
 
     listPar = aux;
     (*total)++;
-
     strcpy(listPar[*total-1].nome, nome);
     strcpy(listPar[*total-1].cod, cod);
     listPar[*total-1].linAssoc = NULL;
     listPar[*total-1].nLinAssoc = 0;
 
     return listPar;
-
 }
 
 // Elimina Paragem

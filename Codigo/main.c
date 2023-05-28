@@ -9,6 +9,11 @@ int main() {
 
     init_rand();
     listP = preencheLista_Paragens(listP, &totalPar);
+    printf("\nSkirt->");
+    scanf("%s", cod);
+    listL = getLinFromFile(listP, &totalPar, listL, "Linha da Baixa");
+    printf("\nNo main:");
+    visualizaParAll(listP, totalPar);
     menu(listL, listP, totalPar);
 
     return 0;

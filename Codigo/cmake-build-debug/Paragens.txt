@@ -1,26 +1,27 @@
 Mira
-Cntanhede
+Cantanhede
 Mealhada
-Mogofores-Anadia
+Mogofores 
+Anadia
 Mortagua
 Pampilhosa
 Santa Apolonia
 Coimbra-B
-Hospital_Pedriatrico
+Hospital Pedriatrico
 Coimbra
-Loja_do_Cidadao
+Loja do Cidadao
 Portagem
-Polo_III
-Quinta_da_Fonte
-Sobral_de_Ceira
+Polo III
+Quinta da Fonte
+Sobral de Ceira
 Condeixa-a-Nova
-Miranda_do_Corvo
+Miranda do Corvo
 Lousa
 Serpins
-Vila_Nova_do_Ceira
+Vila Nova do Ceira
 Alfarelos
 Soure
 Pombal
-Bifurcacao_de_Lares
+Bifurcacao de Lares
 Lourical
-Figueira_da_Foz
+Figueira da Foz
