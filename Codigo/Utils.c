@@ -2,7 +2,7 @@
 
 // inicializa gerador de valores aleatórios
 void init_rand() {
-    srand((unsigned) time(NULL));// inicializa gerador de números aleatorios
+    srand((unsigned) time(NULL));
 }
 
 // devolve uma string igual à passada por parâmetro mas toda em lowercase
@@ -10,8 +10,11 @@ char* tolowerString(char* s) {
     char *aux = malloc(sizeof(char)*(strlen(s)));
     int i;
     if(aux == NULL) {
-        wprintf(L"\nErro na alocação de memória.\nA sair da função...");
-        return s;
+        if (erroMemoria() == 1) {
+            return NULL;
+        } else {
+            exit(1);
+        }
     }
     for ( i = 0; s[i] != '\0' ; ++i) {
         aux[i] = tolower(s[i]);
@@ -39,7 +42,7 @@ void listaVazia() {
         fflush(stdin);
         res = scanf("%d", &ans);
         i++;
-    } while (!res || ans != 1 && ans != 0);
+    } while (!res || ans < 1 || ans > 2);
     if (ans == 1) {
         return;
     } else {
@@ -52,7 +55,6 @@ int erroMemoria() {
     int i = 0, res = 0, ans = 0;
     printf("\n+---------------------------------------------------+");
     wprintf(L"\n|            Erro na alocação de memória.           |");
-    printf("\n|           Voltar para  o menu principal?          |");
     printf("\n|              1.Voltar     2.Terminar              |");
     printf("\n+---------------------------------------------------+");
     printf("\n->");
@@ -67,6 +69,29 @@ int erroMemoria() {
         fflush(stdin);
         res = scanf("%d", &ans);
         i++;
-    } while (!res || ans != 1 && ans != 2);
+    } while (!res || ans < 1 || ans > 2);
     return ans;
 }
+
+int erroFile() {
+    int i = 0, res = 0, ans = 0;
+    printf("\n+---------------------------------------------------+");
+    wprintf(L"\n|            Erro na abertura do ficheiro.           |");
+    printf("\n|              1.Voltar     2.Terminar              |");
+    printf("\n+---------------------------------------------------+");
+    printf("\n->");
+    do {
+        if (i > 0) {
+            printf("\n+----------------------------------------------------+");
+            wprintf(L"\n|         Resposta inválida, tente novamente.        |");
+            printf("\n|              1.Voltar     2.Terminar               |");
+            printf("\n+----------------------------------------------------+");
+            printf("\n->");
+        }
+        fflush(stdin);
+        res = scanf("%d", &ans);
+        i++;
+    } while (!res || ans < 1 || ans > 2);
+    return ans;
+}
+

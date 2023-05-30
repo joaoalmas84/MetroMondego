@@ -128,7 +128,7 @@ ptrLin alterName_Lin(ptrLin lin, char* newName, ptrPar listPar, int parTotal) {
     ptrLin aux = NULL;
     for (int i = 0; i < lin->nParAssoc; ++i) {
         for (int j = 0; j < parTotal; ++j) {
-            if (strcmp(tolowerString(lin->parAssoc[i].cod), tolowerString(listPar[j].nome)) == 0) {
+            if (strcmp(tolowerString(lin->parAssoc[i].cod), tolowerString(listPar[j].cod)) == 0) {
                 aux = listPar[j].linAssoc;
                 while (aux != NULL) {
                     if (strcmp(tolowerString(aux->nome), tolowerString(lin->nome)) == 0) {
@@ -205,6 +205,7 @@ ptrLin getLinFromFile(ptrLin listLin, char* fileName) {
     novo = createNewLin(nomeLin);
     listLin = insereLin(listLin, novo);
 
+    fclose(f);
     return listLin;
 }
 
@@ -250,6 +251,7 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
             listLin = addPar_Lin(listLin, nomeLin, listPar, NULL, cod, *totalPar, 0);
         }
     }
+    fclose(f);
     return listPar;
 }
 

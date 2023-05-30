@@ -35,6 +35,10 @@ void visualizaLinAll(ptrLin listLin);               // <- Lista todas as linhas
 void visualizaLinAllDetailed(ptrLin listLin);       // <- Lista todas as linhas detalhadamente
 void loadLinFromFile(ptrLin listLin, ptrPar listPar, int totalPar);
 
+// Dados
+void guardaListPar(ptrPar listPar, int totalPar);
+void guardaListLin(ptrLin listLin);
+
 // Extras
 void getCodUser(char* cod, ptrPar listPar, int parTotal);
 void getCodAddPar(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);

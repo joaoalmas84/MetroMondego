@@ -1,4 +1,3 @@
--> Alterar o nome de uma linha em todas as colunas
 -> Passagem de informação para ficheiro binario
 -> Funcionalidade de sair e guardar informação
 -> Implementar percurso

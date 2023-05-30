@@ -30,5 +30,6 @@ void init_rand();                // <- inicializa gerador de valores aleatórios
 char* tolowerString(char* s);    // <- devolve uma string igual à passada por parâmetro mas toda em lowercase
 void listaVazia();               // <- mensagem de erro quando a lista se encontra vazia
 int erroMemoria();               // <- mensagem de erro quando a alocaçãod e memoria falha
+int erroFile();
 
 #endif //CODIGO_UTILS_H
