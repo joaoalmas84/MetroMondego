@@ -1,0 +1,4 @@
+Adicionar linha através de ficheiro:
+	Se a paragem registada no ficheiro já existir no sistema ignora o código alfanumérico que está 
+	no ficheiro e procura essa paragem pelo nome na lista de paragens. 
+	

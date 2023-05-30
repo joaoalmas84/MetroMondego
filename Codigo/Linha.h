@@ -14,8 +14,9 @@ ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod); /
 ptrLin dellLin(ptrLin listLin, char* nome);
 ptrLin removePar_Lin(ptrLin lin, char* cod);
 ptrLin alterName_Lin(ptrLin lin, char* newName, ptrPar listPar, int parTotal);
-ptrLin addPar_Lin(ptrLin listLin, char* nome,  ptrPar listPar, char*cod, int totalPar);
-ptrLin getLinFromFile(ptrPar listPar, int *parTotal, ptrLin listLin, char *fileName);
+ptrLin addPar_Lin(ptrLin listLin, char* nomeLin,  ptrPar listPar, char* nomePar, char* cod, int totalPar, int flag);
+ptrLin getLinFromFile(ptrLin listLin, char *fileName);
+ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* fileName);
 
 #endif //CODIGO_LINHA_H
 

@@ -145,19 +145,26 @@ ptrLin alterName_Lin(ptrLin lin, char* newName, ptrPar listPar, int parTotal) {
     return lin;
 }
 
-ptrLin addPar_Lin(ptrLin listLin, char* nome, ptrPar listPar, char*cod, int totalPar) {
+ptrLin addPar_Lin(ptrLin listLin, char* nomeLin,  ptrPar listPar, char* nomePar, char* cod, int totalPar, int flag) {
     int i;
     ptrLin aux = listLin;
     while (aux->prox != NULL) {
-        if (strcmp(tolowerString(aux->nome), tolowerString(nome)) == 0) {
+        if (strcmp(tolowerString(aux->nome), tolowerString(nomeLin)) == 0) {
             break;
         }
         aux = aux->prox;
     }
-
-    for (i = 0; i < totalPar; ++i) {
-        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
-            break;
+    if (flag == 1) {
+        for (i = 0; i < totalPar; ++i) {
+            if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomePar)) == 0) {
+                break;
+            }
+        }
+    } else if (flag == 0) {
+        for (i = 0; i < totalPar; ++i) {
+            if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
+                break;
+            }
         }
     }
 
@@ -178,10 +185,10 @@ ptrLin addPar_Lin(ptrLin listLin, char* nome, ptrPar listPar, char*cod, int tota
     return listLin;
 }
 
-ptrLin getLinFromFile(ptrPar listPar, int *parTotal, ptrLin listLin, char *fileName) {
+ptrLin getLinFromFile(ptrLin listLin, char* fileName) {
     FILE* f;
-    char nomeFile[50], nomeLin[50], line[50], nomePar[50], cod[50];
-    ptrLin novo = NULL, aux = NULL;
+    char nomeFile[50], nomeLin[50];
+    ptrLin novo = NULL;
     int i = 0;
 
     strcpy(nomeFile, fileName);
@@ -194,33 +201,62 @@ ptrLin getLinFromFile(ptrPar listPar, int *parTotal, ptrLin listLin, char *fileN
     }
 
     fgets(nomeLin, sizeof(nomeLin), f);
-    if (nomeLin[strlen(nomeLin - 1)] == '\n') {
-        nomeLin[strlen(nomeLin - 1)] = '\0';
+    if (nomeLin[strlen(nomeLin) - 1] == '\n') {
+        nomeLin[strlen(nomeLin) - 1] = '\0';
     }
 
     novo = createNewLin(nomeLin);
     listLin = insereLin(listLin, novo);
+
+    return listLin;
+}
+
+ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* fileName) {
+    FILE* f;
+    int i, j, k;
+    char nomeFile[50], nomeLin[50], line[50], nomePar[50], cod[50];
+
+    strcpy(nomeFile, fileName);
+    strcat(nomeFile, ".txt");
+
+    f = fopen(nomeFile, "r");
+    if (f == NULL) {
+        printf("\nErro ao abrir o ficheiro %s", fileName);
+        return listPar;
+    }
+
+    fgets(nomeLin, sizeof(nomeLin), f);
+    if (nomeLin[strlen(nomeLin) - 1] == '\n') {
+        nomeLin[strlen(nomeLin) - 1] = '\0';
+    }
     while (fgets(line, sizeof(line), f) != NULL) {
-        i = 0;
+        i = j = k = 0;
         while (line[i+1] != '#') {
             nomePar[i] = line[i];
             i++;
         }
         nomePar[i] = '\0';
-        if (verificaNome_Paragens(listPar, nomePar, *parTotal) == 1) {
-            printf("\nJa existe -> %s # %s", nomePar, cod);
-            listLin = addPar_Lin(listLin, nomeLin, listPar, cod, *parTotal);
-            continue;
-        }
-        for (int j = i+3, k = 0; line[j] != '\n'; ++j, ++k) {
+        for ( j = i+3, k = 0; line[j] != '\n'; ++j, ++k) {
             cod[k] = line[j];
         }
-        printf("\nA adicionar -> %s # %s", nomePar, cod);
-        listPar = addPar(listPar, nomePar, cod, parTotal);
-        listLin = addPar_Lin(listLin, nomeLin, listPar, cod, *parTotal);
+        cod[k] = '\0';
+        if (verificaNome_Paragens(listPar, nomePar, *totalPar) == 1) {
+            printf("\nJa existe -> %s # %s", nomePar, cod);
+            listLin = addPar_Lin(listLin, nomeLin, listPar, nomePar, cod, *totalPar, 1);
+            continue;
+        } else {
+            printf("\nA adicionar -> %s # %s", nomePar, cod);
+            if (verificaCod_Paragens(listPar, cod, *totalPar) == 1) {
+                wprintf(L"\nO Código associado à paragem de %s no ficheiro já está associado a outra apragem.\nA gerar novo codigo");
+                while (verificaCod_Paragens(listPar, cod, *totalPar) == 1) {
+                    strcpy(cod, geraCod());
+                }
+            }
+            listPar = addPar(listPar, nomePar, cod, totalPar);
+            listLin = addPar_Lin(listLin, nomeLin, listPar, NULL, cod, *totalPar, 0);
+        }
     }
-    visualizaParAll(listPar, *parTotal);
-    return listLin;
+    return listPar;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

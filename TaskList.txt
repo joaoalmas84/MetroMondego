@@ -1,4 +1,3 @@
--> Ler linha a partir de ficheiro de texto <- Problemas graves aqui
 -> Alterar o nome de uma linha em todas as colunas
 -> Passagem de informação para ficheiro binario
 -> Funcionalidade de sair e guardar informação

@@ -161,7 +161,6 @@ ptrLin addLin_Par(ptrLin list, ptrLin lin) {
     ptrLin novo = createNewLin(lin->nome);
     novo->nParAssoc = lin->nParAssoc;
     novo->parAssoc = lin->parAssoc;
-
     if (list == NULL) {
         list = novo;
     } else {

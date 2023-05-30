@@ -17,7 +17,8 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
     printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
     printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
     printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
-    printf("\n\t|                       7.Calcular Precurso                    |");
+    printf("\n\t|                    7.Carregar Ficheiro Linha                 |");
+    printf("\n\t|                       8.Calcular Precurso                    |");
     printf("\n\t|                             0.Sair                           |");
     printf("\n\t+--------------------------------------------------------------+");
     printf("\n\t->");
@@ -29,6 +30,8 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
             printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
             printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
             printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
+            printf("\n\t|                    7.Carregar Ficheiro Linha                 |");
+            printf("\n\t|                       8.Calcular Precurso                    |");
             printf("\n\t|                             0.Sair                           |");
             printf("\n\t+--------------------------------------------------------------+");
             printf("\n\t->");
@@ -36,7 +39,7 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
         fflush(stdin);
         res = scanf("%d", &ans);
         i++;
-    } while (!res || ans < 0 || ans > 7);
+    } while (!res || ans < 0 || ans > 8);
 
     switch (ans) {
         case 0:
@@ -206,6 +209,8 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
             }
             break;
         case 7:
+            break;
+        case 8:
             precursoMainFunction(listLin, listPar, parTotal);
             break;
     }
@@ -500,7 +505,7 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
     novaLin = createNewLin(nome);
     listLin = insereLin(listLin, novaLin);
     getCodAddPar(cod, listPar, parTotal, nome, listLin);
-    listLin = addPar_Lin(listLin, nome, listPar, cod, parTotal);
+    listLin = addPar_Lin(listLin, nome, listPar, NULL, cod, parTotal, 0);
 
     res = i = ans = 0;
     do {
@@ -526,7 +531,7 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
         } while (!res || ans != 1 && ans != 2);
         if (ans == 1) {
             getCodAddPar(cod, listPar, parTotal, nome, listLin);
-            listLin = addPar_Lin(listLin, nome, listPar, cod, parTotal);
+            listLin = addPar_Lin(listLin, nome, listPar, NULL, cod, parTotal, 0);
         }
     } while (ans != 2);
     printf("\n\t\t     +------------------------------+");
@@ -608,7 +613,7 @@ ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
 
     if (ans == 1) {
         getCodAddPar(cod, listPar, totalPar, nome, listLin);
-        listLin = addPar_Lin(listLin, nome, listPar, cod, totalPar);
+        listLin = addPar_Lin(listLin, nome, listPar, NULL,  cod, totalPar, 0);
     } else if (ans == 2) {
         listLin = removeParagem_Lin(listLin, listPar, totalPar, nome);
     } else if (ans == 3) {
