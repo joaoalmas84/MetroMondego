@@ -1,4 +1,4 @@
--> Passagem de informação para ficheiro binario
+-> Passagem de informação para ficheiro binario <- erro no loadDadosPar
 -> Funcionalidade de sair e guardar informação
 -> Implementar percurso
 -> Mostrar informacao relativa à paragem que acabou de registar 

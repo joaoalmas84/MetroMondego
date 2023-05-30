@@ -13,8 +13,8 @@ int main() {
     printf("\n\t\t->");
     scanf("%s", x);
 
-    init_rand();
-    listP = preencheLista_Paragens(listP, &totalPar);
+    //init_rand();
+    //listP = preencheLista_Paragens(listP, &totalPar);
 
     menu(listL, listP, totalPar);
 

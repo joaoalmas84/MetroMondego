@@ -20,7 +20,9 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
         printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
         printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
         printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
-        printf("\n\t|                    7.Carregar Ficheiro Linha                 |");
+        printf("\n\t|         7.Guardar Paragens          8.Guardar Linhas         |");
+        printf("\n\t|         9.Carregar Paragens         10.Carregar Linhas       |");
+        printf("\n\t|                   11.Carregar Ficheiro Linha                 |");
         printf("\n\t|                       8.Calcular Precurso                    |");
         printf("\n\t|                             0.Sair                           |");
         printf("\n\t+--------------------------------------------------------------+");
@@ -29,20 +31,22 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
             if (j > 0) {
                 printf("\n\t              +---------------------------------+");
                 wprintf(L"\n\t              | Opção inválida, tente novamente |");
-                printf("\n\t+-------------+---------------------------------+--------------+");
-                printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
-                printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
-                printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
-                printf("\n\t|                    7.Carregar Ficheiro Linha                 |");
-                printf("\n\t|                       8.Calcular Precurso                    |");
-                printf("\n\t|                             0.Sair                           |");
-                printf("\n\t+--------------------------------------------------------------+");
+                printf("\n\t+-----------+---------------------------------+--------------+");
+                printf("\n\t|       1.Registar Paragem          2.Adicionar Linha        |");
+                printf("\n\t|       3.Eliminar Paragem          4.Atualizar Linha        |");
+                printf("\n\t|       5.Visualizar Paragens       6.Visualizar Linhas      |");
+                printf("\n\t|       7.Guardar Paragens          8.Guardar Linhas         |");
+                printf("\n\t|       9.Carregar Paragens         10.Carregar Linhas       |");
+                printf("\n\t|                 11.Carregar Ficheiro Linha                 |");
+                printf("\n\t|                    12.Calcular Precurso                    |");
+                printf("\n\t|                           0.Sair                           |");
+                printf("\n\t+------------------------------------------------------------+");
                 printf("\n\t->");
             }
             fflush(stdin);
             res = scanf("%d", &ans);
             j++;
-        } while (!res || ans < 0 || ans > 8);
+        } while (!res || ans < 0 || ans > 12);
 
         switch (ans) {
             case 0:
@@ -200,6 +204,18 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                 }
                 break;
             case 7:
+                saveDadosPar(listPar, parTotal);
+                break;
+            case 8:
+                saveDadosLin(listLin);
+                break;
+            case 9:
+                listPar = loadDadosPar(listPar, &parTotal);
+                break;
+            case 10:
+                listLin = loadDadosLin(listLin);
+                break;
+            case 11:
                 i = 0;
                 printf("\n\t                 +-------------------------+");
                 printf("\n\t                 | Carregar Ficheiro Linha |");
@@ -227,7 +243,7 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                 listLin = getLinFromFile(listLin, fileName);
                 listPar = getParToLinFromFile(listLin, listPar, &parTotal, fileName);
                 break;
-            case 8:
+            case 12:
                 precursoMainFunction(listLin, listPar, parTotal);
                 break;
         }
@@ -845,12 +861,12 @@ void visualizaLinAllDetailed(ptrLin listLin) {
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-// +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// | Extras ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// +--------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +-------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// | Dados ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// +-------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-void guardaListPar(ptrPar listPar, int totalPar) {
-    FILE* f = fopen("DadosLin.bin", "wb");
+void saveDadosPar(ptrPar listPar, int totalPar) {
+    FILE* f = fopen("DadosPar.dat", "wb");
     if (f == NULL) {
         if (erroFile() == 1) {
             return;
@@ -860,11 +876,14 @@ void guardaListPar(ptrPar listPar, int totalPar) {
     }
     fwrite(&totalPar, sizeof(int), 1, f);
     fwrite(listPar, sizeof(par), totalPar, f);
+
     fclose(f);
+
+    printf("\nParagens guardadas com sucesso");
 }
 
-void guardaListLin(ptrLin listLin) {
-    FILE* f = fopen("DadosPar.bin", "wb");
+void saveDadosLin(ptrLin listLin) {
+    FILE* f = fopen("DadosLin.dat", "wb");
     if (f == NULL) {
         if (erroFile() == 1) {
             return;
@@ -877,15 +896,85 @@ void guardaListLin(ptrLin listLin) {
         fwrite(aux, sizeof(lin), 1, f);
         aux = aux->prox;
     }
+
     fclose(f);
+
+    printf("\nLinhas guardadas com sucesso");
 }
 
-void leDadosPar() {
+ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
+    FILE* f = fopen("DadosPar.dat", "rb");
+    if (f == NULL) {
+        if (erroFile() == 1) {
+            fclose(f);
+            return NULL;
+        } else {
+            fclose(f);
+            exit(1);
+        }
+    }
 
+    fread(totalPar, sizeof(int), 1, f);
+
+    listPar = malloc(sizeof(int)*(*totalPar));
+    if (listPar == NULL) {
+        if (erroMemoria() == 1) {
+            fclose(f);
+            return NULL;
+        } else {
+            fclose(f);
+            exit(1);
+        }
+    }
+
+    for (int i = 0; i < *totalPar; ++i) {
+        fread(&listPar[i], sizeof(par), 1, f);
+    }
+
+    printf("\nSkirt");
+    fclose(f);
+    printf("\nSkirt");
+
+    printf("\nParagens carregadas com sucesso");
+
+    return listPar;
 }
 
-void leDadosLin() {
-    
+ptrLin loadDadosLin(ptrLin listLin) {
+    ptrLin novo, aux;
+    lin l;
+    FILE* f = fopen("DadosLin.dat", "rb");
+    if (f == NULL) {
+        if (erroFile() == 1) {
+            fclose(f);
+            return NULL;
+        } else {
+            fclose(f);
+            exit(1);
+        }
+    }
+
+    while (fread(&l, sizeof(lin), 1, f) == 1) {
+        novo = malloc(sizeof(lin));
+        if (novo == NULL) {
+            if (erroMemoria() == 1) {
+                fclose(f);
+                return NULL;
+            } else {
+                fclose(f);
+                exit(1);
+            }
+        }
+        *novo = l;
+        novo->prox = NULL;
+        listLin = insereLin(listLin, novo);
+    }
+
+    fclose(f);
+
+    printf("\nLinhas carregadas com sucesso");
+
+    return listLin;
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
