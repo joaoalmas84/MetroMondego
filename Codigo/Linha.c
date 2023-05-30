@@ -187,14 +187,11 @@ ptrLin addPar_Lin(ptrLin listLin, char* nomeLin,  ptrPar listPar, char* nomePar,
 
 ptrLin getLinFromFile(ptrLin listLin, char* fileName) {
     FILE* f;
-    char nomeFile[50], nomeLin[50];
+    char nomeLin[50];
     ptrLin novo = NULL;
     int i = 0;
 
-    strcpy(nomeFile, fileName);
-    strcat(nomeFile, ".txt");
-
-    f = fopen(nomeFile, "r");
+    f = fopen(fileName, "r");
     if (f == NULL) {
         printf("\nErro ao abrir o ficheiro %s", fileName);
         return listLin;
@@ -214,12 +211,9 @@ ptrLin getLinFromFile(ptrLin listLin, char* fileName) {
 ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* fileName) {
     FILE* f;
     int i, j, k;
-    char nomeFile[50], nomeLin[50], line[50], nomePar[50], cod[50];
+    char nomeLin[50], line[50], nomePar[50], cod[50];
 
-    strcpy(nomeFile, fileName);
-    strcat(nomeFile, ".txt");
-
-    f = fopen(nomeFile, "r");
+    f = fopen(fileName, "r");
     if (f == NULL) {
         printf("\nErro ao abrir o ficheiro %s", fileName);
         return listPar;

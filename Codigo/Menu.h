@@ -33,6 +33,7 @@ ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin, ptrPar listPar, int parTota
 void visualizaLin(ptrLin listLin, char* nome);      // <- Lista uma unica linha
 void visualizaLinAll(ptrLin listLin);               // <- Lista todas as linhas
 void visualizaLinAllDetailed(ptrLin listLin);       // <- Lista todas as linhas detalhadamente
+void loadLinFromFile(ptrLin listLin, ptrPar listPar, int totalPar);
 
 // Extras
 void getCodUser(char* cod, ptrPar listPar, int parTotal);

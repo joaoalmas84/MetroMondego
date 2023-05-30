@@ -23,17 +23,11 @@
     <list default="true" id="647903b0-85d0-4100-8ce5-caabd057908e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paragem.c" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Paragens.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +123,7 @@
       <workItem from="1685201785973" duration="299000" />
       <workItem from="1685213205277" duration="16392000" />
       <workItem from="1685299088127" duration="8818000" />
-      <workItem from="1685459239365" duration="3100000" />
+      <workItem from="1685459239365" duration="5915000" />
     </task>
     <servers />
   </component>
