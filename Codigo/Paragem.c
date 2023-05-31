@@ -157,20 +157,29 @@ ptrPar dellPar(ptrPar listPar, char *cod, int *total) {
 }
 
 // Adiciona linha a paragem
-ptrPar addLin_Par(ptrLin listLin, char* nomeLin, ptrPar listPar, int parTotal, char* cod) {
+ptrPar addLin_Par(ptrLin listLin, char* nomeLin, ptrPar listPar, int parTotal, char* cod, char* nomePar) {
     int i;
     ptrLin aux1 = NULL;
-
-    for (i = 0; i < parTotal; ++i) {
-        if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
-            break;
+    if (cod == NULL) {
+        for (i = 0; i < parTotal; ++i) {
+            if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomePar)) == 0) {
+                break;
+            }
+        }
+    } else {
+        for (i = 0; i < parTotal; ++i) {
+            if (strcmp(tolowerString(listPar[i].cod), tolowerString(cod)) == 0) {
+                break;
+            }
         }
     }
+
     aux1 = listLin;
     while (aux1 != NULL) {
         if (strcmp(tolowerString(aux1->nome), tolowerString(nomeLin)) == 0) {
             break;
         }
+        aux1 = aux1->prox;
     }
 
     ptrLin novo = createNewLin(aux1->nome);

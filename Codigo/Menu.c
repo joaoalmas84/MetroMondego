@@ -48,7 +48,8 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
 
         switch (ans) {
             case 0:
-                exit(1);
+                saveDadosLin(listLin);
+                saveDadosPar(listPar, *parTotal);
                 break;
             case 1:
                 listPar = registaParagem(listPar, parTotal);
@@ -468,24 +469,22 @@ void visualizaParAllDetailed(ptrPar listPar, int parTotal) {
         listaVazia();
         return;
     }
-    printf("\n\t\t+-------------------------------------------------+");
-    printf("\n\t\t|     Todas as paragens registadas no sistema     |");
-    printf("\n\t\t+---+--------+------------------------------------+");
-    wprintf(L"\n\t\t|   | Código | Nome ");
-    printf("\n\t\t+---+--------+------------------------------------+");
+    printf("\n\t\t+--------------------------------------------------------------------+");
+    printf("\n\t\t|     Todas as paragens registadas no sistema e linhas associadas    |");
+    printf("\n\t\t+---+--------+-------------------------------------------------------+");
+    wprintf(L"\n\t\t|   | Código | Nome da paragem                                     |");
+    printf("\n\t\t+---+--------+-------------------------------------------------------+");
     for (int i = 0; i < parTotal; ++i) {
         ptrLin aux = listPar[i].linAssoc;
         wprintf(L"\n\t\t| %d |  %s  | %s", i+1, listPar[i].cod, listPar[i].nome);
-        printf("\n\t\t+---+--------+------------------------------------+");
+        printf("\n\t\t+---+--------+-------------------------------------------------------+");
         if (listPar[i].nLinAssoc == 0) {
             wprintf(L"\n\t\t| Não passa nenhuma linha em %s", listPar[i].nome);
-            printf("\n\t\t+-------------------------------------------------+");
+            printf("\n\t\t+--------------------------------------------------------------------+");
         } else {
-            wprintf(L"\n\t\t| Linhas que passam em %s", listPar[i].nome);
-            printf("\n\t\t+-------------------------------------------------+");
             while (aux != NULL) {
-                printf("\n\t\t| %s", aux->nome);
-                printf("\n\t\t+-------------------------------------------------+");
+                printf("\n\t\t| -> %s", aux->nome);
+                printf("\n\t\t+--------------------------------------------------------------------+");
                 aux = aux->prox;
             }
         }
@@ -839,9 +838,9 @@ void visualizaLinAllDetailed(ptrLin listLin) {
         printf("\n|  Todas as linhas registadas no sistema e as suas paragens  |");
         printf("\n+------------------------------------------------------------+");
         while (aux != NULL) {
-            printf("\n| Paragens da linha %s ", aux->nome);
+            printf("\n| %s ", aux->nome);
             printf("\n+---+--------+-----------------------------------------------+");
-            wprintf(L"\n|   | Código | Nome ");
+            wprintf(L"\n|   | Código | Nome da paragem                               |");
             printf("\n+---+--------+-----------------------------------------------+");
             for (int i = 0; i < aux->nParAssoc; ++i) {
                 wprintf(L"\n| %d |  %s  | %s", i+1, aux->parAssoc[i].cod, aux->parAssoc[i].nome);
@@ -867,6 +866,7 @@ void visualizaLinAllDetailed(ptrLin listLin) {
 // +-------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 void saveDadosPar(ptrPar listPar, int totalPar) {
+    ptrLin aux = NULL;
     FILE* f = fopen("DadosPar.dat", "wb");
     if (f == NULL) {
         if (erroFile() == 1) {
@@ -877,34 +877,23 @@ void saveDadosPar(ptrPar listPar, int totalPar) {
     }
 
     fwrite(&totalPar, sizeof(int), 1, f);
-    fwrite(listPar, sizeof(par), totalPar, f);
-
-    printf("\nParagens guardadas com sucesso");
-
-    fclose(f);
-}
-void saveDadosLin(ptrLin listLin) {
-    FILE* f = fopen("DadosPar.dat", "wb");
-    if (f == NULL) {
-        if (erroFile() == 1) {
-            return;
-        } else {
-            exit(1);
+    for (int i = 0; i < totalPar; ++i) {
+        fwrite(&listPar[i], sizeof(par), 1, f);
+        fwrite(&listPar[i].nLinAssoc, sizeof(int), 1, f);
+        aux = listPar[i].linAssoc;
+        while (aux != NULL) {
+            fwrite(aux, sizeof(lin), 1, f);
+            aux = aux->prox;
         }
     }
-
-    ptrLin aux = listLin;
-    while (aux != NULL) {
-        fwrite(aux, sizeof(lin), 1, f);
-        aux = aux->prox;
-    }
-
-    printf("\nLinhas guardadas com sucesso");
+    printf("\nParagens guardadas com sucesso");
 
     fclose(f);
 }
 
 ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
+    ptrLin novo, aux;
+    lin l;
     FILE* f = fopen("DadosPar.dat", "rb");
     if (f == NULL) {
         if (erroFile() == 1) {
@@ -917,7 +906,6 @@ ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
     }
 
     fread(totalPar, sizeof(int), 1, f);
-
     listPar = malloc(sizeof(par)*(*totalPar));
     if (listPar == NULL) {
         if (erroMemoria() == 1) {
@@ -928,14 +916,59 @@ ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
             exit(1);
         }
     }
-
-    fread(listPar, sizeof(par), *totalPar, f);
-
+    for (int i = 0; i < *totalPar; ++i) {
+        int j = 0;
+        fread(&listPar[i], sizeof(par), 1, f);
+        fread(&listPar[i].nLinAssoc, sizeof(int), 1, f);
+        listPar[i].linAssoc = NULL;
+        while (j < listPar[i].nLinAssoc) {
+            fread(&l, sizeof(lin), 1, f);
+            novo = malloc(sizeof(lin));
+            if (novo == NULL) {
+                if (erroMemoria() == 1) {
+                    fclose(f);
+                    return NULL;
+                } else {
+                    fclose(f);
+                    exit(1);
+                }
+            }
+            j++;
+            *novo = l;
+            novo->prox = NULL;
+            listPar[i].linAssoc = insereLin(listPar[i].linAssoc, novo);
+        }
+    }
     fclose(f);
 
     printf("\nParagens carregadas com sucesso");
 
     return listPar;
+}
+
+void saveDadosLin(ptrLin listLin) {
+    FILE* f = fopen("DadosLin.dat", "wb");
+    if (f == NULL) {
+        if (erroFile() == 1) {
+            return;
+        } else {
+            exit(1);
+        }
+    }
+
+    ptrLin aux = listLin;
+    while (aux != NULL) {
+        fwrite(aux, sizeof(lin), 1, f);
+        fwrite(&aux->nParAssoc, sizeof(int), 1, f);
+        for (int i = 0; i < aux->nParAssoc; ++i) {
+            fwrite(&aux->parAssoc[i], sizeof(par), 1, f);
+        }
+        aux = aux->prox;
+    }
+
+    printf("\nLinhas guardadas com sucesso");
+
+    fclose(f);
 }
 
 ptrLin loadDadosLin(ptrLin listLin) {
@@ -962,6 +995,20 @@ ptrLin loadDadosLin(ptrLin listLin) {
                 fclose(f);
                 exit(1);
             }
+        }
+        fread(&l.nParAssoc, sizeof(int), 1, f);
+        l.parAssoc = malloc(sizeof(par)*l.nParAssoc);
+        if (l.parAssoc == NULL) {
+            if (erroMemoria() == 1) {
+                fclose(f);
+                return NULL;
+            } else {
+                fclose(f);
+                exit(1);
+            }
+        }
+        for (int i = 0; i < l.nParAssoc; ++i) {
+            fread(&l.parAssoc[i], sizeof(par), 1, f);
         }
         *novo = l;
         novo->prox = NULL;
@@ -1011,6 +1058,25 @@ void getCodUser(char* cod, ptrPar listPar, int parTotal) {
         }
         i++;
     } while (strlen(cod) != 4 || flag == 1);
+}
+
+void getNameParUser(char* nome, ptrPar listPar, int parTotal) {
+    int i = 0, flag = 0;
+    do {
+        if (i > 0) {
+            if (flag == 1) {
+                printf("\n\t\t+------------------------------------------------+");
+                wprintf(L"\n\t\t|  O nome introduzido não corresponde a nenhuma  |");
+                wprintf(L"\n\t\t| paragem registada no sistema, tente novamente. |");
+                printf("\n\t\t+------------------------------------------------+");
+                printf("\n->");
+            }
+
+            fflush(stdin);
+            scanf("%[^\n]", nome);
+            i++;
+        }
+    } while (verificaNome_Paragens(listPar, nome, parTotal) == 0);
 }
 
 void getCodAddPar(char* cod, ptrPar listPar, int parTotal, char* nomeLin, ptrLin listLin) {

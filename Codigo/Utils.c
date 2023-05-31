@@ -26,35 +26,20 @@ char* tolowerString(char* s) {
 // mensagem de erro quando a lista se encontra vazia
 void listaVazia() {
     int i= 0, ans = 0, res = 0;
-    printf("\n+---------------------------------------------------+");
-    printf("\n|             A lista encontra-se vazia.            |");
-    printf("\n|              1.Voltar     2.Terminar              |");
-    printf("\n+---------------------------------------------------+");
-    printf("\n->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|         Resposta inválida, tente novamente.        |");
-            printf("\n|              1.Voltar     2.Terminar               |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        res = scanf("%d", &ans);
-        i++;
-    } while (!res || ans < 1 || ans > 2);
-    if (ans == 1) {
-        return;
-    } else {
-        exit(1);    // substituir esta passo por uma função que guarde toda
-                    // a informação nos ficheiros e termine o programa
-    }
+    printf("\n\t\t     +--------------------------------+");
+    printf("\n\t\t     |   A lista encontra-se vazia.   |");
+    printf("\n\t\t     |    Prima ENTER para voltar.    |");
+    printf("\n\t\t     +--------------------------------+");
+    getchar();
+    getchar();
+    system("cls");
+
 }
 
 int erroMemoria() {
     int i = 0, res = 0, ans = 0;
     printf("\n+---------------------------------------------------+");
-    wprintf(L"\n|            Erro na alocação de memória.           |");
+    wprintf(L"\n|           Erro na alocação de memória.            |");
     printf("\n|              1.Voltar     2.Terminar              |");
     printf("\n+---------------------------------------------------+");
     printf("\n->");
@@ -76,7 +61,7 @@ int erroMemoria() {
 int erroFile() {
     int i = 0, res = 0, ans = 0;
     printf("\n+---------------------------------------------------+");
-    wprintf(L"\n|            Erro na abertura do ficheiro.           |");
+    wprintf(L"\n|            Erro na abertura do ficheiro.          |");
     printf("\n|              1.Voltar     2.Terminar              |");
     printf("\n+---------------------------------------------------+");
     printf("\n->");

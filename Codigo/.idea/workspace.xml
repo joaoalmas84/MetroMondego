@@ -27,12 +27,19 @@
       <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paragem.c" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paragem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Precurso.c" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Precurso.h" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/utils.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/utils.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/DadosLin.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DadosLin.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/DadosPar.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DadosPar.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,22 +76,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Aulas/Semestre2/PROG/Guioes/Guiao 2 (Estruturas e Arrays Dinamicos)/Ex6&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Users/joaoa/Downloads/Ultimate-Tic-Tac-Toe-main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Codigo" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Codigo" TARGET_NAME="Codigo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Codigo" RUN_TARGET_NAME="Codigo">
       <method v="2">
@@ -130,6 +137,7 @@
       <workItem from="1685459239365" duration="11561000" />
       <workItem from="1685483530218" duration="2901000" />
       <workItem from="1685521404586" duration="6953000" />
+      <workItem from="1685543442288" duration="21657000" />
     </task>
     <servers />
   </component>

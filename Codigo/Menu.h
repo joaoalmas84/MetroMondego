@@ -36,11 +36,12 @@ void visualizaLinAllDetailed(ptrLin listLin);       // <- Lista todas as linhas 
 
 // Dados
 void saveDadosPar(ptrPar listPar, int totalPar);
-void saveDadosLin(ptrLin listLin);
 ptrPar loadDadosPar(ptrPar listPar, int* totalPar);
+void saveDadosLin(ptrLin listLin);
 ptrLin loadDadosLin(ptrLin listLin);
 
 // Extras
 void getCodUser(char* cod, ptrPar listPar, int parTotal);
+void getNameParUser(char* name, ptrPar listPar, int parTotal);
 void getCodAddPar(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);
 #endif //CODIGO_MENU_H
