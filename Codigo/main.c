@@ -7,16 +7,15 @@ int main() {
     int totalPar = 0;
     char nome[50], cod[5], x[5];
 
-    printf("\n\t\t+-------+");
-    printf("\n\t\t| Start |");
-    printf("\n\t\t+-------+");
-    printf("\n\t\t->");
-    scanf("%s", x);
+    printf("\n\t\t\t\t+-------+");
+    printf("\n\t\t\t\t| Start |");
+    printf("\n\t\t\t\t+-------+\n");
+    getchar();
 
     //init_rand();
     //listP = preencheLista_Paragens(listP, &totalPar);
 
-    menu(listL, listP, totalPar);
+    menu(listL, listP, &totalPar);
 
     return 0;
 }

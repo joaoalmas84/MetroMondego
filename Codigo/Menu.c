@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 // <- Função principal (só para não lhe chamar main)
-void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
+void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
     int i, j, res = 0, ans = 0, flag = 0;
     char nome[50], cod[5], fileName[50];
     FILE* f;
@@ -20,10 +20,9 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
         printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
         printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
         printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
-        printf("\n\t|         7.Guardar Paragens          8.Guardar Linhas         |");
-        printf("\n\t|         9.Carregar Paragens         10.Carregar Linhas       |");
-        printf("\n\t|                   11.Carregar Ficheiro Linha                 |");
-        printf("\n\t|                       8.Calcular Precurso                    |");
+        printf("\n\t|         7.Guardar Dados             8.Carregar Dados         |");
+        printf("\n\t|                   9.Carregar Ficheiro Linha                  |");
+        printf("\n\t|                       10.Calcular Precurso                   |");
         printf("\n\t|                             0.Sair                           |");
         printf("\n\t+--------------------------------------------------------------+");
         printf("\n\t->");
@@ -31,38 +30,37 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
             if (j > 0) {
                 printf("\n\t              +---------------------------------+");
                 wprintf(L"\n\t              | Opção inválida, tente novamente |");
-                printf("\n\t+-----------+---------------------------------+--------------+");
-                printf("\n\t|       1.Registar Paragem          2.Adicionar Linha        |");
-                printf("\n\t|       3.Eliminar Paragem          4.Atualizar Linha        |");
-                printf("\n\t|       5.Visualizar Paragens       6.Visualizar Linhas      |");
-                printf("\n\t|       7.Guardar Paragens          8.Guardar Linhas         |");
-                printf("\n\t|       9.Carregar Paragens         10.Carregar Linhas       |");
-                printf("\n\t|                 11.Carregar Ficheiro Linha                 |");
-                printf("\n\t|                    12.Calcular Precurso                    |");
-                printf("\n\t|                           0.Sair                           |");
-                printf("\n\t+------------------------------------------------------------+");
+                printf("\n\t+-----------+---------------------------------+----------------+");
+                printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
+                printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
+                printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
+                printf("\n\t|         7.Guardar Dados             8.Carregar Dados         |");
+                printf("\n\t|                   9.Carregar Ficheiro Linha                  |");
+                printf("\n\t|                       10.Calcular Precurso                   |");
+                printf("\n\t|                             0.Sair                           |");
+                printf("\n\t+--------------------------------------------------------------+");
                 printf("\n\t->");
             }
             fflush(stdin);
             res = scanf("%d", &ans);
             j++;
-        } while (!res || ans < 0 || ans > 12);
+        } while (!res || ans < 0 || ans > 10);
 
         switch (ans) {
             case 0:
                 exit(1);
                 break;
             case 1:
-                listPar = registaParagem(listPar, &parTotal);
+                listPar = registaParagem(listPar, parTotal);
                 break;
             case 2:
-                listLin = adicionaLinha(listLin, listPar, parTotal);
+                listLin = adicionaLinha(listLin, listPar, *parTotal);
                 break;
             case 3:
-                listPar = eliminaParagem(listLin, listPar, &parTotal);
+                listPar = eliminaParagem(listLin, listPar, parTotal);
                 break;
             case 4:
-                listLin = atualizaLinha(listLin, listPar, parTotal);
+                listLin = atualizaLinha(listLin, listPar, *parTotal);
                 break;
             case 5:
                 i = res = ans = 0;
@@ -98,10 +96,10 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                         system("cls");
                         break;
                     case 1:
-                        visualizaParAll(listPar, parTotal);
+                        visualizaParAll(listPar, *parTotal);
                         break;
                     case 2:
-                        visualizaParAllDetailed(listPar, parTotal);
+                        visualizaParAllDetailed(listPar, *parTotal);
                         break;
                     case 3:
                         i = 0;
@@ -130,12 +128,12 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                             }
                             fflush(stdin);
                             scanf("%[^\n]", cod);
-                            if (verificaCod_Paragens(listPar, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
+                            if (verificaCod_Paragens(listPar, cod, *parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
                                 flag = 1;                                                                //    escolher a mensagem de erro
                             }
                             i++;
-                        } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, parTotal) == 0);
-                        visualizaPar(listPar, parTotal, cod);
+                        } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, *parTotal) == 0);
+                        visualizaPar(listPar, *parTotal, cod);
                         break;
                 }
                 break;
@@ -204,19 +202,16 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                 }
                 break;
             case 7:
-                saveDadosPar(listPar, parTotal);
-                break;
-            case 8:
+                saveDadosPar(listPar, *parTotal);
                 saveDadosLin(listLin);
                 break;
-            case 9:
-                listPar = loadDadosPar(listPar, &parTotal);
-                break;
-            case 10:
+            case 8:
+                listPar = loadDadosPar(listPar, parTotal);
                 listLin = loadDadosLin(listLin);
                 break;
-            case 11:
+            case 9:
                 i = 0;
+                int flag2 = 0;
                 printf("\n\t                 +-------------------------+");
                 printf("\n\t                 | Carregar Ficheiro Linha |");
                 printf("\n\t+----------------+-------------------------+----------------+");
@@ -224,27 +219,36 @@ void menu(ptrLin listLin, ptrPar listPar, int parTotal) {
                 printf("\n\t+-----------------------------------------------------------+");
                 printf("\n\t->");
                 do{
-                    if (i > 0) {
-
+                    if (i > 0 && flag2 == 0) {
                         printf("\n\t+-------------------------------------------------+");
                         wprintf(L"\n\t| Não existe nenhum ficheiro linha com esse nome, |");
                         printf("\n\t|                 tente novamente.                |");
                         printf("\n\t+-------------------------------------------------+");
                         printf("\n\t->");
+                    } else if (i > 0 && flag2 == 1) {
+                        printf("\n\t+--------------------------------------------------+");
+                        wprintf(L"\n\t| Essa paragem já se encontra registada no sistema |");
+                        printf("\n\t|                 tente novamente.                 |");
+                        printf("\n\t+--------------------------------------------------+");
+                        printf("\n\t->");
                     }
+                    flag2 = 0;
                     fflush(stdin);
                     scanf("%[^\n]", fileName);
+                    if (verificaNome_Lin(listLin, fileName) == 1) {
+                        flag2 = 1;
+                    }
                     strcat(fileName, ".txt");
                     f = fopen(fileName, "r");
                     i++;
-                } while (f == NULL);
+                } while (f == NULL || flag2 == 1);
                 fclose(f);
 
                 listLin = getLinFromFile(listLin, fileName);
-                listPar = getParToLinFromFile(listLin, listPar, &parTotal, fileName);
+                listPar = getParToLinFromFile(listLin, listPar, parTotal, fileName);
                 break;
-            case 12:
-                precursoMainFunction(listLin, listPar, parTotal);
+            case 10:
+                precursoMainFunction(listLin, listPar, *parTotal);
                 break;
         }
     } while (ans != 0);
@@ -438,27 +442,24 @@ void visualizaParAll(ptrPar listPar, int parTotal) {
     for (int i = 0; i < parTotal; ++i) {
         if (i < 10) {
             wprintf(L"\n\t\t| %d |  %s  |      %d     | %s", i+1, listPar[i].cod, listPar[i].nLinAssoc, listPar[i].nome);
-            if (i < 8) {
+            if (i <= 8) {
                 printf("\n\t\t+---+--------+------------+-----------------------+");
-            } else if (i == 8) {
+            } else if (i > 8) {
                 printf("\n\t\t+---++-------++-----------++----------------------+");
             }
         } else if (i > 9 && i < 100) {
-            if (i == 10) {
-                printf("\n\t\t+----+--------+------------+----------------------+");
-            }
             wprintf(L"\n\t\t| %d |  %s  |      %d     | %s", i+1, listPar[i].cod, listPar[i].nLinAssoc, listPar[i].nome);
             printf("\n\t\t+----+--------+------------+----------------------+");
         }
     }
-    /*
+
     printf("\n\t\t     +--------------------------------+");
     printf("\n\t\t     |    Prima ENTER para voltar.    |");
     printf("\n\t\t     +--------------------------------+");
     getchar();
     getchar();
     system("cls");
-     */
+
     return;
 }
 
@@ -874,16 +875,16 @@ void saveDadosPar(ptrPar listPar, int totalPar) {
             exit(1);
         }
     }
+
     fwrite(&totalPar, sizeof(int), 1, f);
     fwrite(listPar, sizeof(par), totalPar, f);
 
-    fclose(f);
-
     printf("\nParagens guardadas com sucesso");
-}
 
+    fclose(f);
+}
 void saveDadosLin(ptrLin listLin) {
-    FILE* f = fopen("DadosLin.dat", "wb");
+    FILE* f = fopen("DadosPar.dat", "wb");
     if (f == NULL) {
         if (erroFile() == 1) {
             return;
@@ -891,15 +892,16 @@ void saveDadosLin(ptrLin listLin) {
             exit(1);
         }
     }
+
     ptrLin aux = listLin;
     while (aux != NULL) {
         fwrite(aux, sizeof(lin), 1, f);
         aux = aux->prox;
     }
 
-    fclose(f);
-
     printf("\nLinhas guardadas com sucesso");
+
+    fclose(f);
 }
 
 ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
@@ -916,7 +918,7 @@ ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
 
     fread(totalPar, sizeof(int), 1, f);
 
-    listPar = malloc(sizeof(int)*(*totalPar));
+    listPar = malloc(sizeof(par)*(*totalPar));
     if (listPar == NULL) {
         if (erroMemoria() == 1) {
             fclose(f);
@@ -927,13 +929,9 @@ ptrPar loadDadosPar(ptrPar listPar, int* totalPar) {
         }
     }
 
-    for (int i = 0; i < *totalPar; ++i) {
-        fread(&listPar[i], sizeof(par), 1, f);
-    }
+    fread(listPar, sizeof(par), *totalPar, f);
 
-    printf("\nSkirt");
     fclose(f);
-    printf("\nSkirt");
 
     printf("\nParagens carregadas com sucesso");
 
@@ -1012,7 +1010,7 @@ void getCodUser(char* cod, ptrPar listPar, int parTotal) {
             flag = 0;
         }
         i++;
-    } while (strlen(cod) != 4 || verificaCod_Paragens(listPar, cod, parTotal) == 0);
+    } while (strlen(cod) != 4 || flag == 1);
 }
 
 void getCodAddPar(char* cod, ptrPar listPar, int parTotal, char* nomeLin, ptrLin listLin) {

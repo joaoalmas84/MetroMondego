@@ -179,7 +179,7 @@ ptrLin addPar_Lin(ptrLin listLin, char* nomeLin,  ptrPar listPar, char* nomePar,
     aux->nParAssoc++;
     aux->parAssoc[aux->nParAssoc-1] = listPar[i];
 
-    listPar[i].linAssoc = addLin_Par(listPar[i].linAssoc, aux);
+    listPar = addLin_Par(listLin, nomeLin, listPar, totalPar, cod);
     listPar[i].nLinAssoc++;
 
     return listLin;
@@ -238,6 +238,7 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
         if (verificaNome_Paragens(listPar, nomePar, *totalPar) == 1) {
             printf("\nJa existe -> %s # %s", nomePar, cod);
             listLin = addPar_Lin(listLin, nomeLin, listPar, nomePar, cod, *totalPar, 1);
+            listPar = addLin_Par(listLin, nomeLin, listPar, *totalPar, cod);
             continue;
         } else {
             printf("\nA adicionar -> %s # %s", nomePar, cod);
@@ -249,6 +250,7 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
             }
             listPar = addPar(listPar, nomePar, cod, totalPar);
             listLin = addPar_Lin(listLin, nomeLin, listPar, NULL, cod, *totalPar, 0);
+            listPar = addLin_Par(listLin, nomeLin, listPar, *totalPar, cod);
         }
     }
     fclose(f);

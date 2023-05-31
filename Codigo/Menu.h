@@ -15,7 +15,7 @@
  * contidas nos ficheiros Paragem.c/.h e Lista.c/.h
 */
 
-void menu(ptrLin listLin, ptrPar listPar, int parTotal);    // <- Função principal (só para não lhe chamar main)
+void menu(ptrLin listLin, ptrPar listPar, int *parTotal);    // <- Função principal (só para não lhe chamar main)
 
 // Paragens
 ptrPar registaParagem(ptrPar listPar, int *parTotal);
@@ -33,7 +33,6 @@ ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin, ptrPar listPar, int parTota
 void visualizaLin(ptrLin listLin, char* nome);      // <- Lista uma unica linha
 void visualizaLinAll(ptrLin listLin);               // <- Lista todas as linhas
 void visualizaLinAllDetailed(ptrLin listLin);       // <- Lista todas as linhas detalhadamente
-void loadLinFromFile(ptrLin listLin, ptrPar listPar, int totalPar);
 
 // Dados
 void saveDadosPar(ptrPar listPar, int totalPar);

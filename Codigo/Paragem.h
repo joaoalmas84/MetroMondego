@@ -14,7 +14,7 @@ int checkPar_Dell(ptrPar lista, int total, char* cod);          // <- devolve 1 
 // Funcionalidades
 ptrPar addPar(ptrPar listPar, char *nome, char *cod, int *total);     // <- adiciona paragem
 ptrPar dellPar(ptrPar listPar, char *cod, int *total);                // <- elimina paragem
-ptrLin addLin_Par(ptrLin list, ptrLin lin);
+ptrPar addLin_Par(ptrLin listLin, char* nomeLin, ptrPar listPar, int parTotal, char* cod);
 ptrPar removeLin_Par(ptrPar listPar, char* cod, int totalPar, char* nomeLin);
 
 #endif //CODIGO_PARAGEM_H
