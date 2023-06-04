@@ -150,6 +150,7 @@ ptrLin alterName_Lin(ptrLin lin, char* newName, ptrPar listPar, int parTotal) {
 ptrLin addPar_Lin(ptrLin listLin, char* nomeLin,  ptrPar listPar, char* nomePar, char* cod, int totalPar, int flag) {
     int i;
     ptrLin aux = listLin;
+
     while (aux->prox != NULL) {
         if (strcmp(tolowerString(aux->nome), tolowerString(nomeLin)) == 0) {
             break;
@@ -237,6 +238,7 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
             cod[k] = line[j];
         }
         cod[k] = '\0';
+
         if (verificaNome_Paragens(listPar, nomePar, *totalPar) == 1) {
             printf("\nJa existe -> %s # %s", nomePar, cod);
             listLin = addPar_Lin(listLin, nomeLin, listPar, nomePar, NULL, *totalPar, 1);

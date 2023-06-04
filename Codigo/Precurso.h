@@ -5,6 +5,7 @@
 #include "Menu.h"
 
 void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal);
-ptrLin calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, ptrLin precurso, char* nomeStart, char* nomeFinish);
+void calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish);
+void mostraPrecurso(char** linhas, char** paragens);
 
 #endif //CODIGO_PRECURSO_H

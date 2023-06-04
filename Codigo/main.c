@@ -12,9 +12,6 @@ int main() {
     printf("\n\t\t\t\t+-------+\n");
     getchar();
 
-    //init_rand();
-    //listP = preencheLista_Paragens(listP, &totalPar);
-
     menu(listL, listP, &totalPar);
 
     return 0;

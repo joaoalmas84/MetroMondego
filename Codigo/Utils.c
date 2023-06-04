@@ -60,7 +60,7 @@ int erroMemoria() {
 
 int erroFile() {
     int i = 0, res = 0, ans = 0;
-    printf("\n+---------------------------------------------------+");
+    printf("\nx+---------------------------------------------------+");
     wprintf(L"\n|            Erro na abertura do ficheiro.          |");
     printf("\n|              1.Voltar     2.Terminar              |");
     printf("\n+---------------------------------------------------+");

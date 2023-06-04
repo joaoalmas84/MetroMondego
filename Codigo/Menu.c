@@ -48,8 +48,13 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
 
         switch (ans) {
             case 0:
-                saveDadosLin(listLin);
-                saveDadosPar(listPar, *parTotal);
+                if (listLin != NULL) {
+                    saveDadosLin(listLin);
+                }
+
+                if (*parTotal > 0) {
+                    saveDadosPar(listPar, *parTotal);
+                }
                 break;
             case 1:
                 listPar = registaParagem(listPar, parTotal);
@@ -472,7 +477,7 @@ void visualizaParAllDetailed(ptrPar listPar, int parTotal) {
     printf("\n\t\t+--------------------------------------------------------------------+");
     printf("\n\t\t|     Todas as paragens registadas no sistema e linhas associadas    |");
     printf("\n\t\t+---+--------+-------------------------------------------------------+");
-    wprintf(L"\n\t\t|   | Código | Nome da paragem                                     |");
+    wprintf(L"\n\t\t|   | Código | Nome da paragem                                     ");
     printf("\n\t\t+---+--------+-------------------------------------------------------+");
     for (int i = 0; i < parTotal; ++i) {
         ptrLin aux = listPar[i].linAssoc;
@@ -484,9 +489,10 @@ void visualizaParAllDetailed(ptrPar listPar, int parTotal) {
         } else {
             while (aux != NULL) {
                 printf("\n\t\t| -> %s", aux->nome);
-                printf("\n\t\t+--------------------------------------------------------------------+");
                 aux = aux->prox;
             }
+            printf("\n\t\t+--------------------------------------------------------------------+");
+
         }
     }
     printf("\n\t\t     +--------------------------------+");
@@ -498,10 +504,6 @@ void visualizaParAllDetailed(ptrPar listPar, int parTotal) {
     return;
 }
 
-
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -783,7 +785,7 @@ void visualizaLin(ptrLin listLin, char* nome) {
         return;
     } else {
         printf("\n+--------------------------------------------------+");
-        printf("\n| Paragens da linha %s ", aux->nome);
+        printf("\n| %s ", aux->nome);
         printf("\n+---+--------+-------------------------------------+");
         wprintf(L"\n|   | Código | Nome ");
         printf("\n+---+--------+-------------------------------------+");
@@ -808,14 +810,14 @@ void visualizaLinAll(ptrLin listLin) {
         return;
     } else {
         ptrLin aux = listLin;
-        printf("\n+-----------------------------------------+");
-        printf("\n|  Todas as linhas registadas no sistema  |");
-        printf("\n+---+-----------------+-------------------+");
-        wprintf(L"\n|   | N.º de paragens | Nome ");
-        printf("\n+---+-----------------+-------------------+");
+        printf("\n\t  +---------------------------------------------------------+");
+        printf("\n\t  |          Todas as linhas registadas no sistema          |");
+        printf("\n\t  +---+-----------------+-----------------------------------+");
+        wprintf(L"\n\t  |   | N.º de paragens | Nome                              |");
+        printf("\n\t  +---+-----------------+-----------------------------------+");
         while (aux != NULL) {
-            wprintf(L"\n| %d |       %d         | %s", i+1, aux->nParAssoc, aux->nome);
-            printf("\n+---+-----------------+-------------------+");
+            wprintf(L"\n\t  | %d |       %d         | %s", i+1, aux->nParAssoc, aux->nome);
+            printf("\n\t  +---+-----------------+-----------------------------------+");
             i++;
             aux = aux->prox;
         }
