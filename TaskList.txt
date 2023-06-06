@@ -1,7 +1,3 @@
 -> Implementar percurso
 -> Repetição de paragens e linhas por metodos diferentes de inserção (ex: dados guardados e ficheiros linha)
--> Mostrar informacao relativa à paragem que acabou de registar 
--> Dar ao utilizador opção de cancelar a eliminação de uma paragem se isso implicar eliminar uma linha também
--> Ler nomes de paragens e linhas a partir do ficheiro com acentos e espaços
 -> Aprimorar menu
--> Funcionalidade de sair e guardar informação

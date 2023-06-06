@@ -228,6 +228,7 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
         nomeLin[strlen(nomeLin) - 1] = '\0';
     }
     while (fgets(line, sizeof(line), f) != NULL) {
+        cod[0] = '\0';
         i = j = k = 0;
         while (line[i+1] != '#') {
             nomePar[i] = line[i];
@@ -238,7 +239,6 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
             cod[k] = line[j];
         }
         cod[k] = '\0';
-
         if (verificaNome_Paragens(listPar, nomePar, *totalPar) == 1) {
             printf("\nJa existe -> %s # %s", nomePar, cod);
             listLin = addPar_Lin(listLin, nomeLin, listPar, nomePar, NULL, *totalPar, 1);
@@ -246,7 +246,7 @@ ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* 
         } else {
             printf("\nA adicionar -> %s # %s", nomePar, cod);
             if (verificaCod_Paragens(listPar, cod, *totalPar) == 1) {
-                wprintf(L"\nO Código associado à paragem de %s no ficheiro já está associado a outra apragem.\nA gerar novo codigo");
+                wprintf(L"\nO Código associado à paragem de %s no ficheiro já está associado a outra paragem.\nA gerar novo codigo...", nomePar);
                 while (verificaCod_Paragens(listPar, cod, *totalPar) == 1) {
                     strcpy(cod, geraCod());
                 }

@@ -5,7 +5,6 @@ int main() {
     ptrLin listL = NULL;
     ptrPar listP = NULL;
     int totalPar = 0;
-    char nome[50], cod[5], x[5];
 
     printf("\n\t\t\t\t+-------+");
     printf("\n\t\t\t\t| Start |");
@@ -13,6 +12,6 @@ int main() {
     getchar();
 
     menu(listL, listP, &totalPar);
-
+    printf("\nVolte Sempre!");
     return 0;
 }

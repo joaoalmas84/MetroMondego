@@ -24,21 +24,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Precurso.c" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Precurso.h" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-05-27T02-38-22-0307.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Precurso.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Precurso.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/DadosLin.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DadosLin.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/DadosPar.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DadosPar.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha Coimbra Centro.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha Coimbra Norte.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha da Baixa.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 009ed6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 009ed6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 175f17.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 175f17.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 2e5597.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 2e5597.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ff0003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ff0003.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ffc003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ffc003.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -100,11 +98,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -148,6 +141,8 @@
       <workItem from="1685617877080" duration="1638000" />
       <workItem from="1685811015067" duration="4911000" />
       <workItem from="1685890504947" duration="14306000" />
+      <workItem from="1685909881532" duration="2797000" />
+      <workItem from="1685976887311" duration="21039000" />
     </task>
     <servers />
   </component>

@@ -44,4 +44,5 @@ ptrLin loadDadosLin(ptrLin listLin);
 void getCodUser(char* cod, ptrPar listPar, int parTotal);
 void getNameParUser(char* name, ptrPar listPar, int parTotal);
 void getCodAddPar(char* cod, ptrPar listaP, int parTotal, char* nomeLin, ptrLin listaL);
+void menuCounter(int parTotal, int linTotal);
 #endif //CODIGO_MENU_H
