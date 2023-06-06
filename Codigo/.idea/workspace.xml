@@ -22,21 +22,15 @@
   <component name="ChangeListManager">
     <list default="true" id="647903b0-85d0-4100-8ce5-caabd057908e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Precurso.c" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Precurso.h" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Precurso.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Precurso.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/DadosLin.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DadosLin.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/DadosPar.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/DadosPar.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 009ed6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 009ed6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 175f17.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 175f17.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 2e5597.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 2e5597.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ff0003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ff0003.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ffc003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ffc003.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -143,6 +137,9 @@
       <workItem from="1685890504947" duration="14306000" />
       <workItem from="1685909881532" duration="2797000" />
       <workItem from="1685976887311" duration="21039000" />
+      <workItem from="1686048539228" duration="40000" />
+      <workItem from="1686059661719" duration="6030000" />
+      <workItem from="1686066825254" duration="13255000" />
     </task>
     <servers />
   </component>

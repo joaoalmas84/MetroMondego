@@ -336,6 +336,9 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
     }
     if (ans != 0) {
         menu(listLin, listPar, parTotal);
+    } else {
+        printf("\nVolte Sempre!");
+        exit(1);
     }
 }
 
@@ -1200,20 +1203,22 @@ void getCodUser(char* cod, ptrPar listPar, int parTotal) {
 }
 
 void getNameParUser(char* nome, ptrPar listPar, int parTotal) {
-    int i = 0, flag = 0;
+    int i = 0;
     do {
         if (i > 0) {
-            if (flag == 1) {
-                printf("\n\t\t+------------------------------------------------+");
-                wprintf(L"\n\t\t|  O nome introduzido não corresponde a nenhuma  |");
-                wprintf(L"\n\t\t| paragem registada no sistema, tente novamente. |");
-                printf("\n\t\t+------------------------------------------------+");
-                printf("\n->");
-            }
-
-            fflush(stdin);
-            scanf("%[^\n]", nome);
-            i++;
+            printf("\n\t\t+------------------------------------------------+");
+            wprintf(L"\n\t\t|  O nome introduzido não corresponde a nenhuma  |");
+            wprintf(L"\n\t\t| paragem registada no sistema, tente novamente. |");
+            printf("\n\t\t|             1. Visualizar Paragens             |");
+            printf("\n\t\t|                   0. Voltar                    |");
+            printf("\n\t\t+------------------------------------------------+");
+            printf("\n\t\t->");
+        }
+        fflush(stdin);
+        scanf("%[^\n]", nome);
+        i++;
+        if (strcmp(nome, "1") == 0 || strcmp(nome, "0") == 0) {
+            break;
         }
     } while (verificaNome_Paragens(listPar, nome, parTotal) == 0);
 }

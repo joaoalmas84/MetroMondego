@@ -12,6 +12,5 @@ int main() {
     getchar();
 
     menu(listL, listP, &totalPar);
-    printf("\nVolte Sempre!");
     return 0;
 }
