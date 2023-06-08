@@ -24,12 +24,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Precurso.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Precurso.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-41f1a5466e5ddba40993.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-06-04T14-58-16-0270.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Codigo-Debug-fe773e612aa57d0a3f9f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-05d1a048ce67dd35fee6.json" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-05d1a048ce67dd35fee6.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-74f6e2ad664c9ce4414e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-06-08T22-45-17-0174.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Codigo-Debug-f3ba93e757cc9a2d2e09.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" afterDir="false" />
@@ -38,10 +37,42 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Precurso.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Precurso.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Skirt.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Skirt.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 009ed6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 009ed6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 00b050.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 00b050.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 1293b1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 1293b1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 175f17.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 175f17.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 2e5597.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 2e5597.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 352505.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 352505.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha 7030a0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha 7030a0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha afabab.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha afabab.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha c70e48.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha c70e48.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ff0003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ff0003.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ff6603.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ff6603.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ffc003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ffc003.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Linha ffff04.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Linha ffff04.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exercicios que podem dar jeito.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Exercicios que podem dar jeito.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 009ed6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 009ed6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 00b050.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 00b050.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 1293b1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 1293b1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 175f17.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 175f17.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 2e5597.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 2e5597.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 352505.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 352505.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha 7030a0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha 7030a0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha afabab.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha afabab.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha c70e48.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha c70e48.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha ff0003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha ff0003.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha ff6603.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha ff6603.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha ffc003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha ffc003.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Linhas/Linha ffff04.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Linhas/Linha ffff04.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Notas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Notas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paragens.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Paragens.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TaskList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskList.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +97,6 @@
     <setting file="file://$PROJECT_DIR$/Paragem.h" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Precurso.c" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Precurso.h" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Skirt.c" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Skirt.h" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Utils.c" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Utils.h" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/main.c" root0="SKIP_INSPECTION" />
@@ -99,6 +128,11 @@
   }
 }</component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Codigo" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Codigo" TARGET_NAME="Codigo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Codigo" RUN_TARGET_NAME="Codigo">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -154,9 +188,8 @@
       <workItem from="1686066825254" duration="13255000" />
       <workItem from="1686152446965" duration="4020000" />
       <workItem from="1686178347856" duration="11178000" />
-      <workItem from="1686236380529" duration="21322000" />
-      <workItem from="1686265548401" duration="42000" />
-      <workItem from="1686265703859" duration="4000" />
+      <workItem from="1686236380529" duration="14193000" />
+      <workItem from="1686265934795" duration="430000" />
     </task>
     <servers />
   </component>

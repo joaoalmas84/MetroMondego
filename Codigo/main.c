@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "Skirt.h"
 
 int main() {
     setlocale(LC_ALL,"portuguese");
@@ -13,9 +12,5 @@ int main() {
     getchar();
 
     menu(listL, listP, &totalPar);
-
-    listL = EliminaParagemLinha(listL, "009ed6");
-
-    visualizaLin(listL, "009ed6");
     return 0;
 }

@@ -24,7 +24,6 @@ struct Paragem {
 struct Linha {
     char nome[50];
     ptrPar parAssoc;   // <- array dinamico de paragens
-    ptrLin paragens;  // <- apagar depois
     int nParAssoc;
     ptrLin prox;
 };
