@@ -6,11 +6,20 @@
 
 ptrPrec createNewPrec();
 void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal);
-ptrPrec calculaPrecursos(ptrPrec p, ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int transbord);
+void calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish);
+void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish);
 void mostraPrecurso(ptrPrec p);
 ptrPrec addToParagens(ptrPrec p, char* nome); // <- Adiciona uma paragem à array de paragens do precurso
+ptrPrec removeFromParagens(ptrPrec p);
 ptrPrec addToLinhas(ptrPrec p, char* nome);         // <- Adiciona uma linha à lsita ligada de paragens do precurso
+ptrPrec removeFromLinhas(ptrPrec p);
+ptrLin searchPar(ptrPar listPar, int parTotal, char* nomePar);
 ptrLin searchLin(ptrLin listLin, char* nomeLin);        // <- recebe a linha na lista de linhas associadas a uma paragem
                                                         // e devolve essa mesma linha mas na lista que contém todas as linhas
                                                         // registadas no sistema de modo a que possamos aceder Às paragens dessa linha
+
+
+// apagar depois
+void printPrec(ptrPrec p);
+
 #endif //CODIGO_PRECURSO_H

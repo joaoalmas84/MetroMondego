@@ -5,7 +5,10 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     char nomeStart[50], nomeFinish[50];
     ptrPrec p = createNewPrec();
 
-    p = calculaPrecursos(p, listLin, listPar, parTotal, "Mira", "Pampilhosa", 0);
+    printf("\nSem transbordo:");
+    calculaPrecursos(listLin, listPar, parTotal, "Pombal", "Coimbra-B");
+    printf("\nCom transbordo:");
+    calculaPrecursosTransbord(listLin, listPar, parTotal, "Pombal", "Coimbra-B");
     exit(1);
     /*
     do {
@@ -51,8 +54,9 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     calculaPrecursos(listLin, listPar, parTotal, nomeStart, nomeFinish, NULL, NULL, 0, 0, 0);*/
 }
 
-ptrPrec calculaPrecursos(ptrPrec p, ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int transbord) {
-    ptrLin aux1 = NULL, aux2 = NULL, aux3 = NULL;
+void calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish) {
+    ptrPrec p = createNewPrec();
+    ptrLin aux1 = NULL, aux2 = NULL;
     int i;
     for (i = 0; i < parTotal; ++i) {
         if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomeStart)) == 0) {
@@ -68,7 +72,9 @@ ptrPrec calculaPrecursos(ptrPrec p, ptrLin listLin, ptrPar listPar, int parTotal
             if (strcmp(tolowerString(aux2->parAssoc[j].nome), tolowerString(nomeFinish)) == 0) {
                 p = addToLinhas(p, aux2->nome);
                 p = addToParagens(p, aux2->parAssoc[j].nome);
-                mostraPrecurso(p);
+                printf("\nPrecurso:");
+                printPrec(p);//mostraPrecurso(p);
+                putchar('\n');
                 free(p->paragens);
                 p->paragens = NULL;
                 free(p->linhas);
@@ -78,25 +84,60 @@ ptrPrec calculaPrecursos(ptrPrec p, ptrLin listLin, ptrPar listPar, int parTotal
         }
         aux1 = aux1->prox;
     }
-    if (transbord == 0) {
-        aux1 = listPar[i].linAssoc;
-        while (aux1 != NULL) {
-            aux2 = searchLin(listLin, aux1->nome);
-            for (int l = 0; l < aux2->nParAssoc; ++l) {
-                p = addToLinhas(p, aux2->nome);
-                p = calculaPrecursos(p, listLin, listPar, parTotal, aux2->parAssoc[l].nome, nomeFinish, 1);
-                if (p->linhas != NULL) {
-                    aux3 = p->linhas;
-                    while (aux3->prox != NULL) {
-                        aux3 = aux3->prox;
-                    }
-                    aux3 = NULL;
-                }
-            }
-            aux1 = aux1->prox;
+    free(p);
+}
+
+void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish) {
+    ptrPrec p = createNewPrec();
+    ptrLin aux1 = NULL, aux2 = NULL, aux3 = NULL, aux4 = NULL;
+    int i;
+    for (i = 0; i < parTotal; ++i) {
+        if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomeStart)) == 0) {
+            p = addToParagens(p, listPar[i].nome);
+            break;
         }
     }
-    return p;
+
+    aux1 = listPar[i].linAssoc;
+    while(aux1 != NULL) {
+        aux2 = searchLin(listLin, aux1->nome);
+        for (int j = 0; j < aux2->nParAssoc; ++j) {
+            if (strcmp(tolowerString(nomeStart), tolowerString(aux2->parAssoc[j].nome)) == 0) {
+                continue;
+            }
+           aux3 = searchPar(listPar, parTotal, aux2->parAssoc[j].nome);
+           while(aux3 != NULL) {
+               if (strcmp(tolowerString(aux3->nome), tolowerString(aux1->nome)) == 0) {
+                   aux3 = aux3->prox;
+                   continue;
+               }
+               aux4 = searchLin(listLin, aux3->nome);
+               for (int k = 0; k < aux4->nParAssoc; ++k) {
+                   if (strcmp(tolowerString(nomeStart), tolowerString(aux4->parAssoc[k].nome)) == 0 || strcmp(tolowerString(aux2->parAssoc[j].nome), tolowerString(aux4->parAssoc[k].nome)) == 0) {
+                       continue;
+                   }
+                   if (strcmp(tolowerString(nomeFinish), tolowerString(aux4->parAssoc[k].nome)) == 0) {
+                       p = addToLinhas(p, aux2->nome);
+                       p = addToParagens(p, aux2->parAssoc[j].nome);
+                       p = addToLinhas(p, aux4->nome);
+                       p = addToParagens(p, aux4->parAssoc[k].nome);
+                       printf("\nPrecurso:");
+                       printPrec(p);//mostraPrecurso(p);
+                       putchar('\n');
+                       free(p->paragens);
+                       p->paragens = NULL;
+                       free(p->linhas);
+                       p->linhas = NULL;
+                       p->nPar = 0;
+                       p = addToParagens(p, listPar[i].nome);
+                   }
+               }
+               aux3 = aux3->prox;
+           }
+        }
+        aux1 = aux1->prox;
+    }
+    free(p);
 }
 
 void mostraPrecurso(ptrPrec p) {
@@ -154,6 +195,19 @@ ptrPrec addToParagens(ptrPrec p, char* nome) { // <- Adiciona uma paragem à arr
     return p;
 }
 
+ptrPrec removeFromParagens(ptrPrec p) {
+    ptrPar aux = realloc(p->paragens, sizeof(par)*(p->nPar-1));
+    if (aux == NULL && p->nPar-1 > 0) {
+        if (erroMemoria() == 1) {
+            return NULL;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    }
+    (p->nPar)--;
+    return p;
+}
+
 ptrPrec addToLinhas(ptrPrec p, char* nome) { // <- Adiciona uma linha à lsita ligada de paragens do precurso
     ptrLin aux = NULL, novo = NULL;
 
@@ -171,6 +225,26 @@ ptrPrec addToLinhas(ptrPrec p, char* nome) { // <- Adiciona uma linha à lsita l
     return p;
 }
 
+ptrPrec removeFromLinhas(ptrPrec p) {
+    ptrLin auxBack = NULL, auxFront = NULL;
+    if (p->linhas != NULL) {
+        if (p->linhas->prox == NULL) {
+            free(p->linhas);
+            p->linhas = NULL;
+        } else {
+            auxBack = p->linhas;
+            auxFront = auxBack->prox;
+            while(auxFront->prox != NULL) {
+                auxBack = auxBack->prox;
+                auxFront = auxFront->prox;
+            }
+            auxBack->prox = NULL;
+            free(auxFront);
+        }
+    }
+    return p;
+}
+
 ptrLin searchLin(ptrLin listLin, char* nomeLin) {
     ptrLin aux = listLin;
     while (aux != NULL) {
@@ -180,6 +254,15 @@ ptrLin searchLin(ptrLin listLin, char* nomeLin) {
         aux = aux->prox;
     }
     return NULL; // <- Nunca chega aqui
+}
+
+ptrLin searchPar(ptrPar listPar, int parTotal, char* nomePar) {
+    for (int i = 0; i < parTotal; ++i) {
+        if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomePar)) == 0){
+            return listPar[i].linAssoc;
+        }
+    }
+    return NULL;
 }
 
 ptrPrec createNewPrec() {
@@ -196,4 +279,19 @@ ptrPrec createNewPrec() {
     p->nPar = 0;
 
     return p;
+}
+
+void printPrec(ptrPrec p) {
+    ptrLin aux = p->linhas;
+
+    printf("\nLinhas:");
+    while (aux != NULL) {
+        printf("\n-> %s", aux->nome);
+        aux = aux->prox;
+    }
+
+    printf("\nParagens:");
+    for (int i = 0; i < p->nPar; ++i) {
+        printf("\n-> %s", p->paragens[i].nome);
+    }
 }
