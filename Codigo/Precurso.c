@@ -7,15 +7,15 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
 
     do {
         nomeStart[0] = '\0';
-        printf("\n\t                 +-------------------+");
-        printf("\n\t                 | Calcular Precurso |");
-        printf("\n\t  +--------------+-------------------+-----------+");
-        printf("\n\t  | Introduza o ponto de partida do precurso, o  |");
-        wprintf(L"\n\t  |  nome da paragem onde começará o precurso.   |");
-        printf("\n\t  |             1. Visualizar Paragens           |");
-        printf("\n\t  |                   0. Voltar                  |");
-        printf("\n\t  +----------------------------------------------+");
-        printf("\n\t  ->");
+        printf("\n\t\t       +-----------------------------------+");
+        printf("\n\t\t       | Calcular Precurso - Ponto Partida |");
+        printf("\n\t\t  +----+-----------------------------------+----+");
+        printf("\n\t\t  | Introduza o ponto de partida do precurso, o |");
+        wprintf(L"\n\t\t  |  nome da paragem onde começará o precurso.  |");
+        printf("\n\t\t  |             1. Visualizar Paragens          |");
+        printf("\n\t\t  |                   0. Voltar                 |");
+        printf("\n\t\t  +---------------------------------------------+");
+        printf("\n\t\t  ->");
         getNameParUser(nomeStart, listPar, parTotal);
 
         if (strcmp(nomeStart, "1") == 0) {
@@ -27,15 +27,15 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
 
     do {
         nomeFinish[0] = '\0';
-        printf("\n\t                 +-------------------+");
-        printf("\n\t                 | Calcular Precurso |");
-        printf("\n\t  +--------------+-------------------+----------+");
-        printf("\n\t  | Introduza o ponto de chegada do precurso, o |");
-        wprintf(L"\n\t  |   nome da paragem onde acabará o precurso.  |");
-        printf("\n\t  |              1.Visualizar Paragens          |");
-        printf("\n\t  |                    0.Voltar                 |");
-        printf("\n\t  +---------------------------------------------+");
-        printf("\n\t  ->");
+        printf("\n\t\t       +-----------------------------------+");
+        printf("\n\t\t       | Calcular Precurso - Ponto Chegada |");
+        printf("\n\t\t  +----+-----------------------------------+----+");
+        printf("\n\t\t  | Introduza o ponto de chegada do precurso, o |");
+        wprintf(L"\n\t\t  |   nome da paragem onde acabará o precurso.  |");
+        printf("\n\t\t  |              1.Visualizar Paragens          |");
+        printf("\n\t\t  |                    0.Voltar                 |");
+        printf("\n\t\t  +---------------------------------------------+");
+        printf("\n\t\t  ->");
         getNameParUser(nomeFinish, listPar, parTotal);
 
         if (strcmp(nomeFinish, "1") == 0) {
@@ -77,7 +77,7 @@ int calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeSta
                 p = addToLinhas(p, aux2->nome);
                 p = addToParagens(p, aux2->parAssoc[j].nome);
                 nPrec++;
-                mostraPrecurso(p, nPrec);
+                mostraPrecurso(p, nPrec, 0);
                 putchar('\n');
                 free(p->paragens);
                 p->paragens = NULL;
@@ -127,7 +127,7 @@ void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, cha
                        p = addToLinhas(p, aux4->nome);
                        p = addToParagens(p, aux4->parAssoc[k].nome);
                        nPrec++;
-                       mostraPrecurso(p, nPrec);
+                       mostraPrecurso(p, nPrec, 1);
                        putchar('\n');
                        free(p->paragens);
                        p->paragens = NULL;
@@ -145,20 +145,49 @@ void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, cha
     free(p);
 }
 
-void mostraPrecurso(ptrPrec p, int n) {
+void mostraPrecurso(ptrPrec p, int n, int transbordFlag) {
     ptrLin aux;
     int nLin = 0;
-
-    printf("\n+----------+");
-    printf("\n| Precurso |");
-    printf("\n+----------+");
-
     aux = p->linhas;
     while (aux != NULL) {
         nLin++;
         aux = aux->prox;
     }
-    printf("\nnumLin -> %d\nnumPar -> %d", nLin, p->nPar);
+
+    if (transbordFlag == 0) {
+        printf("\n\t\t\t\t+----------------+");
+        wprintf(L"\n\t\t\t\t| Precurso n.º %d |", n);
+        printf("\n\t\t\t\t| sem transbordo |");
+        printf("\n\t\t\t\t+----------------+");
+    } else {
+        printf("\n\t\t\t\t+----------------+");
+        wprintf(L"\n\t\t\t\t| Precurso n.º %d |", n);
+        printf("\n\t\t\t\t| com transbordo |");
+        printf("\n\t\t\t\t+----------------+");
+    }
+    putchar('\n');
+    for (int i = 0; i < p->nPar; ++i) {
+        printf("+");
+        for (int j = 0; j < strlen(p->paragens[i].nome)+2; ++j) {
+            printf("-");
+        }
+        printf("+\t\t");
+    }
+    putchar('\n');
+    for (int i = 0; i < p->nPar; ++i) {
+        printf("| %s |", p->paragens[i].nome);
+        if (i < p->nPar-1) {
+            printf("\t->\t");
+        }
+    }
+    putchar('\n');
+    for (int i = 0; i < p->nPar; ++i) {
+        printf("+");
+        for (int j = 0; j < strlen(p->paragens[i].nome)+2; ++j) {
+            printf("-");
+        }
+        printf("+\t\t");
+    }
 
     aux = p->linhas;
     printf("\nLinhas:");

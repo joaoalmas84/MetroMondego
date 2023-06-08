@@ -8,7 +8,7 @@ ptrPrec createNewPrec();
 void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal);
 int calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish);
 void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int nPrec);
-void mostraPrecurso(ptrPrec p, int n);
+void mostraPrecurso(ptrPrec p, int n, int transbordFlag);
 ptrPrec addToParagens(ptrPrec p, char* nome); // <- Adiciona uma paragem à array de paragens do precurso
 ptrPrec removeFromParagens(ptrPrec p);
 ptrPrec addToLinhas(ptrPrec p, char* nome);         // <- Adiciona uma linha à lsita ligada de paragens do precurso
