@@ -1,11 +1,12 @@
 #include "Precurso.h"
 
 void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
-    int flag = 0,  i = 0;
+    int flag = 0,  i = 0, nPar = 0;
     char nomeStart[50], nomeFinish[50];
+    ptrPrec p = createNewPrec();
 
-    calculaPrecursos(listLin, listPar, parTotal, "Mira", "Pampilhosa", NULL, NULL, 0, 0, 0);
-
+    p = calculaPrecursos(p, listLin, listPar, parTotal, "Mira", "Pampilhosa", 0);
+    exit(1);
     /*
     do {
         nomeStart[0] = '\0';
@@ -50,72 +51,81 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     calculaPrecursos(listLin, listPar, parTotal, nomeStart, nomeFinish, NULL, NULL, 0, 0, 0);*/
 }
 
-void calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, char** linhas, char** paragens, int *numPar, int *numLin, int transbord) {
-    ptrLin aux1 = NULL, aux2 = NULL;
+ptrPrec calculaPrecursos(ptrPrec p, ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int transbord) {
+    ptrLin aux1 = NULL, aux2 = NULL, aux3 = NULL;
     int i;
-
     for (i = 0; i < parTotal; ++i) {
         if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomeStart)) == 0) {
-            paragens = addToLista(paragens, numPar, listPar[i].nome);
+            p = addToParagens(p, listPar[i].nome);
             break;
         }
     }
+
     aux1 = listPar[i].linAssoc;
     while (aux1 != NULL) {
         aux2 = searchLin(listLin, aux1->nome);
         for (int j = 0; j < aux2->nParAssoc; ++j) {
             if (strcmp(tolowerString(aux2->parAssoc[j].nome), tolowerString(nomeFinish)) == 0) {
-                paragens = addToLista(paragens, numPar, aux2->parAssoc[j].nome);
-                strcpy(linhas[*numLin - 1], aux2->nome);
-                mostraPrecurso(linhas, paragens, *numLin, *numPar);
-                menu(listLin, listPar, &parTotal);
+                p = addToLinhas(p, aux2->nome);
+                p = addToParagens(p, aux2->parAssoc[j].nome);
+                mostraPrecurso(p);
+                free(p->paragens);
+                p->paragens = NULL;
+                free(p->linhas);
+                p->linhas = NULL;
+                p->nPar = 0;
             }
         }
         aux1 = aux1->prox;
     }
-    printf("\ntransbord -> %d", transbord);
-    if (transbord == 1) {
-        (*numPar)--;
-        paragens = realloc(paragens, sizeof(char**)*(*numPar));
-        if (paragens == NULL) {
-            if (erroMemoria() == 1) {
-                return;
-            } else {
-                exit(1);
-            }
-        }
-    } else {
+    if (transbord == 0) {
         aux1 = listPar[i].linAssoc;
         while (aux1 != NULL) {
             aux2 = searchLin(listLin, aux1->nome);
-            for (int k = 0; k < aux2->nParAssoc; ++k) {
-                printf("\nl -> %d", k);
-                calculaPrecursos(listLin, listPar, parTotal, aux2->parAssoc[k].nome, nomeFinish, linhas, paragens, numLin, numPar, 1);
+            for (int l = 0; l < aux2->nParAssoc; ++l) {
+                p = addToLinhas(p, aux2->nome);
+                p = calculaPrecursos(p, listLin, listPar, parTotal, aux2->parAssoc[l].nome, nomeFinish, 1);
+                if (p->linhas != NULL) {
+                    aux3 = p->linhas;
+                    while (aux3->prox != NULL) {
+                        aux3 = aux3->prox;
+                    }
+                    aux3 = NULL;
+                }
             }
             aux1 = aux1->prox;
         }
-        wprintf(L"\nNão foi encontrado nenhum precurso com apenas 1 transbordo que ligue %s a %s.", nomeStart, nomeFinish);
-        exit(1);
     }
+    return p;
 }
 
-void mostraPrecurso(char** linhas, char** paragens, int numLin, int numPar) {
+void mostraPrecurso(ptrPrec p) {
+    ptrLin aux;
+    int nLin = 0;
 
     printf("\n+----------+");
     printf("\n| Precurso |");
     printf("\n+----------+");
 
-    printf("\nnumLin -> %d\nnumPar -> %d", numLin, numPar);
+    aux = p->linhas;
+    while (aux != NULL) {
+        nLin++;
+        aux = aux->prox;
+    }
+    printf("\nnumLin -> %d\nnumPar -> %d", nLin, p->nPar);
 
+    aux = p->linhas;
     printf("\nLinhas:");
-    for (int i = 0; i < numLin; ++i) {
-        printf("\n-> %s", linhas[i]);
+    while(aux != NULL) {
+        printf("\n-> %s", aux->nome);
+        aux = aux->prox;
     }
 
     printf("\nParagens:");
-    for (int i = 0; i < numPar; ++i) {
-        printf("\n-> %s", paragens[i]);
+    for (int i = 0; i < p->nPar; ++i) {
+        printf("\n-> %s", p->paragens[i].nome);
     }
+
     printf("\n\t\t     +---------------------------------+");
     printf("\n\t\t     | Precurso encontrado com sucesso |");
     printf("\n\t\t     |     prima ENTER para voltar.    |");
@@ -123,45 +133,42 @@ void mostraPrecurso(char** linhas, char** paragens, int numLin, int numPar) {
     getchar();
     getchar();
     system("cls");
-
 }
 
-char** addToLista(char** list, int* tam, char* newString) { // <- Adiciona uma string a um array de strings
-    printf("\nSkirt");
-    char** newList = malloc(sizeof(char*)*(*tam+1));
-    if (newList == NULL) {
+ptrPrec addToParagens(ptrPrec p, char* nome) { // <- Adiciona uma paragem à array de paragens do precurso
+    ptrPar aux = realloc(p->paragens, sizeof(par)*(p->nPar+1));
+    if (aux == NULL) {
         if (erroMemoria() == 1) {
             return NULL;
         } else if (erroMemoria() == 2) {
             exit(1);
         }
     }
-    for (int i = 0; i < *tam; ++i) {
-        newList[i] = malloc(sizeof(char)*strlen(list[i]));
-        if (newList[i] == NULL) {
-            if (erroMemoria() == 1) {
-                return NULL;
-            } else if (erroMemoria() == 2) {
-                exit(1);
-            }
-        }
-        strcpy(newList[i], list[i]);
-    }
-    newList[*tam] = malloc(sizeof(char));
-    if (newList[*tam]) {
-        if (erroMemoria() == 1) {
-            return NULL;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-    newList[*tam][0] = '\0';
-    for (int i = 0; i < *tam; ++i) {
-        free(list[i]);
-    }
-    free(list);
+    p->paragens = aux;
+    p->nPar++;
+    strcpy(p->paragens[p->nPar-1].nome, nome);   //
+    p->paragens[p->nPar-1].nLinAssoc = 0;        // Como só precisamos do nome os restantes parametros da struct
+    p->paragens[p->nPar-1].linAssoc = NULL;      // são inicializados de forma a ficarem inutilizáveis
+    p->paragens[p->nPar-1].cod[0] = '\0';        //
 
-    return newList;
+    return p;
+}
+
+ptrPrec addToLinhas(ptrPrec p, char* nome) { // <- Adiciona uma linha à lsita ligada de paragens do precurso
+    ptrLin aux = NULL, novo = NULL;
+
+    novo = createNewLin(nome);  // <- A função createNewLin do ficheiro Linha.c já faz tudo
+
+    if (p->linhas == NULL) {
+        p->linhas = novo;
+    } else {
+        aux = p->linhas;
+        while(aux->prox != NULL) {
+            aux = aux->prox;
+        }
+        aux->prox = novo;
+    }
+    return p;
 }
 
 ptrLin searchLin(ptrLin listLin, char* nomeLin) {
@@ -173,4 +180,20 @@ ptrLin searchLin(ptrLin listLin, char* nomeLin) {
         aux = aux->prox;
     }
     return NULL; // <- Nunca chega aqui
+}
+
+ptrPrec createNewPrec() {
+    ptrPrec p = malloc(sizeof(prec));
+    if (p == NULL) {
+        if (erroMemoria() == 1) {
+            return NULL;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    }
+    p->linhas = NULL;
+    p->paragens = NULL;
+    p->nPar = 0;
+
+    return p;
 }

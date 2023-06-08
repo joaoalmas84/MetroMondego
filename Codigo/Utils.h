@@ -12,6 +12,8 @@ typedef struct Paragem par, *ptrPar;
 
 typedef struct Linha lin, *ptrLin;
 
+typedef struct Precurso prec, *ptrPrec;
+
 struct Paragem {
     char nome[50];
     char cod[5];
@@ -24,6 +26,12 @@ struct Linha {
     ptrPar parAssoc;   // <- array dinamico de paragens
     int nParAssoc;
     ptrLin prox;
+};
+
+struct Precurso {
+    ptrPar paragens;
+    ptrLin linhas;
+    int nPar;
 };
 
 void init_rand();                // <- inicializa gerador de valores aleatórios

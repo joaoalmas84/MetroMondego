@@ -21,7 +21,6 @@ int verificaNome_Lin(ptrLin listLin, char* nome) {
 }
 
 ptrLin insereLin(ptrLin listLin, ptrLin newLin) {
-    int i = 0;
     if (listLin == NULL) {
         listLin = newLin;
         return listLin;
@@ -29,7 +28,6 @@ ptrLin insereLin(ptrLin listLin, ptrLin newLin) {
         ptrLin aux = listLin;
         while(aux->prox != NULL) {
             aux = aux->prox;
-            i++;
         }
         aux->prox = newLin;
         newLin->prox = NULL;
