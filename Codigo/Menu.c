@@ -19,7 +19,6 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
            " |_|  |_| \\___| \\__||_|   \\___/  |_|  |_| \\___/ |_| |_| \\____| \\___| \\__  | \\___/ \n"
            "                                                                     |___/   ");
     wprintf(L"\n\t\t\t\t  By João Almas");
-    putchar('\n');
     printf("\n\t+--------------------------------------------------------------+");
     printf("\n\t|         1.Registar Paragem          2.Adicionar Linha        |");
     printf("\n\t|         3.Eliminar Paragem          4.Atualizar Linha        |");
@@ -31,7 +30,6 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
 
     menuCounter(*parTotal, linTotal);
 
-    printf("\n\t\t->");
     do {
         if (j > 0) {
             printf("\n\t              +---------------------------------+");
@@ -47,8 +45,8 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
 
             menuCounter(*parTotal, linTotal);
 
-            printf("\n\t\t->");
         }
+        printf("\n\t\t  ->");
         fflush(stdin);
         res = scanf("%d", &ans);
         j++;
@@ -282,6 +280,7 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             system("cls");
             listPar = loadDadosPar(listPar, parTotal);
             listLin = loadDadosLin(listLin);
+            printf("\nSkirt");
             break;
         case 9:
             i = 0;

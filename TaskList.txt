@@ -1,3 +1,2 @@
--> Implementar percurso <- problemas a aumentar a lista de paragens
 -> Repetição de paragens e linhas por metodos diferentes de inserção (ex: dados guardados e ficheiros linha)
 -> Aprimorar menu
