@@ -1,7 +1,7 @@
 #include "Precurso.h"
 
 void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
-    int flag = 0,  i = 0, nPar = 0, nPrec;
+    int flag = 0,  i = 0, j = 0, nPar = 0, nPrec;
     char nomeStart[50], nomeFinish[50];
     ptrPrec p = createNewPrec();
 
@@ -36,7 +36,19 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
         printf("\n\t\t  |                    0.Voltar                 |");
         printf("\n\t\t  +---------------------------------------------+");
         printf("\n\t\t  ->");
-        getNameParUser(nomeFinish, listPar, parTotal);
+        do {
+            if (j > 0) {
+                printf("\n\t\t+---------------------------------------------+");
+                wprintf(L"\n\t\t| O ponto de chegada e o ponto de partida não |");
+                wprintf(L"\n\t\t|      podem ser iguais, tente novamente      |");
+                printf("\n\t\t|             1. Visualizar Paragens          |");
+                printf("\n\t\t|                   0. Voltar                 |");
+                printf("\n\t\t+---------------------------------------------+");
+                printf("\n\t\t->");
+            }
+            getNameParUser(nomeFinish, listPar, parTotal);
+            j++;
+        } while (strcmp(nomeStart, nomeFinish) == 0);
 
         if (strcmp(nomeFinish, "1") == 0) {
             visualizaParAll(listPar, parTotal);
@@ -45,14 +57,12 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
         }
     } while (strcmp(nomeFinish, "1") == 0);
 
-    printf("\nSem transbord");
     nPrec = calculaPrecursos(listLin, listPar, parTotal, nomeStart, nomeFinish);
-    printf("\nCom transbord");
     calculaPrecursosTransbord(listLin, listPar, parTotal, nomeStart, nomeFinish, nPrec);
-    printf("\n\t\t     +---------------------------------+");
-    printf("\n\t\t     | Precurso encontrado com sucesso |");
-    printf("\n\t\t     |     prima ENTER para voltar.    |");
-    printf("\n\t\t     +---------------------------------+");
+    printf("\n\t\t\t     +-----------------------------------+");
+    printf("\n\t\t\t     | Precursos encontrados com sucesso |");
+    printf("\n\t\t\t     |     prima ENTER para voltar.      |");
+    printf("\n\t\t\t     +-----------------------------------+");
     getchar();
     getchar();
     system("cls");
@@ -110,35 +120,35 @@ void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, cha
             if (strcmp(tolowerString(nomeStart), tolowerString(aux2->parAssoc[j].nome)) == 0) {
                 continue;
             }
-           aux3 = searchPar(listPar, parTotal, aux2->parAssoc[j].nome);
-           while(aux3 != NULL) {
-               if (strcmp(tolowerString(aux3->nome), tolowerString(aux1->nome)) == 0) {
-                   aux3 = aux3->prox;
-                   continue;
-               }
-               aux4 = searchLin(listLin, aux3->nome);
-               for (int k = 0; k < aux4->nParAssoc; ++k) {
-                   if (strcmp(tolowerString(nomeStart), tolowerString(aux4->parAssoc[k].nome)) == 0 || strcmp(tolowerString(aux2->parAssoc[j].nome), tolowerString(aux4->parAssoc[k].nome)) == 0) {
-                       continue;
-                   }
-                   if (strcmp(tolowerString(nomeFinish), tolowerString(aux4->parAssoc[k].nome)) == 0) {
-                       p = addToLinhas(p, aux2->nome);
-                       p = addToParagens(p, aux2->parAssoc[j].nome);
-                       p = addToLinhas(p, aux4->nome);
-                       p = addToParagens(p, aux4->parAssoc[k].nome);
-                       nPrec++;
-                       mostraPrecurso(p, nPrec, 1);
-                       putchar('\n');
-                       free(p->paragens);
-                       p->paragens = NULL;
-                       free(p->linhas);
-                       p->linhas = NULL;
-                       p->nPar = 0;
-                       p = addToParagens(p, listPar[i].nome);
-                   }
-               }
-               aux3 = aux3->prox;
-           }
+            aux3 = searchPar(listPar, parTotal, aux2->parAssoc[j].nome);
+            while(aux3 != NULL) {
+                if (strcmp(tolowerString(aux3->nome), tolowerString(aux1->nome)) == 0) {
+                    aux3 = aux3->prox;
+                    continue;
+                }
+                aux4 = searchLin(listLin, aux3->nome);
+                for (int k = 0; k < aux4->nParAssoc; ++k) {
+                    if (strcmp(tolowerString(nomeStart), tolowerString(aux4->parAssoc[k].nome)) == 0 || strcmp(tolowerString(aux2->parAssoc[j].nome), tolowerString(aux4->parAssoc[k].nome)) == 0) {
+                        continue;
+                    }
+                    if (strcmp(tolowerString(nomeFinish), tolowerString(aux4->parAssoc[k].nome)) == 0) {
+                        p = addToLinhas(p, aux2->nome);
+                        p = addToParagens(p, aux2->parAssoc[j].nome);
+                        p = addToLinhas(p, aux4->nome);
+                        p = addToParagens(p, aux4->parAssoc[k].nome);
+                        nPrec++;
+                        mostraPrecurso(p, nPrec, 1);
+                        putchar('\n');
+                        free(p->paragens);
+                        p->paragens = NULL;
+                        free(p->linhas);
+                        p->linhas = NULL;
+                        p->nPar = 0;
+                        p = addToParagens(p, listPar[i].nome);
+                    }
+                }
+                aux3 = aux3->prox;
+            }
         }
         aux1 = aux1->prox;
     }
@@ -146,13 +156,8 @@ void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, cha
 }
 
 void mostraPrecurso(ptrPrec p, int n, int transbordFlag) {
-    ptrLin aux;
+    ptrLin aux = NULL;
     int nLin = 0;
-    aux = p->linhas;
-    while (aux != NULL) {
-        nLin++;
-        aux = aux->prox;
-    }
 
     if (transbordFlag == 0) {
         printf("\n\t\t\t\t+----------------+");
@@ -165,40 +170,53 @@ void mostraPrecurso(ptrPrec p, int n, int transbordFlag) {
         printf("\n\t\t\t\t| com transbordo |");
         printf("\n\t\t\t\t+----------------+");
     }
+    aux = p->linhas;
     putchar('\n');
+    putchar(' ');
     for (int i = 0; i < p->nPar; ++i) {
-        printf("+");
+        putchar('+');
         for (int j = 0; j < strlen(p->paragens[i].nome)+2; ++j) {
-            printf("-");
+            putchar('-');
         }
-        printf("+\t\t");
-    }
-    putchar('\n');
-    for (int i = 0; i < p->nPar; ++i) {
-        printf("| %s |", p->paragens[i].nome);
+        putchar('+');
         if (i < p->nPar-1) {
-            printf("\t->\t");
+            printf("    %s    ", aux->nome);
+            aux = aux->prox;
         }
-    }
-    putchar('\n');
-    for (int i = 0; i < p->nPar; ++i) {
-        printf("+");
-        for (int j = 0; j < strlen(p->paragens[i].nome)+2; ++j) {
-            printf("-");
-        }
-        printf("+\t\t");
     }
 
     aux = p->linhas;
-    printf("\nLinhas:");
-    while(aux != NULL) {
-        printf("\n-> %s", aux->nome);
-        aux = aux->prox;
+    putchar('\n');
+    putchar(' ');
+    for (int i = 0; i < p->nPar; ++i) {
+        printf("| %s |", p->paragens[i].nome);
+        if (i < p->nPar-1) {
+            printf("   ");
+            for (int j = 0; j < strlen(aux->nome)+1; ++j) {
+                putchar('-');
+            }
+            printf(">   ");
+            aux = aux->prox;
+        }
     }
 
-    printf("\nParagens:");
+    aux = p->linhas;
+    putchar('\n');
+    putchar(' ');
     for (int i = 0; i < p->nPar; ++i) {
-        printf("\n-> %s", p->paragens[i].nome);
+        putchar('+');
+        for (int j = 0; j < strlen(p->paragens[i].nome)+2; ++j) {
+            putchar('-');
+        }
+        putchar('+');
+        if (i < p->nPar-1) {
+            printf("   ");
+            for (int j = 0; j < strlen(aux->nome)+2; ++j) {
+                putchar(' ');
+            }
+            printf("   ");
+            aux = aux->prox;
+        }
     }
 }
 

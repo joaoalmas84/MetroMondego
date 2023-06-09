@@ -28,10 +28,6 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
     printf("\n\t|                   9.Carregar Ficheiro Linha                  |");
     printf("\n\t|                       10.Calcular Precurso                   |");
     printf("\n\t|                             0.Sair                           |");
-
-    menuCounter(*parTotal, linTotal);
-
-    printf("\n\t\t->");
     do {
         if (j > 0) {
             printf("\n\t              +---------------------------------+");
@@ -44,11 +40,10 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             printf("\n\t|                   9.Carregar Ficheiro Linha                  |");
             printf("\n\t|                       10.Calcular Precurso                   |");
             printf("\n\t|                             0.Sair                           |");
-
-            menuCounter(*parTotal, linTotal);
-
-            printf("\n\t\t->");
         }
+        menuCounter(*parTotal, linTotal);
+        printf("\n\t\t  ->");
+
         fflush(stdin);
         res = scanf("%d", &ans);
         j++;
@@ -338,7 +333,6 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
         menu(listLin, listPar, parTotal);
     } else {
         printf("\nVolte Sempre!");
-        exit(1);
     }
 }
 
@@ -347,7 +341,7 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
 // +----------+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ptrPar registaParagem(ptrPar listPar, int *parTotal) {
-    int i = 0, res = 0, ans = 0;
+    int i = 0, res = 0, ans = 0, flag = 0;
     char nome[50], cod[5];
 
     printf("\n\t                         +--------------+");
@@ -358,7 +352,7 @@ ptrPar registaParagem(ptrPar listPar, int *parTotal) {
     printf("\n\t  +----------------------------------------------------------+");
     printf("\n\t  ->");
     do {
-        if (i > 0) {
+        if (i > 0 && flag == 0) {
             printf("\n\t      +--------------------------------------------------+");
             wprintf(L"\n\t      |                   Nome inválido!                 |");
             wprintf(L"\n\t      | Já existe uma paragem com esse nome registada no |");
@@ -366,6 +360,14 @@ ptrPar registaParagem(ptrPar listPar, int *parTotal) {
             printf("\n\t      |                     0.Voltar                     |");
             printf("\n\t      +--------------------------------------------------+");
             printf("\n\t      ->");
+        } else if (i > 00 && flag == 1) {
+            printf("\n\t\t    +---------------------------------------+");
+            wprintf(L"\n\t\t    |             Nome inválido!            |");
+            wprintf(L"\n\t\t    | O nome da paragem não pode ser vazio, |");
+            wprintf(L"\n\t\t    |             tente novamente.          |");
+            printf("\n\t\t    |                0.Voltar               |");
+            printf("\n\t\t    +---------------------------------------+");
+            printf("\n\t\t    ->");
         }
         fflush(stdin);
         scanf("%[^\n]", nome);
@@ -373,8 +375,10 @@ ptrPar registaParagem(ptrPar listPar, int *parTotal) {
         if (strcmp(nome, "0") == 0) {
             system("cls");
             return listPar;
+        } else if (strcmp(nome, "") == 0) {
+            flag = 1;
         }
-    } while(verificaNome_Paragens(listPar, nome, *parTotal) == 1);
+    } while(verificaNome_Paragens(listPar, nome, *parTotal) == 1 || strcmp(nome, "") == 0);
 
     do {
         strcpy(cod, geraCod());
@@ -382,10 +386,17 @@ ptrPar registaParagem(ptrPar listPar, int *parTotal) {
 
     listPar = addPar(listPar, nome, cod, parTotal);
 
-    printf("\n\t\t     +--------------------------------+");
-    printf("\n\t\t     | Paragem adicionada com sucesso |");
-    printf("\n\t\t     |    prima ENTER para voltar.    |");
-    printf("\n\t\t     +--------------------------------+");
+    printf("\n\t\t       +--------------------------------+");
+    printf("\n\t\t       | Paragem adicionada com sucesso |");
+    printf("\n\t\t       |           Nome: %s", nome);
+    for (int j = 0; j < 15-strlen(nome); ++j) {
+        putchar(' ');
+
+    }
+    putchar('|');
+    wprintf(L"\n\t\t       |         Código: %s           |", cod);
+    printf("\n\t\t       |    prima ENTER para voltar.    |");
+    printf("\n\t\t       +--------------------------------+");
     getchar();
     getchar();
     system("cls");
@@ -622,12 +633,12 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
     printf("\n\t   ->");
     do {
         if (i > 0) {
-            printf("\n\t      +----------------------------------------------------+");
-            wprintf(L"\n\t      |                   Nome inválido                    |");
-            wprintf(L"\n\t      |  Já existe uma linha com esse nome registada no    |");
-            wprintf(L"\n\t      |              sistema, tente novamente.             |");
-            printf("\n\t      |                        0.Voltar                      |");
-            printf("\n\t      +----------------------------------------------------+");
+            printf("\n\t      +------------------------------------------------+");
+            wprintf(L"\n\t      |                   Nome inválido                |");
+            wprintf(L"\n\t      | Já existe uma linha com esse nome registada no |");
+            wprintf(L"\n\t      |              sistema, tente novamente.         |");
+            printf("\n\t      |                     0.Voltar                   |");
+            printf("\n\t      +------------------------------------------------+");
             printf("\n\t      ->");
         }
         fflush(stdin);
@@ -671,10 +682,15 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
             listLin = addPar_Lin(listLin, nome, listPar, NULL, cod, parTotal, 0);
         }
     } while (ans != 2);
-    printf("\n\t\t     +------------------------------+");
-    printf("\n\t\t     | Linha adicionada com sucesso |");
-    printf("\n\t\t     |   prima ENTER para voltar.   |");
-    printf("\n\t\t     +------------------------------+");
+    printf("\n\t\t       +------------------------------+");
+    printf("\n\t\t       | Linha adicionada com sucesso |");
+    printf("\n\t\t       |          Nome: %s", nome);
+    for (int j = 0; j < 14-strlen(nome); ++j) {
+        putchar(' ');
+    }
+    putchar('|');
+    printf("\n\t\t       |   prima ENTER para voltar.   |");
+    printf("\n\t\t       +------------------------------+");
     getchar();
     getchar();
     system("cls");

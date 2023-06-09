@@ -22,8 +22,8 @@
   <component name="ChangeListManager">
     <list default="true" id="647903b0-85d0-4100-8ce5-caabd057908e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Precurso.c" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Precurso.h" beforeDir="false" afterPath="$PROJECT_DIR$/Precurso.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
@@ -142,7 +142,7 @@
       <workItem from="1686152446965" duration="4020000" />
       <workItem from="1686178347856" duration="11178000" />
       <workItem from="1686236380529" duration="14193000" />
-      <workItem from="1686265934795" duration="2240000" />
+      <workItem from="1686265934795" duration="10160000" />
     </task>
     <servers />
   </component>
