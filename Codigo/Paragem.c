@@ -54,40 +54,6 @@ char* geraCod() {
     return cod;
 }
 
-ptrPar preencheLista_Paragens(ptrPar listPar, int *total) {
-    ptrPar aux = NULL;
-    FILE *f;
-    f = fopen("Paragens.txt", "r");
-    if (f == NULL) {
-        printf("\nErro ao abrir o ficheiro Paragens.txt\n");
-        return listPar;
-    }
-
-    char line[100];
-
-    while (fgets(line, sizeof(line), f) != NULL) {
-        if (line[strlen(line) - 1] == '\n') {
-            line[strlen(line) - 1] = '\0';
-        }
-        aux = realloc(listPar, sizeof(par)*(*total+1));
-        if (aux == NULL) {
-            if (erroMemoria() == 1) {
-                return listPar;
-            } else if (erroMemoria() == 2) {
-                exit(1);
-            }
-        }
-        (*total)++;
-        listPar = aux;
-        strcpy(listPar[*total-1].nome, line);
-        do {
-            strcpy(listPar[*total-1].cod, geraCod());
-        } while (verificaCod_Paragens(listPar, listPar[*total-1].cod, *total-1) == 1);
-    }
-    fclose(f);
-    return listPar;
-}
-
 int checkPar_Dell(ptrPar lista, int total, char* cod) {
     int i;
     for (i = 0; i < total; ++i) {

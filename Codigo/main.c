@@ -6,11 +6,15 @@ int main() {
     ptrPar listP = NULL;
     int totalPar = 0;
 
-    printf("\n\t\t\t\t+-------+");
-    printf("\n\t\t\t\t| Start |");
-    printf("\n\t\t\t\t+-------+\n");
+    printf("\n\t\t\t +--------------------------+");
+    wprintf(L"\n\t\t\t | Prima ENTER para começar |");
+    printf("\n\t\t\t +--------------------------+");
     getchar();
 
     menu(listL, listP, &totalPar);
+
+    printf("\nVolte Sempre!");
+
+
     return 0;
 }
