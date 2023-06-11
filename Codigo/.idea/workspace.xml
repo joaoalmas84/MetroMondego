@@ -22,14 +22,14 @@
   <component name="ChangeListManager">
     <list default="true" id="647903b0-85d0-4100-8ce5-caabd057908e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.c" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Linha.h" beforeDir="false" afterPath="$PROJECT_DIR$/Linha.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paragem.c" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paragem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Paragem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Percurso.c" beforeDir="false" afterPath="$PROJECT_DIR$/Percurso.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Percurso.h" beforeDir="false" afterPath="$PROJECT_DIR$/Percurso.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Linha.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Menu.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Paragem.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Percurso.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Codigo.dir/Percurso.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Codigo.exe" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +145,7 @@
       <workItem from="1686435259828" duration="17191000" />
       <workItem from="1686512208909" duration="8297000" />
       <workItem from="1686521064655" duration="20000" />
-      <workItem from="1686521116035" duration="1076000" />
+      <workItem from="1686521116035" duration="1478000" />
     </task>
     <servers />
   </component>

@@ -418,6 +418,37 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             system("cls");
             break;
         case 10:
+            if (*parTotal == 0 && linTotal == 0) {
+                printf("\n\t\t     +---------------------------------+");
+                wprintf(L"\n\t\t     | Não existem linhas nem paragens |");
+                printf("\n\t\t     |      registadas no sistema.     |");
+                printf("\n\t\t     |     Prima ENTER para voltar.    |");
+                printf("\n\t\t     +---------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            } else if (*parTotal == 0 ) {
+                printf("\n\t\t     +---------------------------------+");
+                wprintf(L"\n\t\t     | Não existem paragens registadas |");
+                printf("\n\t\t     |            no sistema.          |");
+                printf("\n\t\t     |     Prima ENTER para voltar.    |");
+                printf("\n\t\t     +---------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            } else if (linTotal == 0) {
+                printf("\n\t\t     +-------------------------------+");
+                wprintf(L"\n\t\t     | Não existem linhas registadas |");
+                printf("\n\t\t     |            no sistema.        |");
+                printf("\n\t\t     |     Prima ENTER para voltar.  |");
+                printf("\n\t\t     +-------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            }
             precursoMainFunction(listLin, listPar, *parTotal);
             system("cls");
             break;
