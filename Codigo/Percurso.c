@@ -68,6 +68,7 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     system("cls");
 }
 
+// calcula percursos sem transbordo
 int calculaPercursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish) {
     ptrPerc p = createNewPerc();
     ptrLin aux1 = NULL, aux2 = NULL;
@@ -102,6 +103,7 @@ int calculaPercursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeSta
     return nPrec;
 }
 
+// calcula percursos com transbordo
 void calculaPercursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int nPrec) {
     ptrPerc p = createNewPerc();
     ptrLin aux1 = NULL, aux2 = NULL, aux3 = NULL, aux4 = NULL;
@@ -220,6 +222,24 @@ void mostraPercursos(ptrPerc p, int n, int transbordFlag) {
     }
 }
 
+// aloca memoria para um novo percurso e inicializa todos os campos
+ptrPerc createNewPerc() {
+    ptrPerc p = malloc(sizeof(perc));
+    if (p == NULL) {
+        if (erroMemoria() == 1) {
+            return NULL;
+        } else if (erroMemoria() == 2) {
+            exit(1);
+        }
+    }
+    p->linhas = NULL;
+    p->paragens = NULL;
+    p->nPar = 0;
+
+    return p;
+}
+
+// Adiciona uma paragem ao array de paragens do percurso
 ptrPerc addToParagens(ptrPerc p, char* nome) { // <- Adiciona uma paragem à array de paragens do precurso
     ptrPar aux = realloc(p->paragens, sizeof(par)*(p->nPar+1));
     if (aux == NULL) {
@@ -239,6 +259,7 @@ ptrPerc addToParagens(ptrPerc p, char* nome) { // <- Adiciona uma paragem à arr
     return p;
 }
 
+// Remove uma paragem do array de paragens do percurso
 ptrPerc removeFromParagens(ptrPerc p) {
     ptrPar aux = realloc(p->paragens, sizeof(par)*(p->nPar-1));
     if (aux == NULL && p->nPar-1 > 0) {
@@ -252,6 +273,7 @@ ptrPerc removeFromParagens(ptrPerc p) {
     return p;
 }
 
+// Adiciona uma linha à lista ligada de paragens do percurso
 ptrPerc addToLinhas(ptrPerc p, char* nome) { // <- Adiciona uma linha à lsita ligada de paragens do precurso
     ptrLin aux = NULL, novo = NULL;
 
@@ -269,6 +291,7 @@ ptrPerc addToLinhas(ptrPerc p, char* nome) { // <- Adiciona uma linha à lsita l
     return p;
 }
 
+// Remove uma linha da lista ligada de paragens do percurso
 ptrPerc removeFromLinhas(ptrPerc p) {
     ptrLin auxBack = NULL, auxFront = NULL;
     if (p->linhas != NULL) {
@@ -288,18 +311,9 @@ ptrPerc removeFromLinhas(ptrPerc p) {
     }
     return p;
 }
-
-ptrLin searchLin(ptrLin listLin, char* nomeLin) {
-    ptrLin aux = listLin;
-    while (aux != NULL) {
-        if (strcmp(tolowerString(aux->nome), tolowerString(nomeLin)) == 0) {
-            return aux;
-        }
-        aux = aux->prox;
-    }
-    return NULL; // <- Nunca chega aqui
-}
-
+// recebe a paragem na lista de paragens associadas a uma linha
+// e devolve essa mesma paragem mas na lista que contém todas as paragens
+// registadas no sistema de modo a que possamos aceder às paragens dessa linha
 ptrLin searchPar(ptrPar listPar, int parTotal, char* nomePar) {
     for (int i = 0; i < parTotal; ++i) {
         if (strcmp(tolowerString(listPar[i].nome), tolowerString(nomePar)) == 0){
@@ -309,33 +323,16 @@ ptrLin searchPar(ptrPar listPar, int parTotal, char* nomePar) {
     return NULL;
 }
 
-ptrPerc createNewPerc() {
-    ptrPerc p = malloc(sizeof(perc));
-    if (p == NULL) {
-        if (erroMemoria() == 1) {
-            return NULL;
-        } else if (erroMemoria() == 2) {
-            exit(1);
-        }
-    }
-    p->linhas = NULL;
-    p->paragens = NULL;
-    p->nPar = 0;
-
-    return p;
-}
-
-void printPrec(ptrPerc p) {
-    ptrLin aux = p->linhas;
-
-    printf("\nLinhas:");
+// recebe a linha na lista de linhas associadas a uma paragem
+// e devolve essa mesma linha mas na lista que contém todas as linhas
+// registadas no sistema de modo a que possamos aceder às paragens dessa linha
+ptrLin searchLin(ptrLin listLin, char* nomeLin) {
+    ptrLin aux = listLin;
     while (aux != NULL) {
-        printf("\n-> %s", aux->nome);
+        if (strcmp(tolowerString(aux->nome), tolowerString(nomeLin)) == 0) {
+            return aux;
+        }
         aux = aux->prox;
     }
-
-    printf("\nParagens:");
-    for (int i = 0; i < p->nPar; ++i) {
-        printf("\n-> %s", p->paragens[i].nome);
-    }
+    return NULL; // <- Nunca chega aqui
 }

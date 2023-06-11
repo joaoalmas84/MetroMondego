@@ -4,7 +4,7 @@
 // | Funções auxiliares ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // +--------------------+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-// <- devolve 1 se nome existir em lista
+// devolve 1 se nome existir em lista
 int verificaNome_Paragens(ptrPar listPar, char *nome, int total) {
     if (total == 0) {
         return 0;
@@ -18,7 +18,7 @@ int verificaNome_Paragens(ptrPar listPar, char *nome, int total) {
     }
 }
 
-// <- devolve 1 se cod existir em lista
+// devolve 1 se cod existir em lista
 int verificaCod_Paragens(ptrPar list, char *cod, int total) {
     if (total == 0) {
         return 0;
@@ -32,7 +32,7 @@ int verificaCod_Paragens(ptrPar list, char *cod, int total) {
     }
 }
 
-
+// devolve string com 4 caracteres (letras e números) apenas, todos em uppercase
 char* geraCod() {
     char *cod = NULL;
     char charSet[] = "ABCDEFGHIJKLMNOPQRSTUVXYWZ0123456789";
@@ -54,6 +54,7 @@ char* geraCod() {
     return cod;
 }
 
+// devolve 1 se a oaragem a eliminar não tiver linhas associadas (pode ser eliminada)
 int checkPar_Dell(ptrPar lista, int total, char* cod) {
     int i;
     for (i = 0; i < total; ++i) {
@@ -163,6 +164,7 @@ ptrPar addLin_Par(ptrLin listLin, char* nomeLin, ptrPar listPar, int parTotal, c
     return listPar;
 }
 
+// remove linha da paragem
 ptrPar removeLin_Par(ptrPar listPar, char* cod, int totalPar, char* nomeLin) {
     int i;
     for (i = 0; i < totalPar; ++i) {

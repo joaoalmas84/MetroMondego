@@ -586,6 +586,7 @@ ptrPar eliminaParagem(ptrLin listLin, ptrPar listPar, int *parTotal) {
     return listPar;
 }
 
+// Lista uma unica paragem
 void visualizaPar(ptrPar listPar, int parTotal, char* cod, char* nome) {
     int i = 0, j = 0;
 
@@ -635,6 +636,7 @@ void visualizaPar(ptrPar listPar, int parTotal, char* cod, char* nome) {
     return;
 }
 
+// Lista todas as paragens
 void visualizaParAll(ptrPar listPar, int parTotal) {
     if (parTotal == 0) {
         listaVazia();
@@ -669,6 +671,7 @@ void visualizaParAll(ptrPar listPar, int parTotal) {
     return;
 }
 
+// Lista todas as paragens detalhadamente
 void visualizaParAllDetailed(ptrPar listPar, int parTotal) {
     if (parTotal == 0) {
         listaVazia();
@@ -1060,6 +1063,7 @@ ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin, ptrPar listPar, int parTota
     return listLin;
 }
 
+// Lista uma unica linha
 void visualizaLin(ptrLin listLin, char* nome) {
     int i = 0;
     ptrLin aux = listLin;
@@ -1093,6 +1097,7 @@ void visualizaLin(ptrLin listLin, char* nome) {
 
 }
 
+// Lista todas as linhas
 void visualizaLinAll(ptrLin listLin) {
     int i = 0;
     if (listLin == NULL) {
@@ -1129,6 +1134,7 @@ void visualizaLinAll(ptrLin listLin) {
     system("cls");
 }
 
+// Lista todas as linhas detalhadamente
 void visualizaLinAllDetailed(ptrLin listLin) {
     if (listLin == NULL) {
         listaVazia();

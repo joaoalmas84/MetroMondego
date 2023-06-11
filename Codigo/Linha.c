@@ -20,6 +20,7 @@ int verificaNome_Lin(ptrLin listLin, char* nome) {
     }
 }
 
+// insere a newLin na listLin
 ptrLin insereLin(ptrLin listLin, ptrLin newLin) {
     if (listLin == NULL) {
         listLin = newLin;
@@ -35,6 +36,7 @@ ptrLin insereLin(ptrLin listLin, ptrLin newLin) {
     }
 }
 
+// aloca memoria para uma nova linha e inicializa todos os campos
 ptrLin createNewLin(char *nome) {
     ptrLin novo = malloc(sizeof(lin));
     if (novo == NULL) {
@@ -53,6 +55,7 @@ ptrLin createNewLin(char *nome) {
     return novo;
 }
 
+// remove uma paragem especifica de todas as linhas
 ptrLin removePar_All(ptrLin listLin, ptrPar listPar, int parTotal, char* cod) {
     ptrLin aux = listLin;
     while (aux != NULL) {
@@ -186,6 +189,7 @@ ptrLin addPar_Lin(ptrLin listLin, char* nomeLin,  ptrPar listPar, char* nomePar,
     return listLin;
 }
 
+// Leitura do nome da linha pelo ficheiro linha
 ptrLin getLinFromFile(ptrLin listLin, char* fileName) {
     FILE* f;
     char nomeLin[50];
@@ -210,6 +214,7 @@ ptrLin getLinFromFile(ptrLin listLin, char* fileName) {
     return listLin;
 }
 
+// Leitura das paragens do ficheiro linha e adição das mesmas à linha
 ptrPar getParToLinFromFile(ptrLin listLin, ptrPar listPar, int* totalPar, char* fileName) {
     FILE* f;
     int i, j, k;
