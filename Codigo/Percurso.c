@@ -1,19 +1,19 @@
-#include "Precurso.h"
+#include "Percurso.h"
 
 void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     int flag = 0,  i = 0, j = 0, nPar = 0, nPrec;
     char nomeStart[50], nomeFinish[50];
-    ptrPrec p = createNewPrec();
+    ptrPerc p = createNewPerc();
 
     do {
         nomeStart[0] = '\0';
         printf("\n\t\t       +-----------------------------------+");
-        printf("\n\t\t       | Calcular Precurso - Ponto Partida |");
+        printf("\n\t\t       | Calcular Percurso - Ponto Partida |");
         printf("\n\t\t  +----+-----------------------------------+----+");
-        printf("\n\t\t  | Introduza o ponto de partida do precurso, o |");
-        wprintf(L"\n\t\t  |  nome da paragem onde começará o precurso.  |");
-        printf("\n\t\t  |             1. Visualizar Paragens          |");
-        printf("\n\t\t  |                   0. Voltar                 |");
+        printf("\n\t\t  | Introduza o ponto de partida do percurso, o |");
+        wprintf(L"\n\t\t  |  nome da paragem onde começará o percurso.  |");
+        printf("\n\t\t  |             1.Visualizar Paragens           |");
+        printf("\n\t\t  |                   0.Voltar                  |");
         printf("\n\t\t  +---------------------------------------------+");
         printf("\n\t\t  ->");
         getNameParUser(nomeStart, listPar, parTotal);
@@ -28,10 +28,10 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     do {
         nomeFinish[0] = '\0';
         printf("\n\t\t       +-----------------------------------+");
-        printf("\n\t\t       | Calcular Precurso - Ponto Chegada |");
+        printf("\n\t\t       | Calcular Percurso - Ponto Chegada |");
         printf("\n\t\t  +----+-----------------------------------+----+");
-        printf("\n\t\t  | Introduza o ponto de chegada do precurso, o |");
-        wprintf(L"\n\t\t  |   nome da paragem onde acabará o precurso.  |");
+        printf("\n\t\t  | Introduza o ponto de chegada do percurso, o |");
+        wprintf(L"\n\t\t  |   nome da paragem onde acabará o percurso.  |");
         printf("\n\t\t  |              1.Visualizar Paragens          |");
         printf("\n\t\t  |                    0.Voltar                 |");
         printf("\n\t\t  +---------------------------------------------+");
@@ -57,10 +57,10 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
         }
     } while (strcmp(nomeFinish, "1") == 0);
 
-    nPrec = calculaPrecursos(listLin, listPar, parTotal, nomeStart, nomeFinish);
-    calculaPrecursosTransbord(listLin, listPar, parTotal, nomeStart, nomeFinish, nPrec);
+    nPrec = calculaPercursos(listLin, listPar, parTotal, nomeStart, nomeFinish);
+    calculaPercursosTransbord(listLin, listPar, parTotal, nomeStart, nomeFinish, nPrec);
     printf("\n\t\t\t     +-----------------------------------+");
-    printf("\n\t\t\t     | Precursos encontrados com sucesso |");
+    printf("\n\t\t\t     | Percursos encontrados com sucesso |");
     printf("\n\t\t\t     |     prima ENTER para voltar.      |");
     printf("\n\t\t\t     +-----------------------------------+");
     getchar();
@@ -68,8 +68,8 @@ void precursoMainFunction(ptrLin listLin, ptrPar listPar, int parTotal) {
     system("cls");
 }
 
-int calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish) {
-    ptrPrec p = createNewPrec();
+int calculaPercursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish) {
+    ptrPerc p = createNewPerc();
     ptrLin aux1 = NULL, aux2 = NULL;
     int i, nPrec = 0;
     for (i = 0; i < parTotal; ++i) {
@@ -87,7 +87,7 @@ int calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeSta
                 p = addToLinhas(p, aux2->nome);
                 p = addToParagens(p, aux2->parAssoc[j].nome);
                 nPrec++;
-                mostraPrecurso(p, nPrec, 0);
+                mostraPercursos(p, nPrec, 0);
                 putchar('\n');
                 free(p->paragens);
                 p->paragens = NULL;
@@ -102,8 +102,8 @@ int calculaPrecursos(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeSta
     return nPrec;
 }
 
-void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int nPrec) {
-    ptrPrec p = createNewPrec();
+void calculaPercursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, char* nomeStart, char* nomeFinish, int nPrec) {
+    ptrPerc p = createNewPerc();
     ptrLin aux1 = NULL, aux2 = NULL, aux3 = NULL, aux4 = NULL;
     int i;
     for (i = 0; i < parTotal; ++i) {
@@ -137,7 +137,7 @@ void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, cha
                         p = addToLinhas(p, aux4->nome);
                         p = addToParagens(p, aux4->parAssoc[k].nome);
                         nPrec++;
-                        mostraPrecurso(p, nPrec, 1);
+                        mostraPercursos(p, nPrec, 1);
                         putchar('\n');
                         free(p->paragens);
                         p->paragens = NULL;
@@ -155,20 +155,20 @@ void calculaPrecursosTransbord(ptrLin listLin, ptrPar listPar, int parTotal, cha
     free(p);
 }
 
-void mostraPrecurso(ptrPrec p, int n, int transbordFlag) {
+void mostraPercursos(ptrPerc p, int n, int transbordFlag) {
     ptrLin aux = NULL;
     int nLin = 0;
 
     if (transbordFlag == 0) {
-        printf("\n\t\t\t\t+----------------+");
-        wprintf(L"\n\t\t\t\t| Precurso n.º %d |", n);
-        printf("\n\t\t\t\t| sem transbordo |");
-        printf("\n\t\t\t\t+----------------+");
+        printf("\n+----------------+");
+        wprintf(L"\n| Percurso n.º %d |", n);
+        printf("\n| sem transbordo |");
+        printf("\n+----------------+");
     } else {
-        printf("\n\t\t\t\t+----------------+");
-        wprintf(L"\n\t\t\t\t| Precurso n.º %d |", n);
-        printf("\n\t\t\t\t| com transbordo |");
-        printf("\n\t\t\t\t+----------------+");
+        printf("\n+----------------+");
+        wprintf(L"\n| Percurso n.º %d |", n);
+        printf("\n| com transbordo |");
+        printf("\n+----------------+");
     }
     aux = p->linhas;
     putchar('\n');
@@ -220,7 +220,7 @@ void mostraPrecurso(ptrPrec p, int n, int transbordFlag) {
     }
 }
 
-ptrPrec addToParagens(ptrPrec p, char* nome) { // <- Adiciona uma paragem à array de paragens do precurso
+ptrPerc addToParagens(ptrPerc p, char* nome) { // <- Adiciona uma paragem à array de paragens do precurso
     ptrPar aux = realloc(p->paragens, sizeof(par)*(p->nPar+1));
     if (aux == NULL) {
         if (erroMemoria() == 1) {
@@ -239,7 +239,7 @@ ptrPrec addToParagens(ptrPrec p, char* nome) { // <- Adiciona uma paragem à arr
     return p;
 }
 
-ptrPrec removeFromParagens(ptrPrec p) {
+ptrPerc removeFromParagens(ptrPerc p) {
     ptrPar aux = realloc(p->paragens, sizeof(par)*(p->nPar-1));
     if (aux == NULL && p->nPar-1 > 0) {
         if (erroMemoria() == 1) {
@@ -252,7 +252,7 @@ ptrPrec removeFromParagens(ptrPrec p) {
     return p;
 }
 
-ptrPrec addToLinhas(ptrPrec p, char* nome) { // <- Adiciona uma linha à lsita ligada de paragens do precurso
+ptrPerc addToLinhas(ptrPerc p, char* nome) { // <- Adiciona uma linha à lsita ligada de paragens do precurso
     ptrLin aux = NULL, novo = NULL;
 
     novo = createNewLin(nome);  // <- A função createNewLin do ficheiro Linha.c já faz tudo
@@ -269,7 +269,7 @@ ptrPrec addToLinhas(ptrPrec p, char* nome) { // <- Adiciona uma linha à lsita l
     return p;
 }
 
-ptrPrec removeFromLinhas(ptrPrec p) {
+ptrPerc removeFromLinhas(ptrPerc p) {
     ptrLin auxBack = NULL, auxFront = NULL;
     if (p->linhas != NULL) {
         if (p->linhas->prox == NULL) {
@@ -309,8 +309,8 @@ ptrLin searchPar(ptrPar listPar, int parTotal, char* nomePar) {
     return NULL;
 }
 
-ptrPrec createNewPrec() {
-    ptrPrec p = malloc(sizeof(prec));
+ptrPerc createNewPerc() {
+    ptrPerc p = malloc(sizeof(perc));
     if (p == NULL) {
         if (erroMemoria() == 1) {
             return NULL;
@@ -325,7 +325,7 @@ ptrPrec createNewPrec() {
     return p;
 }
 
-void printPrec(ptrPrec p) {
+void printPrec(ptrPerc p) {
     ptrLin aux = p->linhas;
 
     printf("\nLinhas:");

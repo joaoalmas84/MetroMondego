@@ -25,7 +25,7 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
     printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
     printf("\n\t|         7.Guardar Dados             8.Carregar Dados         |");
     printf("\n\t|                   9.Carregar Ficheiro Linha                  |");
-    printf("\n\t|                      10.Calcular Precurso                    |");
+    printf("\n\t|                      10.Calcular Percurso                    |");
     printf("\n\t|                             0.Sair                           |");
     do {
         if (j > 0) {
@@ -37,7 +37,7 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             printf("\n\t|         5.Visualizar Paragens       6.Visualizar Linhas      |");
             printf("\n\t|         7.Guardar Dados             8.Carregar Dados         |");
             printf("\n\t|                   9.Carregar Ficheiro Linha                  |");
-            printf("\n\t|                      10.Calcular Precurso                    |");
+            printf("\n\t|                      10.Calcular Percurso                    |");
             printf("\n\t|                             0.Sair                           |");
         }
         menuCounter(*parTotal, linTotal);
@@ -76,12 +76,12 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
                 break;
             } else if (ans1 == 1) {
                 if (*parTotal == 0) {
-                    wprintf(L"\nNão há Paragens para guardar");
+                    wprintf(L"\nNão existem Paragens para guardar");
                 } else {
                     saveDadosPar(listPar, *parTotal);
                 }
                 if (listLin == NULL) {
-                    wprintf(L"\nNão há Linhas para guardar");
+                    wprintf(L"\nNão existem Linhas para guardar");
                 } else {
                     saveDadosLin(listLin);
                 }
@@ -91,15 +91,59 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             listPar = registaParagem(listPar, parTotal);
             break;
         case 2:
+            if (*parTotal == 0) {
+                printf("\n\t\t     +--------------------------------+");
+                printf("\n\t\t     | Registe pelo menos uma paragem |");
+                printf("\n\t\t     |    antes de adicionar linhas   |");
+                printf("\n\t\t     |     Prima ENTER para voltar.   |");
+                printf("\n\t\t     +--------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            }
             listLin = adicionaLinha(listLin, listPar, *parTotal);
             break;
         case 3:
+            if (*parTotal == 0) {
+                printf("\n\t\t     +---------------------------------+");
+                wprintf(L"\n\t\t     | Não existem paragens registadas |");
+                printf("\n\t\t     |            no sistema.          |");
+                printf("\n\t\t     |     Prima ENTER para voltar.    |");
+                printf("\n\t\t     +---------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            }
             listPar = eliminaParagem(listLin, listPar, parTotal);
             break;
         case 4:
+            if (linTotal == 0) {
+                printf("\n\t\t     +-------------------------------+");
+                wprintf(L"\n\t\t     | Não existem linhas registadas |");
+                printf("\n\t\t     |           no sistema.         |");
+                printf("\n\t\t     |     Prima ENTER para voltar.  |");
+                printf("\n\t\t     +-------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            }
             listLin = atualizaLinha(listLin, listPar, *parTotal);
             break;
         case 5:
+            if (*parTotal == 0) {
+                printf("\n\t\t     +---------------------------------+");
+                wprintf(L"\n\t\t     | Não existem paragens registadas |");
+                printf("\n\t\t     |            no sistema.          |");
+                printf("\n\t\t     |     Prima ENTER para voltar.    |");
+                printf("\n\t\t     +---------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            }
             i = res = ans = 0;
             printf("\n\t\t\t       +---------------------+");
             printf("\n\t\t\t       | Visualizar Paragens |");
@@ -213,6 +257,17 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             system("cls");
             break;
         case 6:
+            if (linTotal == 0) {
+                printf("\n\t\t     +-------------------------------+");
+                wprintf(L"\n\t\t     | Não existem linhas registadas |");
+                printf("\n\t\t     |           no sistema.         |");
+                printf("\n\t\t     |     Prima ENTER para voltar.  |");
+                printf("\n\t\t     +-------------------------------+");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            }
             i = res = ans = 0;
             printf("\n\t\t\t       +-------------------+");
             printf("\n\t\t\t       | Visualizar Linhas |");
@@ -300,13 +355,13 @@ void menu(ptrLin listLin, ptrPar listPar, int *parTotal) {
             break;
         case 7:
             system("cls");
-            if (parTotal == 0) {
-                wprintf(L"\nNão há linhas para guardar");
+            if (*parTotal == 0) {
+                wprintf(L"\nNão existem paragens para guardar");
             } else {
                 saveDadosPar(listPar, *parTotal);
             }
             if (listLin == NULL) {
-                wprintf(L"\nNão há linhas para guardar");
+                wprintf(L"\nNão existem linhas para guardar");
             } else {
                 saveDadosLin(listLin);
             }

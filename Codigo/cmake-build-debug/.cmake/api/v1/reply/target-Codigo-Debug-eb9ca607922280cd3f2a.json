@@ -172,12 +172,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Precurso.c",
+			"path" : "Percurso.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Precurso.h",
+			"path" : "Percurso.h",
 			"sourceGroupIndex" : 1
 		}
 	],

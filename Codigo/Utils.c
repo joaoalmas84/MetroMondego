@@ -25,7 +25,6 @@ char* tolowerString(char* s) {
 
 // mensagem de erro quando a lista se encontra vazia
 void listaVazia() {
-    int i= 0, ans = 0, res = 0;
     printf("\n\t\t     +--------------------------------+");
     printf("\n\t\t     |   A lista encontra-se vazia.   |");
     printf("\n\t\t     |    Prima ENTER para voltar.    |");
@@ -33,7 +32,6 @@ void listaVazia() {
     getchar();
     getchar();
     system("cls");
-
 }
 
 int erroMemoria() {
