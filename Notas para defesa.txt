@@ -1,0 +1,11 @@
+-> Eliminar Paragem: Se só houver uma paragem, ao elimina-la o array fica a null, logo a verificação da alocação de memória vai dar erro.
+	Solução: Na verificação, em vez de ter só "if (aux == NULL)", temos "if (aux == NULL && *total-1 > 0)".
+	Evitar na Defesa: Carregar Dados logo no início.
+
+-> Atualiza Linha - Adicionar Paragem: Se a chegada a esta função for esta não faz sentido eliminar a linha ao abortar o processo.
+ 	Solução: Só eliminar a linha se ao voltar esta não tiver paragens 
+		 if (aux->nParAssoc == 0) {
+                     listLin = dellLin(listLin, nomeLin);
+                 }
+	
+-> Eliminar Linha: Eliminar a funcionalidade do menu.

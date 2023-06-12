@@ -1,4 +1,0 @@
-Guiao 2:
-  -> Ex.6
-Guiao 3:
-  -> Ex.1

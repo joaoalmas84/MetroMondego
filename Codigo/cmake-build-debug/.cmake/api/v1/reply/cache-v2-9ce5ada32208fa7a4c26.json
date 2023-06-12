@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/cmake-build-debug"
+			"value" : "c:/Users/joaoa/Desktop/Codigo/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -431,7 +431,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/joaoa/Desktop/Codigo/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -503,7 +503,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo"
+			"value" : "C:/Users/joaoa/Desktop/Codigo"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1119,7 +1119,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo/cmake-build-debug"
+			"value" : "C:/Users/joaoa/Desktop/Codigo/cmake-build-debug"
 		},
 		{
 			"name" : "Codigo_IS_TOP_LEVEL",
@@ -1143,7 +1143,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/joaoa/Desktop/ISEC-JoaoAlmas/Projetos/MetroMondego-C/Codigo"
+			"value" : "C:/Users/joaoa/Desktop/Codigo"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

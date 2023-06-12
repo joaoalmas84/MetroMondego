@@ -825,40 +825,6 @@ ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int parTotal) {
     return listLin;
 }
 
-ptrLin eliminaLinha(ptrLin listLin) {
-    int i = 0;
-    char nome[50];
-
-    printf("\n\t                +---------------+");
-    printf("\n\t                | Elimina Linha |");
-    printf("\n\t+---------------+---------------+----------------+");
-    wprintf(L"\n\t| Introduza o nome da linha que pretende listar. |");
-    printf("\n\t|                    0.Voltar                      |");
-    printf("\n\t+------------------------------------------------+");
-    printf("\n\t->");
-    do {
-        if (i > 0) {
-            printf("\n+----------------------------------------------------+");
-            wprintf(L"\n|                   Nome inválido!                   |");
-            wprintf(L"\n|  Não existe nenhuma linha com esse nome registada  |");
-            wprintf(L"\n|            no sistema, tente novamente.            |");
-            printf("\n\t|                     0.Voltar                       |");
-            printf("\n+----------------------------------------------------+");
-            printf("\n->");
-        }
-        fflush(stdin);
-        scanf("%[^\n]", nome);
-        i++;
-        if (strcmp(nome, "0") == 0) {
-            system("cls");
-            return listLin;
-        }
-    } while (verificaNome_Lin(listLin, nome) == 0);
-
-    listLin = dellLin(listLin, nome);
-    return listLin;
-}
-
 ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar) {
     int i = 0, ans = 0, res = 0;
     char nome[50], cod[5];
@@ -1471,7 +1437,9 @@ void getCodAddPar(char* cod, ptrPar listPar, int parTotal, char* nomeLin, ptrLin
             scanf("%[^\n]", cod);
             if (strcmp(cod, "0") == 0){
                 system("cls");
-                listLin = dellLin(listLin, nomeLin);
+                if (aux->nParAssoc == 0) {
+                    listLin = dellLin(listLin, nomeLin);
+                }
                 menu(listLin, listPar, &parTotal);
                 break;
             }else if (strcmp(cod, "1") == 0) {
@@ -1479,7 +1447,7 @@ void getCodAddPar(char* cod, ptrPar listPar, int parTotal, char* nomeLin, ptrLin
                 i = 0;
                 break;
             } else if (verificaCod_Paragens(listPar, cod, parTotal) == 0 && strlen(cod) == 4) {// <- Condição necessária para escolher
-                flag = 1;                                                               //    escolher a mensagem de erro
+                flag = 1;                                                                      //    escolher a mensagem de erro
             } else if (verificaCod_Paragens(aux->parAssoc, cod, aux->nParAssoc) == 1) {
                 flag = 2;
             } else {

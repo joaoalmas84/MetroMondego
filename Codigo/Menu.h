@@ -27,7 +27,6 @@ void visualizaParAllDetailed(ptrPar listPar, int parTotal);             // <- Li
 
 // Linhas
 ptrLin adicionaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
-ptrLin eliminaLinha(ptrLin listLin);
 ptrLin atualizaLinha(ptrLin listLin, ptrPar listPar, int totalPar);
 ptrLin removeParagem_Lin(ptrLin listLin, ptrPar listaP, int parTotal, char *nomePar);
 ptrLin alteraNome_Lin(ptrLin listLin, char *nomeLin, ptrPar listPar, int parTotal);

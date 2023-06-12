@@ -1,5 +1,4 @@
 Linha ff0003
-Mogofores - Anadia # IWJ7
 Pombal # OH34
 Soure # ZRZ7
 Alfarelos # PQOC
@@ -7,3 +6,4 @@ Coimbra-B # GFAZ
 Coimbra # Z68U
 Pampilhosa # XH0D
 Mealhada # 7G5W
+Mogofores - Anadia # IWJ7
