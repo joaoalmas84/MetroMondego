@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Codigo::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Codigo-Debug-d55f46b53a188f1dbf72.json",
+					"jsonFile" : "target-Codigo-Debug-6af6dc0d2a8caa65bfe1.json",
 					"name" : "Codigo",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/joaoa/Desktop/Codigo/cmake-build-debug",
-		"source" : "C:/Users/joaoa/Desktop/Codigo"
+		"build" : "C:/Users/joaoa/Desktop/Escola/Projetos/MetroMondego-C/Codigo/cmake-build-debug",
+		"source" : "C:/Users/joaoa/Desktop/Escola/Projetos/MetroMondego-C/Codigo"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 4
+		"minor" : 6
 	}
 }

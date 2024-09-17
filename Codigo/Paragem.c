@@ -110,7 +110,7 @@ ptrPar dellPar(ptrPar listPar, char *cod, int *total) {
         }
     }
     aux = realloc(listPar, sizeof(par)*(*total-1));
-    if (aux == NULL && *total-1 > 0) {
+    if (aux == NULL ) {
         if (erroMemoria() == 1) {
             return listPar;
         } else if (erroMemoria() == 2) {

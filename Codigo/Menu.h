@@ -12,7 +12,7 @@
 /*
  * Estas funções não alteram a informação do sistema, servem apenas para obter a informação
  * introduzida pelo utilizador e passa-la para as verdadeiras funções de gestão de memória
- * contidas nos ficheiros Paragem.c/.h e Lista.c/.h e cálculo de percursos Percurso.h
+ * contidas nos ficheiros Paragem.c/.h e Linha.c/.h e cálculo de percursos Percurso.c/.h
 */
 
 void menu(ptrLin listLin, ptrPar listPar, int *parTotal);    // <- Função principal (só para não lhe chamar main)
